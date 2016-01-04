@@ -1,5 +1,5 @@
-PL/SQL Developer Test script 3.0
-30
+ï»¿PL/SQL Developer Test script 3.0
+29
 declare
   message_body varchar2(2000);
   crlf varchar(2) := chr(13) || chr (10);
@@ -15,7 +15,7 @@ begin
   message_body := message_body || '  utl_mail.send(' || crlf;
   message_body := message_body || '  sender     => ''ihar.piatrenka@b-logic.by'',' || crlf;
   message_body := message_body || '  recipients => ''ihar.piatrenka@b-logic.by'',' || crlf;
-  message_body := message_body || '     subject => ''Òåñòîâîå ñîîáùåíèå ñ ïîìîùüş ïğîöåäóğû pl/sql'',' || crlf;
+  message_body := message_body || '     subject => ''Ğ¢ĞµÑÑ‚Ğ¾Ğ²Ğ¾Ğµ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğµ Ñ Ğ¿Ğ¾Ğ¼Ğ¾Ñ‰ÑŒÑ Ğ¿Ñ€Ğ¾Ñ†ĞµĞ´ÑƒÑ€Ñ‹ pl/sql'',' || crlf;
   message_body := message_body || '     message => message_body,' || crlf;
   message_body := message_body || '   mime_type => ''text; charset=utf8''' || crlf;
   message_body := message_body || '  );' || crlf;
@@ -24,11 +24,10 @@ begin
   utl_mail.send(
   sender     => 'apex/cenTOS-ORCL@b-logic.by',
   recipients => 'ihar.piatrenka@b-logic.by',
-     subject => 'Òåñòîâîå ñîîáùåíèå ñ ïîìîùüş ïğîöåäóğû pl/sql v3',
+     subject => 'Ğ¢ĞµÑÑ‚Ğ¾Ğ²Ğ¾Ğµ ÑĞ¾Ğ¾Ğ±Ñ‰ĞµĞ½Ğ¸Ğµ Ñ Ğ¿Ğ¾Ğ¼Ğ¾Ñ‰ÑŒÑ Ğ¿Ñ€Ğ¾Ñ†ĞµĞ´ÑƒÑ€Ñ‹ pl/sql v3',
      message => message_body,
    mime_type => 'text; charset=utf8'
   );
 end;
-
 0
 0

@@ -1,11 +1,11 @@
-PL/SQL Developer Test script 3.0
+п»їPL/SQL Developer Test script 3.0
 41
 DECLARE
   lv_server      VARCHAR2(255) := 'mail.softclub.by';
   lv_rcpt        VARCHAR2(255) := 'ihar.piatrenka@b-logic.by';
   lv_from        VARCHAR2(255) := 'scassets/cenTOS-ORCL@b-logic.by';
-  lv_subject     VARCHAR2(255) := 'This is subject, Это заголовок';
-  lv_message     VARCHAR2(255) := 'Не вопрос, в теле сообщения все по-русски';
+  lv_subject     VARCHAR2(255) := 'This is subject, Р­С‚Рѕ Р·Р°РіРѕР»РѕРІРѕРє';
+  lv_message     VARCHAR2(255) := 'Р”РѕР±СЂС‹Р№ РґРµРЅСЊ, РїРѕРїС‹С‚РєР° РѕС‚РІРµС‚Р° РЅР° РІРѕРїСЂРѕСЃ, РІ С‚РµР»Рµ СЃРѕРѕР±С‰РµРЅРёСЏ РІСЃРµ РїРѕ-СЂСѓСЃСЃРєРё';
   lv_conn        UTL_SMTP.CONNECTION;
 
   CHAR_SET constant varchar(200) := 'Content-Type: text/html;charset=UTF-8' ||UTL_TCP.CRLF;
@@ -19,7 +19,7 @@ BEGIN
   UTL_SMTP.Rcpt(lv_conn, lv_rcpt);
   UTL_SMTP.OPEN_DATA(lv_conn);
 
-  -- Все четыре закомментированные ниже строчки не работают
+  -- Р’СЃРµ С‡РµС‚С‹СЂРµ Р·Р°РєРѕРјРјРµРЅС‚РёСЂРѕРІР°РЅРЅС‹Рµ РЅРёР¶Рµ СЃС‚СЂРѕС‡РєРё РЅРµ СЂР°Р±РѕС‚Р°СЋС‚
   -- UTL_SMTP.WRITE_DATA(lv_conn, 'Subject: ' ||  lv_subject || UTL_TCP.CRLF);
   -- UTL_SMTP.WRITE_RAW_DATA(lv_conn, UTL_ENCODE.QUOTED_PRINTABLE_ENCODE(UTL_RAW.CAST_TO_RAW('Subject: ' ||  lv_subject || UTL_TCP.CRLF)));
   -- UTL_SMTP.WRITE_DATA(lv_conn, 'Subject: =?UTF-8?Q?' || UTL_RAW.CAST_TO_VARCHAR2(UTL_ENCODE.BASE64_ENCODE(UTL_RAW.CAST_TO_RAW(lv_subject))) || '?=' || UTL_TCP.CRLF);
