@@ -1,0 +1,52 @@
+under sys as sysdba
+select * from dba_network_acls;
+
+1	*			/sys/acls/power_users.xml	19F76AB5361E4735E05318FDA8C0DA96
+2	mail.softclub.by			/sys/acls/utl_mail.xml	272A27A915D11FCFE05318FDA8C0784E
+
+
+select * from dba_network_acl_privileges;
+
+1	/sys/acls/power_users.xml	19F76AB5361E4735E05318FDA8C0DA96	APEX_050000	connect	true	false		
+2	/sys/acls/utl_mail.xml	272A27A915D11FCFE05318FDA8C0784E	SCASSETS	connect	true	false		
+3	/sys/acls/utl_mail.xml	272A27A915D11FCFE05318FDA8C0784E	SCASSETS	resolve	true	false		
+
+begin
+  utl_mail.send(
+  sender     => 'ihar.piatrenka@b-logic.by',
+  recipients => 'ihar.piatrenka@b-logic.by',
+  message    => 'Hello World'
+  );
+end;
+
+grant execute on UTL_MAIL to public;
+
+begin
+  dbms_network_acl_admin.create_acl (
+    acl         => 'utl_mail.xml',
+    description => 'Allow mail to be send',
+    principal   => 'SCASSETS',
+    is_grant    => TRUE,
+    privilege   => 'connect'
+    );
+    commit;
+end;
+
+begin
+  dbms_network_acl_admin.add_privilege (
+  acl       => 'utl_mail.xml',
+  principal => 'SCASSETS',
+  is_grant  => TRUE,
+  privilege => 'resolve'
+  );
+  commit;
+end;
+
+begin
+  dbms_network_acl_admin.assign_acl(
+  acl  => 'utl_mail.xml',
+  host => 'mail.softclub.by'
+  );
+  commit;
+end;
+
