@@ -1,11 +1,11 @@
--- под учетной записью sys на указанной БД выполнить команды:
+-- РїРѕРґ СѓС‡РµС‚РЅРѕР№ Р·Р°РїРёСЃСЊСЋ sys РЅР° СѓРєР°Р·Р°РЅРЅРѕР№ Р‘Р” РІС‹РїРѕР»РЅРёС‚СЊ РєРѕРјР°РЅРґС‹:
 
 grant select on v_$session to public;
 grant select on v_$sesstat to public;
 grant select on v_$statname to public;
 grant select on v_$mystat to public;
 
--- Можно public заменить на scassets
+-- РњРѕР¶РЅРѕ public Р·Р°РјРµРЅРёС‚СЊ РЅР° scassets
 
  
 
