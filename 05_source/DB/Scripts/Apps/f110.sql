@@ -27,7 +27,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 -- Application Export:
 --   Application:     110
 --   Name:            Scassets_sketch_05
---   Date and Time:   14:42 Wednesday January 27, 2016
+--   Date and Time:   14:36 Sunday February 21, 2016
 --   Exported By:     SCASSETS_ADMIN
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,18 +36,20 @@ prompt APPLICATION 110 - Scassets_sketch_05
 --
 
 -- Application Statistics:
---   Pages:                      8
---     Items:                    5
---     Processes:                6
---     Regions:                 14
---     Buttons:                  3
+--   Pages:                     26
+--     Items:                   53
+--     Processes:               30
+--     Regions:                 58
+--     Buttons:                 43
 --     Dynamic Actions:          2
 --   Shared Components:
 --     Logic:
+--       Items:                  1
+--       Computations:           1
 --     Navigation:
---       Lists:                  2
+--       Lists:                  3
 --       Breadcrumbs:            1
---         Entries:              7
+--         Entries:             25
 --     Security:
 --       Authentication:         1
 --     User Interface:
@@ -62,6 +64,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 --         Breadcrumb:           1
 --         Button:               3
 --         Report:               8
+--       Shortcuts:              1
 --     Globalization:
 --     Reports:
 --   Supporting Objects:  Included
@@ -115,7 +118,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_value_02=>'<link rel="shortcut icon" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.ico"><link rel="icon" sizes="16x16" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-16x16.png"><link rel="icon" sizes="32x32" '
 ||'href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.png">'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160127143854'
+,p_last_upd_yyyymmddhh24miss=>'20160221143205'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_ui_type_name => null
 );
@@ -131,8 +134,9 @@ wwv_flow_api.create_list(
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(23814971570469281)
 ,p_list_item_display_sequence=>10
-,p_list_item_link_text=>'Home'
-,p_list_item_link_target=>'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:'
+,p_list_item_link_text=>'Home [&A01.]'
+,p_list_item_link_target=>'f?p=&APP_ID.:1:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-home'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'1'
 );
@@ -141,8 +145,9 @@ wwv_flow_api.create_list_item(
 ,p_list_item_display_sequence=>20
 ,p_list_item_link_text=>'RunningSecPageDNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:2:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-truck'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'2,3,4,5,6,7'
+,p_list_item_current_for_pages=>'2,3,4,5,6,7,9'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24003366609359810)
@@ -189,6 +194,95 @@ wwv_flow_api.create_list_item(
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'7'
 );
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_display_sequence=>80
+,p_list_item_link_text=>'ServiceSecPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:8:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-gear'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'8,11,13,14,16,18'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24102289866182346)
+,p_list_item_display_sequence=>90
+,p_list_item_link_text=>'BatteriesLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:14:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'14,15'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24117775317457957)
+,p_list_item_display_sequence=>100
+,p_list_item_link_text=>'TiresLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:16:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'16,17'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24132345056561667)
+,p_list_item_display_sequence=>110
+,p_list_item_link_text=>'InsurancesLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:18:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'18,19'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24209136662442896)
+,p_list_item_display_sequence=>120
+,p_list_item_link_text=>'BreakageServiceLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'9,10'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_display_sequence=>130
+,p_list_item_link_text=>'FileCabinetSecPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:13:&SESSION.::&DEBUG.'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'13,22,28'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24245175898464545)
+,p_list_item_display_sequence=>140
+,p_list_item_link_text=>'VehiclesPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'20,21'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24266780225514268)
+,p_list_item_display_sequence=>150
+,p_list_item_link_text=>'FuellingLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:22:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'22,23'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24295545939715247)
+,p_list_item_display_sequence=>160
+,p_list_item_link_text=>'DriversPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:26:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'26,27'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24310079102789056)
+,p_list_item_display_sequence=>170
+,p_list_item_link_text=>'ParkingsPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:28:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'28,29'
+);
 wwv_flow_api.create_list(
  p_id=>wwv_flow_api.id(23813463607469206)
 ,p_name=>'Desktop Navigation Bar'
@@ -200,6 +294,74 @@ wwv_flow_api.create_list_item(
 ,p_list_item_link_text=>'Log Out'
 ,p_list_item_link_target=>'&LOGOUT_URL.'
 ,p_list_item_current_for_pages=>'&LOGOUT_URL.'
+);
+wwv_flow_api.create_list(
+ p_id=>wwv_flow_api.id(24250851430769605)
+,p_name=>'FileCabinetTabs'
+,p_list_status=>'PUBLIC'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24251009443769608)
+,p_list_item_display_sequence=>20
+,p_list_item_link_text=>'Vehicles'
+,p_list_item_link_target=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-automobile'
+,p_list_text_01=>'View and edit file Vehicles'
+,p_list_text_02=>'chartIcon'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'16'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24251465673769610)
+,p_list_item_display_sequence=>30
+,p_list_item_link_text=>'Batteries'
+,p_list_item_link_target=>'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:RP:::'
+,p_list_item_icon=>'fa-bolt'
+,p_list_text_01=>'List of all batteries that purchased and used'
+,p_list_text_02=>'chartIcon'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'20'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24251887270769611)
+,p_list_item_display_sequence=>40
+,p_list_item_link_text=>'Drivers'
+,p_list_item_link_target=>'f?p=&APP_ID.:26:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-male'
+,p_list_text_01=>'Employees who can be a car drivers'
+,p_list_text_02=>'reportIcon'
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24252207211769611)
+,p_list_item_display_sequence=>40
+,p_list_item_link_text=>'Fuelling log'
+,p_list_item_link_target=>'f?p=&APP_ID.:22:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-tint'
+,p_list_text_01=>'Fuelling'
+,p_list_text_02=>'chartIcon'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'5'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24252615803769611)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'Parkings'
+,p_list_item_link_target=>'f?p=&APP_ID.:28:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-square'
+,p_list_text_01=>'All car parkings'
+,p_list_text_02=>'reportIcon'
+,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(24253031605769612)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'Tires'
+,p_list_item_link_target=>'f?p=&APP_ID.:16:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-paw'
+,p_list_text_01=>'Just all tires'
+,p_list_text_02=>'chartIcon'
+,p_list_item_current_type=>'TARGET_PAGE'
 );
 end;
 /
@@ -247,12 +409,24 @@ end;
 /
 prompt --application/shared_components/logic/application_items
 begin
-null;
+wwv_flow_api.create_flow_item(
+ p_id=>wwv_flow_api.id(24188262727055201)
+,p_name=>'A01'
+,p_protection_level=>'I'
+);
 end;
 /
 prompt --application/shared_components/logic/application_computations
 begin
-null;
+wwv_flow_api.create_flow_computation(
+ p_id=>wwv_flow_api.id(24189756038089802)
+,p_computation_sequence=>10
+,p_computation_item=>'A01'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'QUERY'
+,p_computation_processed=>'REPLACE_EXISTING'
+,p_computation=>'select count(*) from tvehicles'
+);
 end;
 /
 prompt --application/shared_components/navigation/tabs/standard
@@ -294,8 +468,8 @@ wwv_flow_api.create_menu(
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(23815209113469283)
 ,p_parent_id=>0
-,p_short_name=>'Home'
-,p_link=>'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.'
+,p_short_name=>'HomeEntry'
+,p_link=>'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:::'
 ,p_page_id=>1
 );
 wwv_flow_api.create_menu_option(
@@ -338,6 +512,131 @@ wwv_flow_api.create_menu_option(
 ,p_short_name=>'WayBillLogPageEntry'
 ,p_link=>'f?p=&APP_ID.:7:&SESSION.'
 ,p_page_id=>7
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24081842045044610)
+,p_parent_id=>0
+,p_short_name=>'ServiceSecPageEntry'
+,p_link=>'f?p=&APP_ID.:8:&SESSION.::&DEBUG.:::'
+,p_page_id=>8
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24107388770182380)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'BatteriesLogPageEntry'
+,p_link=>'f?p=&APP_ID.:14:&SESSION.'
+,p_page_id=>14
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24108507051182382)
+,p_parent_id=>wwv_flow_api.id(24107388770182380)
+,p_short_name=>'BatteriesLogEditPageEntry'
+,p_link=>'f?p=&APP_ID.:15:&SESSION.::&DEBUG.:::'
+,p_page_id=>15
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24121266147457980)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'TiresLogPageEntry'
+,p_link=>'f?p=&APP_ID.:16:&SESSION.'
+,p_page_id=>16
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24122462578457982)
+,p_parent_id=>wwv_flow_api.id(24121266147457980)
+,p_short_name=>'TiresLogEditPageEntry'
+,p_link=>'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:::'
+,p_page_id=>17
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24138270459561709)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'InsurancesLogPageEntry'
+,p_link=>'f?p=&APP_ID.:18:&SESSION.'
+,p_page_id=>18
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24139443388561711)
+,p_parent_id=>wwv_flow_api.id(24138270459561709)
+,p_short_name=>'InsurancesLogEditPageEntry'
+,p_link=>'f?p=&APP_ID.:19:&SESSION.::&DEBUG.:::'
+,p_page_id=>19
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24213365717442943)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'BreakageServiceLogPageEntry'
+,p_link=>'f?p=&APP_ID.:9:&SESSION.'
+,p_page_id=>9
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24214596885442951)
+,p_parent_id=>wwv_flow_api.id(24213365717442943)
+,p_short_name=>'BreakageServiceLogPageEntry'
+,p_link=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:::'
+,p_page_id=>10
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'FileCabinetSecPageEntry'
+,p_link=>'f?p=&APP_ID.:13:&SESSION.'
+,p_page_id=>13
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24247919363464574)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'VehiclesPageEntry'
+,p_link=>'f?p=&APP_ID.:20:&SESSION.'
+,p_page_id=>20
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24249116890464577)
+,p_parent_id=>wwv_flow_api.id(24247919363464574)
+,p_short_name=>'VehiclesEditPageEntry'
+,p_link=>'f?p=&APP_ID.:21:&SESSION.::&DEBUG.:::'
+,p_page_id=>21
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24270190073514292)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'FuellingLogPageEntry'
+,p_link=>'f?p=&APP_ID.:22:&SESSION.::&DEBUG.:::'
+,p_page_id=>22
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24271357900514296)
+,p_parent_id=>wwv_flow_api.id(24270190073514292)
+,p_short_name=>'FuellingLogEditPageEntry'
+,p_link=>'f?p=&APP_ID.:23:&SESSION.::&DEBUG.:::'
+,p_page_id=>23
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24298728191715255)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'DriversPageEntry'
+,p_link=>'f?p=&APP_ID.:26:&SESSION.'
+,p_page_id=>26
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24299933457715256)
+,p_parent_id=>wwv_flow_api.id(24298728191715255)
+,p_short_name=>'DriversEditPageEntry'
+,p_link=>'f?p=&APP_ID.:27:&SESSION.::&DEBUG.:::'
+,p_page_id=>27
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24315538068789067)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'ParkingsPageEntry'
+,p_link=>'f?p=&APP_ID.:28:&SESSION.'
+,p_page_id=>28
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(24316700552789069)
+,p_parent_id=>wwv_flow_api.id(24315538068789067)
+,p_short_name=>'ParkingsEditPageEntry'
+,p_link=>'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:::'
+,p_page_id=>29
 );
 end;
 /
@@ -7497,7 +7796,12 @@ end;
 /
 prompt --application/shared_components/user_interface/shortcuts
 begin
-null;
+wwv_flow_api.create_shortcut(
+ p_id=>wwv_flow_api.id(24086582390144635)
+,p_shortcut_name=>'DELETE_CONFIRM_MSG'
+,p_shortcut_type=>'TEXT_ESCAPE_JS'
+,p_shortcut=>'Would you like to perform this delete action?'
+);
 end;
 /
 prompt --application/shared_components/security/authentications
@@ -7552,31 +7856,84 @@ wwv_flow_api.create_page(
 ,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
 ,p_name=>'Home'
 ,p_page_mode=>'NORMAL'
-,p_step_title=>'Home'
+,p_step_title=>'&APP_NAME.'
 ,p_step_sub_title=>'Home'
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
+,p_step_template=>wwv_flow_api.id(23776719012469048)
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
-,p_last_upd_yyyymmddhh24miss=>'20151007120910'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160215124510'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(23815360725469286)
-,p_plug_name=>'Breadcrumbs'
-,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
-,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_name=>'TMS Application'
+,p_icon_css_classes=>'fa-cab'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23785970146469082)
 ,p_plug_display_sequence=>10
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'REGION_POSITION_01'
-,p_menu_id=>wwv_flow_api.id(23814842776469277)
-,p_plug_source_type=>'NATIVE_BREADCRUMB'
-,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
-,p_plug_query_row_template=>1
+,p_plug_source=>'<p>Управление транспортом, ГСМ, шины, АКБ</p>'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24040536412012401)
+,p_plug_name=>'CarsInfo'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>30
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Агрегированная информация об автомобилях'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24040639155012402)
+,p_plug_name=>'DriversInfo'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>40
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Агрегированная информация о водителях'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24040787146012403)
+,p_plug_name=>'AlertsInfo'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Агрегированная информация о наступивших или наступающих сроках и мероприятиях'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24040909541012405)
+,p_plug_name=>'SearchReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Область поиска, найдется все'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
 );
 end;
 /
@@ -8236,6 +8593,3518 @@ wwv_flow_api.create_worksheet_rpt(
 );
 end;
 /
+prompt --application/pages/page_00008
+begin
+wwv_flow_api.create_page(
+ p_id=>8
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'ServiceSecPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'ServiceSecPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207191726'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24040868967012404)
+,p_plug_name=>'InspectionInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>60
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24048408986187406)
+,p_plug_name=>'BatteriesServiceInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Систематизированная информация о всех имеющихся аккумуляторах и напоминания о сроках их замены'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24048815935187407)
+,p_plug_name=>'TiresServiceInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Уведомления о фактическом износе и плановых сроках замены шин (зима/лето, по пробегу)'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24049297332187410)
+,p_plug_name=>'InsurancesInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>30
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'Информация об ближайшем (по параметру настройки) окончании сроков действия страховых полисов или сроках уплаты очередного взноса'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24049630174187412)
+,p_plug_name=>'MaintenanceInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>40
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24050016515187412)
+,p_plug_name=>'RepairInfoReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>50
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'N'
+);
+end;
+/
+prompt --application/pages/page_00009
+begin
+wwv_flow_api.create_page(
+ p_id=>9
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BreakageServiceLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BreakageServiceLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160217121502'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24210006893442923)
+,p_plug_name=>'BreakageServiceLogPageGeg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BREAKAGESERVID", ',
+'"VEHICLEID",',
+'"BREAKAGESERVDATE",',
+'"BREAKAGENAME",',
+'"BREAKAGESERVCOST",',
+'"BREAKAGESERVNOTES"',
+'from "#OWNER#"."TBREAKAGESERVICELOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24210417593442925)
+,p_name=>'BreakageServiceLogPageGeg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:10:&APP_SESSION.::::P10_BREAKAGESERVID:#BREAKAGESERVID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24210417593442925
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24210515365442935)
+,p_db_column_name=>'BREAKAGESERVID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Breakageservid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24210995608442940)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24211333710442940)
+,p_db_column_name=>'BREAKAGESERVDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Breakageservdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24211761504442941)
+,p_db_column_name=>'BREAKAGENAME'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Breakagename'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24212137982442941)
+,p_db_column_name=>'BREAKAGESERVCOST'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Breakageservcost'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24212504871442942)
+,p_db_column_name=>'BREAKAGESERVNOTES'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Breakageservnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24215697959449858)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'242157'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'BREAKAGESERVID:VEHICLEID:BREAKAGESERVDATE:BREAKAGENAME:BREAKAGESERVCOST:BREAKAGESERVNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24213520522442946)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24212978314442943)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24210006893442923)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:10'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00010
+begin
+wwv_flow_api.create_page(
+ p_id=>10
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BreakageServiceLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BreakageServiceLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160217121353'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24202149500442830)
+,p_plug_name=>'BreakageServiceLogPageReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24214173557442950)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24202688846442835)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P10_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24202804558442835)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24202588930442835)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P10_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24202789593442835)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P10_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24204485717442846)
+,p_branch_action=>'f?p=&APP_ID.:9:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24204806078442851)
+,p_name=>'P10_BREAKAGESERVID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservid'
+,p_source=>'BREAKAGESERVID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24205243507442866)
+,p_name=>'P10_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24205685539442873)
+,p_name=>'P10_BREAKAGESERVDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservdate'
+,p_source=>'BREAKAGESERVDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24206024156442873)
+,p_name=>'P10_BREAKAGENAME'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakagename'
+,p_source=>'BREAKAGENAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24206479514442874)
+,p_name=>'P10_BREAKAGESERVCOST'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservcost'
+,p_source=>'BREAKAGESERVCOST'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24206814199442874)
+,p_name=>'P10_BREAKAGESERVNOTES'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservnotes'
+,p_source=>'BREAKAGESERVNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1024
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24207684407442879)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TBREAKAGESERVICELOG'
+,p_attribute_02=>'TBREAKAGESERVICELOG'
+,p_attribute_03=>'P10_BREAKAGESERVID'
+,p_attribute_04=>'BREAKAGESERVID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24208006716442881)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TBREAKAGESERVICELOG'
+,p_attribute_02=>'TBREAKAGESERVICELOG'
+,p_attribute_03=>'P10_BREAKAGESERVID'
+,p_attribute_04=>'BREAKAGESERVID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24208433462442881)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24202789593442835)
+);
+end;
+/
+prompt --application/pages/page_00013
+begin
+wwv_flow_api.create_page(
+ p_id=>13
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'FileCabinetSecPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'FileCabinetSecPage'
+,p_step_sub_title=>'FileCabinetSecPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221115110'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24236883567306697)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24254262323841463)
+,p_plug_name=>'FileCabinetSecReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--hideHeader:t-Region--scrollBody'
+,p_component_template_options=>'#DEFAULT#:t-MediaList--cols t-MediaList--2cols'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_list_id=>wwv_flow_api.id(24250851430769605)
+,p_plug_source_type=>'NATIVE_LIST'
+,p_list_template_id=>wwv_flow_api.id(23804129649469127)
+,p_plug_query_row_template=>1
+,p_plug_query_num_rows=>15
+,p_plug_query_num_rows_type=>'NEXT_PREVIOUS_LINKS'
+,p_plug_query_show_nulls_as=>' - '
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+);
+end;
+/
+prompt --application/pages/page_00014
+begin
+wwv_flow_api.create_page(
+ p_id=>14
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BatteriesLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BatteriesLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207180828'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24103267309182362)
+,p_plug_name=>'BatteriesLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BATTERYMOUNTID", ',
+'"VEHICLEID",',
+'"BATTERYMOUNTDATE",',
+'"BATTERYNAME",',
+'"BATTERYLIFETIME",',
+'"BATTERYMILEAGE",',
+'"BATTERYMOTOHOURS",',
+'"BATTERYNOTES"',
+'from "#OWNER#"."TBATTERIESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24103692387182365)
+,p_name=>'BatteriesLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:15:&APP_SESSION.::::P15_BATTERYMOUNTID:#BATTERYMOUNTID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24103692387182365
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24103707952182369)
+,p_db_column_name=>'BATTERYMOUNTID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Batterymountid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24104122011182374)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24104548231182375)
+,p_db_column_name=>'BATTERYMOUNTDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Batterymountdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24104929822182376)
+,p_db_column_name=>'BATTERYNAME'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Batteryname'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24105332423182377)
+,p_db_column_name=>'BATTERYLIFETIME'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Batterylifetime'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24105728339182377)
+,p_db_column_name=>'BATTERYMILEAGE'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Batterymileage'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24106135454182378)
+,p_db_column_name=>'BATTERYMOTOHOURS'
+,p_display_order=>7
+,p_column_identifier=>'G'
+,p_column_label=>'Batterymotohours'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24106501580182379)
+,p_db_column_name=>'BATTERYNOTES'
+,p_display_order=>8
+,p_column_identifier=>'H'
+,p_column_label=>'Batterynotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24108760689183234)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'241088'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'BATTERYMOUNTID:VEHICLEID:BATTERYMOUNTDATE:BATTERYNAME:BATTERYLIFETIME:BATTERYMILEAGE:BATTERYMOTOHOURS:BATTERYNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24107562013182380)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24106921649182379)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24103267309182362)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:15:&SESSION.::&DEBUG.:15'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00015
+begin
+wwv_flow_api.create_page(
+ p_id=>15
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BatteriesLogEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BatteriesLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207180819'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24094462969182333)
+,p_plug_name=>'BatteriesLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24108186604182381)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24094908418182333)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P15_BATTERYMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24095104164182334)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:14:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24094802540182333)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P15_BATTERYMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24095095197182334)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P15_BATTERYMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24096746702182336)
+,p_branch_action=>'f?p=&APP_ID.:14:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24097192547182337)
+,p_name=>'P15_BATTERYMOUNTID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterymountid'
+,p_source=>'BATTERYMOUNTID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24097578801182338)
+,p_name=>'P15_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24097984809182338)
+,p_name=>'P15_BATTERYMOUNTDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterymountdate'
+,p_source=>'BATTERYMOUNTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24098327887182339)
+,p_name=>'P15_BATTERYNAME'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batteryname'
+,p_source=>'BATTERYNAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24098771122182339)
+,p_name=>'P15_BATTERYLIFETIME'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterylifetime'
+,p_source=>'BATTERYLIFETIME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24099162784182340)
+,p_name=>'P15_BATTERYMILEAGE'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterymileage'
+,p_source=>'BATTERYMILEAGE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24099572624182340)
+,p_name=>'P15_BATTERYMOTOHOURS'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterymotohours'
+,p_source=>'BATTERYMOTOHOURS'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24099940418182341)
+,p_name=>'P15_BATTERYNOTES'
+,p_item_sequence=>80
+,p_item_plug_id=>wwv_flow_api.id(24094462969182333)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Batterynotes'
+,p_source=>'BATTERYNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24100748234182342)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TBATTERIESLOG'
+,p_attribute_02=>'TBATTERIESLOG'
+,p_attribute_03=>'P15_BATTERYMOUNTID'
+,p_attribute_04=>'BATTERYMOUNTID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24101173074182342)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TBATTERIESLOG'
+,p_attribute_02=>'TBATTERIESLOG'
+,p_attribute_03=>'P15_BATTERYMOUNTID'
+,p_attribute_04=>'BATTERYMOUNTID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24101514105182343)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24095095197182334)
+);
+end;
+/
+prompt --application/pages/page_00016
+begin
+wwv_flow_api.create_page(
+ p_id=>16
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'TiresLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'TiresLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207185422'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24118715721457970)
+,p_plug_name=>'TiresLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "TIRESMOUNTID", ',
+'"VEHICLEID",',
+'"TIRESMOUNTDATE",',
+'"TIRESMOUNTNOTES"',
+'from "#OWNER#"."TTIRESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24119188366457971)
+,p_name=>'TiresLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:17:&APP_SESSION.::::P17_TIRESMOUNTID:#TIRESMOUNTID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24119188366457971
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24119240620457975)
+,p_db_column_name=>'TIRESMOUNTID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Tiresmountid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24119615546457976)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24120092125457977)
+,p_db_column_name=>'TIRESMOUNTDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Tiresmountdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24120419377457978)
+,p_db_column_name=>'TIRESMOUNTNOTES'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Tiresmountnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24122652817458637)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'241227'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'TIRESMOUNTID:VEHICLEID:TIRESMOUNTDATE:TIRESMOUNTNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24121492529457980)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24120857610457979)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24118715721457970)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:17:&SESSION.::&DEBUG.:17'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00017
+begin
+wwv_flow_api.create_page(
+ p_id=>17
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'TiresLogEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'TiresLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207185416'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24111534176457939)
+,p_plug_name=>'TiresLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24122008992457982)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24112031153457939)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P17_TIRESMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24112235439457939)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:16:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24111993369457939)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P17_TIRESMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24112147333457939)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P17_TIRESMOUNTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24113886665457943)
+,p_branch_action=>'f?p=&APP_ID.:16:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24114246237457945)
+,p_name=>'P17_TIRESMOUNTID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Tiresmountid'
+,p_source=>'TIRESMOUNTID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24114654980457949)
+,p_name=>'P17_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24115086090457951)
+,p_name=>'P17_TIRESMOUNTDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Tiresmountdate'
+,p_source=>'TIRESMOUNTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24115486118457951)
+,p_name=>'P17_TIRESMOUNTNOTES'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24111534176457939)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Tiresmountnotes'
+,p_source=>'TIRESMOUNTNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24116254538457952)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TTIRESLOG'
+,p_attribute_02=>'TTIRESLOG'
+,p_attribute_03=>'P17_TIRESMOUNTID'
+,p_attribute_04=>'TIRESMOUNTID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24116656142457953)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TTIRESLOG'
+,p_attribute_02=>'TTIRESLOG'
+,p_attribute_03=>'P17_TIRESMOUNTID'
+,p_attribute_04=>'TIRESMOUNTID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24117085288457953)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24112147333457939)
+);
+end;
+/
+prompt --application/pages/page_00018
+begin
+wwv_flow_api.create_page(
+ p_id=>18
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'InsurancesLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'InsurancesLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207191145'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24133326757561696)
+,p_plug_name=>'InsurancesLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSURANCEID", ',
+'"PERSONID",',
+'"VEHICLEID",',
+'"INSURANCESTARTDATE",',
+'"INSURANCEENDDATE",',
+'"INSURANCEPOLICY",',
+'"INSURANCECOMPANY",',
+'"INSURANCETYPE",',
+'"INSURANCECOST",',
+'"INSURANCENOTES"',
+'from "#OWNER#"."TINSURANCESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24133754798561696)
+,p_name=>'InsurancesLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:19:&APP_SESSION.::::P19_INSURANCEID:#INSURANCEID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24133754798561696
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24133802061561700)
+,p_db_column_name=>'INSURANCEID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Insuranceid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24134267634561701)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24134668732561701)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24135045666561702)
+,p_db_column_name=>'INSURANCESTARTDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Insurancestartdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24135459206561703)
+,p_db_column_name=>'INSURANCEENDDATE'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Insuranceenddate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24135817789561703)
+,p_db_column_name=>'INSURANCEPOLICY'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Insurancepolicy'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24136266812561704)
+,p_db_column_name=>'INSURANCECOMPANY'
+,p_display_order=>7
+,p_column_identifier=>'G'
+,p_column_label=>'Insurancecompany'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24136670410561705)
+,p_db_column_name=>'INSURANCETYPE'
+,p_display_order=>8
+,p_column_identifier=>'H'
+,p_column_label=>'Insurancetype'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24137025542561705)
+,p_db_column_name=>'INSURANCECOST'
+,p_display_order=>9
+,p_column_identifier=>'I'
+,p_column_label=>'Insurancecost'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24137418630561706)
+,p_db_column_name=>'INSURANCENOTES'
+,p_display_order=>10
+,p_column_identifier=>'J'
+,p_column_label=>'Insurancenotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24139671363562926)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'241397'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'INSURANCEID:PERSONID:VEHICLEID:INSURANCESTARTDATE:INSURANCEENDDATE:INSURANCEPOLICY:INSURANCECOMPANY:INSURANCETYPE:INSURANCECOST:INSURANCENOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24138444842561709)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24137822898561708)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24133326757561696)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:19:&SESSION.::&DEBUG.:19'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00019
+begin
+wwv_flow_api.create_page(
+ p_id=>19
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'InsurancesLogEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'InsurancesLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160207191133'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24123874567561640)
+,p_plug_name=>'InsurancesLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24139032275561711)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24124367304561641)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P19_INSURANCEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24124534504561641)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:18:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24124216148561640)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P19_INSURANCEID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24124498942561641)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P19_INSURANCEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24126156700561644)
+,p_branch_action=>'f?p=&APP_ID.:18:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24126593498561645)
+,p_name=>'P19_INSURANCEID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insuranceid'
+,p_source=>'INSURANCEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24126994259561647)
+,p_name=>'P19_PERSONID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24127314807561648)
+,p_name=>'P19_VEHICLEID'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24127601593561658)
+,p_name=>'P19_INSURANCESTARTDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancestartdate'
+,p_source=>'INSURANCESTARTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24128037761561659)
+,p_name=>'P19_INSURANCEENDDATE'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insuranceenddate'
+,p_source=>'INSURANCEENDDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24128407448561659)
+,p_name=>'P19_INSURANCEPOLICY'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancepolicy'
+,p_source=>'INSURANCEPOLICY'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24128810896561660)
+,p_name=>'P19_INSURANCECOMPANY'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancecompany'
+,p_source=>'INSURANCECOMPANY'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24129257171561660)
+,p_name=>'P19_INSURANCETYPE'
+,p_item_sequence=>80
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancetype'
+,p_source=>'INSURANCETYPE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24129635161561661)
+,p_name=>'P19_INSURANCECOST'
+,p_item_sequence=>90
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancecost'
+,p_source=>'INSURANCECOST'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24130063274561661)
+,p_name=>'P19_INSURANCENOTES'
+,p_item_sequence=>100
+,p_item_plug_id=>wwv_flow_api.id(24123874567561640)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Insurancenotes'
+,p_source=>'INSURANCENOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24130837868561663)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TINSURANCESLOG'
+,p_attribute_02=>'TINSURANCESLOG'
+,p_attribute_03=>'P19_INSURANCEID'
+,p_attribute_04=>'INSURANCEID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24131237692561663)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TINSURANCESLOG'
+,p_attribute_02=>'TINSURANCESLOG'
+,p_attribute_03=>'P19_INSURANCEID'
+,p_attribute_04=>'INSURANCEID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24131613214561664)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24124498942561641)
+);
+end;
+/
+prompt --application/pages/page_00020
+begin
+wwv_flow_api.create_page(
+ p_id=>20
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'VehiclesPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'VehiclesPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221104610'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24245803227464560)
+,p_plug_name=>'VehiclesPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "VEHICLEID", ',
+'"VEHICLENAME",',
+'"VEHICLENOTES"',
+'from "#OWNER#"."TVEHICLES" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24246280445464562)
+,p_name=>'VehiclesPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:21:&APP_SESSION.::::P21_VEHICLEID:#VEHICLEID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24246280445464562
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24246305916464568)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24246753343464572)
+,p_db_column_name=>'VEHICLENAME'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehiclename'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24247178405464572)
+,p_db_column_name=>'VEHICLENOTES'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Vehiclenotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24250099258471485)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'242501'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'VEHICLEID:VEHICLENAME:VEHICLENOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24248105951464575)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24247515603464573)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24245803227464560)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:21:&SESSION.::&DEBUG.:21'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00021
+begin
+wwv_flow_api.create_page(
+ p_id=>21
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'VehiclesEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'VehiclesEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221104501'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24239469141464505)
+,p_plug_name=>'VehiclesEditPage'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24248761604464577)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24239984006464506)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P21_VEHICLEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24240122733464506)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24239895411464505)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P21_VEHICLEID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24240057179464506)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P21_VEHICLEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24241751611464514)
+,p_branch_action=>'f?p=&APP_ID.:20:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24242115020464518)
+,p_name=>'P21_VEHICLEID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24242529292464533)
+,p_name=>'P21_VEHICLENAME'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehiclename'
+,p_source=>'VEHICLENAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24242893157464536)
+,p_name=>'P21_VEHICLENOTES'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24239469141464505)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehiclenotes'
+,p_source=>'VEHICLENOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24243665547464538)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TVEHICLES'
+,p_attribute_02=>'TVEHICLES'
+,p_attribute_03=>'P21_VEHICLEID'
+,p_attribute_04=>'VEHICLEID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24244093229464543)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TVEHICLES'
+,p_attribute_02=>'TVEHICLES'
+,p_attribute_03=>'P21_VEHICLEID'
+,p_attribute_04=>'VEHICLEID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24244439908464544)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24240057179464506)
+);
+end;
+/
+prompt --application/pages/page_00022
+begin
+wwv_flow_api.create_page(
+ p_id=>22
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'FuellingLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'FuellingLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221134021'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24267774483514280)
+,p_plug_name=>'FuellingLogPage'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FUELLINGID", ',
+'"VEHICLEID",',
+'"FUELLINGDATE",',
+'"FUELLINGNOTES"',
+'from "#OWNER#"."TFUELLINGLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24268094114514281)
+,p_name=>'FuellingLogPage'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:23:&APP_SESSION.::::P23_FUELLINGID:#FUELLINGID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24268094114514281
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24268132839514288)
+,p_db_column_name=>'FUELLINGID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Fuellingid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24268529182514289)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24268915021514290)
+,p_db_column_name=>'FUELLINGDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Fuellingdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24269318253514290)
+,p_db_column_name=>'FUELLINGNOTES'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Fuellingnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24271517607516375)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'242716'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'FUELLINGID:VEHICLEID:FUELLINGDATE:FUELLINGNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24270304649514294)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24269749866514291)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24267774483514280)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:23:&SESSION.::&DEBUG.:23'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00023
+begin
+wwv_flow_api.create_page(
+ p_id=>23
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'FuellingLogEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'FuellingLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221140805'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24260522446514234)
+,p_plug_name=>'FuellingLogPageEditReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24270936495514296)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24261045945514234)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P23_FUELLINGID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24261220216514234)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:22:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24260985108514234)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P23_FUELLINGID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24261189700514234)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P23_FUELLINGID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24262831784514243)
+,p_branch_action=>'f?p=&APP_ID.:22:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24263294372514244)
+,p_name=>'P23_FUELLINGID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Fuellingid'
+,p_source=>'FUELLINGID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_cSize=>30
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24263612430514254)
+,p_name=>'P23_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24264034124514257)
+,p_name=>'P23_FUELLINGDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Fuellingdate'
+,p_source=>'FUELLINGDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24264481993514258)
+,p_name=>'P23_FUELLINGNOTES'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24260522446514234)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Fuellingnotes'
+,p_source=>'FUELLINGNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24265259377514262)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TFUELLINGLOG'
+,p_attribute_02=>'TFUELLINGLOG'
+,p_attribute_03=>'P23_FUELLINGID'
+,p_attribute_04=>'FUELLINGID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24265671314514262)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TFUELLINGLOG'
+,p_attribute_02=>'TFUELLINGLOG'
+,p_attribute_03=>'P23_FUELLINGID'
+,p_attribute_04=>'FUELLINGID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24266041979514263)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24261189700514234)
+);
+end;
+/
+prompt --application/pages/page_00026
+begin
+wwv_flow_api.create_page(
+ p_id=>26
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'DriversPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'DriversPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221141557'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24296240607715250)
+,p_plug_name=>'DriversPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PERSONID", ',
+'"NAME",',
+'"SURNAME",',
+'"PERSONNOTES"',
+'from "#OWNER#"."TPERSONS" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24296686176715250)
+,p_name=>'DriversPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:27:&APP_SESSION.::::P27_PERSONID:#PERSONID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24296686176715250
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24296751771715251)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24297180456715252)
+,p_db_column_name=>'NAME'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Name'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24297548338715253)
+,p_db_column_name=>'SURNAME'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Surname'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24297971064715254)
+,p_db_column_name=>'PERSONNOTES'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Personnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24300958596729943)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'243010'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'PERSONID:NAME:SURNAME:PERSONNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24298920772715255)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24298345445715254)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24296240607715250)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:27:&SESSION.::&DEBUG.:27'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00027
+begin
+wwv_flow_api.create_page(
+ p_id=>27
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'DriversEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'DriversEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221141330'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24289422646715236)
+,p_plug_name=>'DriversEditPage'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24299572285715256)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24289926797715237)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P27_PERSONID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24290116207715237)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:26:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24289855512715237)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P27_PERSONID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24290007887715237)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P27_PERSONID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24291766827715240)
+,p_branch_action=>'f?p=&APP_ID.:26:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24292049325715242)
+,p_name=>'P27_PERSONID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24292494152715243)
+,p_name=>'P27_NAME'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Name'
+,p_source=>'NAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24292814567715243)
+,p_name=>'P27_SURNAME'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Surname'
+,p_source=>'SURNAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24293229324715244)
+,p_name=>'P27_PERSONNOTES'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24289422646715236)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personnotes'
+,p_source=>'PERSONNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24294070045715245)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TPERSONS'
+,p_attribute_02=>'TPERSONS'
+,p_attribute_03=>'P27_PERSONID'
+,p_attribute_04=>'PERSONID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24294421965715245)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TPERSONS'
+,p_attribute_02=>'TPERSONS'
+,p_attribute_03=>'P27_PERSONID'
+,p_attribute_04=>'PERSONID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24294810878715246)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24290007887715237)
+);
+end;
+/
+prompt --application/pages/page_00028
+begin
+wwv_flow_api.create_page(
+ p_id=>28
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'ParkingsPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'ParkingsPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221142603'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24311031030789058)
+,p_plug_name=>'ParkingsPage'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PARKINGID", ',
+'"VEHICLEID",',
+'"PARKINGNUM",',
+'"PARKINGNAME",',
+'"PARKINGADDRESS",',
+'"PARKINGCONTRACT",',
+'"PARKINGNOTES",',
+'"PARKINGFROMDATE",',
+'"PARKINGTODATE"',
+'from "#OWNER#"."TPARKINGS" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(24311483597789058)
+,p_name=>'ParkingsPage'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:29:&APP_SESSION.::::P29_PARKINGID:#PARKINGID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>24311483597789058
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24311526514789059)
+,p_db_column_name=>'PARKINGID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Parkingid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24311993172789060)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24312320435789061)
+,p_db_column_name=>'PARKINGNUM'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Parkingnum'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24312724722789062)
+,p_db_column_name=>'PARKINGNAME'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Parkingname'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24313196129789063)
+,p_db_column_name=>'PARKINGADDRESS'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Parkingaddress'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24313548362789064)
+,p_db_column_name=>'PARKINGCONTRACT'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Parkingcontract'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24313951559789064)
+,p_db_column_name=>'PARKINGNOTES'
+,p_display_order=>7
+,p_column_identifier=>'G'
+,p_column_label=>'Parkingnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24314341094789065)
+,p_db_column_name=>'PARKINGFROMDATE'
+,p_display_order=>8
+,p_column_identifier=>'H'
+,p_column_label=>'Parkingfromdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(24314729797789066)
+,p_db_column_name=>'PARKINGTODATE'
+,p_display_order=>9
+,p_column_identifier=>'I'
+,p_column_label=>'Parkingtodate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(24316942687790579)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'243170'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'PARKINGID:VEHICLEID:PARKINGNUM:PARKINGNAME:PARKINGADDRESS:PARKINGCONTRACT:PARKINGNOTES:PARKINGFROMDATE:PARKINGTODATE'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24315797344789067)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24315133879789066)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24311031030789058)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:29'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00029
+begin
+wwv_flow_api.create_page(
+ p_id=>29
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'ParkingsEditPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'ParkingsEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221142548'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24301829794789040)
+,p_plug_name=>'ParkingsEditPageReg'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(24316376388789068)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24302398960789040)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P29_PARKINGID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24302562685789040)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:28:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24302248746789040)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P29_PARKINGID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(24302448261789040)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P29_PARKINGID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(24304178408789044)
+,p_branch_action=>'f?p=&APP_ID.:28:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24304515049789045)
+,p_name=>'P29_PARKINGID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingid'
+,p_source=>'PARKINGID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24304972470789046)
+,p_name=>'P29_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24305313405789046)
+,p_name=>'P29_PARKINGNUM'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingnum'
+,p_source=>'PARKINGNUM'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24305738868789047)
+,p_name=>'P29_PARKINGNAME'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingname'
+,p_source=>'PARKINGNAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24306144412789048)
+,p_name=>'P29_PARKINGADDRESS'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingaddress'
+,p_source=>'PARKINGADDRESS'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24306586590789048)
+,p_name=>'P29_PARKINGCONTRACT'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingcontract'
+,p_source=>'PARKINGCONTRACT'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1020
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24306956917789049)
+,p_name=>'P29_PARKINGNOTES'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingnotes'
+,p_source=>'PARKINGNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24307300349789049)
+,p_name=>'P29_PARKINGFROMDATE'
+,p_item_sequence=>80
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingfromdate'
+,p_source=>'PARKINGFROMDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(24307708484789050)
+,p_name=>'P29_PARKINGTODATE'
+,p_item_sequence=>90
+,p_item_plug_id=>wwv_flow_api.id(24301829794789040)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Parkingtodate'
+,p_source=>'PARKINGTODATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24308584064789051)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TPARKINGS'
+,p_attribute_02=>'TPARKINGS'
+,p_attribute_03=>'P29_PARKINGID'
+,p_attribute_04=>'PARKINGID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24308992245789052)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TPARKINGS'
+,p_attribute_02=>'TPARKINGS'
+,p_attribute_03=>'P29_PARKINGID'
+,p_attribute_04=>'PARKINGID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(24309337062789053)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(24302448261789040)
+);
+end;
+/
 prompt --application/pages/page_00101
 begin
 wwv_flow_api.create_page(
@@ -8254,12 +12123,12 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20151009103312'
+,p_last_upd_yyyymmddhh24miss=>'20160216115030'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(23814075123469268)
-,p_plug_name=>'Управление транспортом (прототип)'
-,p_icon_css_classes=>'fa-ambulance'
+,p_plug_name=>'Управление транспортом (ГСМ, автошины, АКБ etc.)'
+,p_icon_css_classes=>'fa-cab'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(23787331207469084)
 ,p_plug_display_sequence=>10
