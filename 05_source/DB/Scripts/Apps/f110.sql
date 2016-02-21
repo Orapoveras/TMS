@@ -27,7 +27,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 -- Application Export:
 --   Application:     110
 --   Name:            Scassets_sketch_05
---   Date and Time:   14:36 Sunday February 21, 2016
+--   Date and Time:   18:48 Sunday February 21, 2016
 --   Exported By:     SCASSETS_ADMIN
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -64,6 +64,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 --         Breadcrumb:           1
 --         Button:               3
 --         Report:               8
+--       LOVs:                   1
 --       Shortcuts:              1
 --     Globalization:
 --     Reports:
@@ -93,7 +94,7 @@ wwv_flow_api.create_flow(
 ,p_bookmark_checksum_function=>'SH1'
 ,p_compatibility_mode=>'5.0'
 ,p_flow_language=>'en'
-,p_flow_language_derived_from=>'FLOW_PRIMARY_LANGUAGE'
+,p_flow_language_derived_from=>'BROWSER'
 ,p_date_format=>'DD-MON-YYYY'
 ,p_date_time_format=>'DD-MON-YYYY HH24:MI'
 ,p_timestamp_format=>'DD-MON-YYYY HH24.MI.SSXFF'
@@ -102,9 +103,10 @@ wwv_flow_api.create_flow(
 ,p_authentication=>'PLUGIN'
 ,p_authentication_id=>wwv_flow_api.id(23813738664469253)
 ,p_application_tab_set=>0
-,p_logo_image=>'TEXT:Scassets_sketch_05'
+,p_logo_image=>'#WORKSPACE_IMAGES#orapoveras.png'
+,p_public_user=>'APEX_PUBLIC_USER'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 1.0'
+,p_flow_version=>'release 1.0.1 alpha'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -112,13 +114,14 @@ wwv_flow_api.create_flow(
 ,p_browser_frame=>'D'
 ,p_rejoin_existing_sessions=>'N'
 ,p_csv_encoding=>'Y'
+,p_auto_time_zone=>'N'
 ,p_substitution_string_01=>'APP_NAME'
 ,p_substitution_value_01=>'Управление транспортом'
 ,p_substitution_string_02=>'APP_FAVICONS'
 ,p_substitution_value_02=>'<link rel="shortcut icon" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.ico"><link rel="icon" sizes="16x16" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-16x16.png"><link rel="icon" sizes="32x32" '
 ||'href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.png">'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160221143205'
+,p_last_upd_yyyymmddhh24miss=>'20160221184421'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_ui_type_name => null
 );
@@ -201,7 +204,7 @@ wwv_flow_api.create_list_item(
 ,p_list_item_link_target=>'f?p=&APP_ID.:8:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-gear'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'8,11,13,14,16,18'
+,p_list_item_current_for_pages=>'8,11,13,14,16,18,30'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24102289866182346)
@@ -231,13 +234,13 @@ wwv_flow_api.create_list_item(
 ,p_list_item_current_for_pages=>'18,19'
 );
 wwv_flow_api.create_list_item(
- p_id=>wwv_flow_api.id(24209136662442896)
-,p_list_item_display_sequence=>120
-,p_list_item_link_text=>'BreakageServiceLogPageDNMEntry'
-,p_list_item_link_target=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.::::'
+ p_id=>wwv_flow_api.id(25617370999233036)
+,p_list_item_display_sequence=>190
+,p_list_item_link_text=>'BreakageServiceLogPage2DNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:30:&SESSION.::&DEBUG.'
 ,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'9,10'
+,p_list_item_current_for_pages=>'30,31'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24235928989306687)
@@ -441,7 +444,15 @@ end;
 /
 prompt --application/shared_components/user_interface/lovs
 begin
-null;
+wwv_flow_api.create_list_of_values(
+ p_id=>wwv_flow_api.id(25576625889549635)
+,p_lov_name=>'SELVEHICLELOV'
+,p_lov_query=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select vehiclename as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+);
 end;
 /
 prompt --application/shared_components/navigation/trees
@@ -563,20 +574,6 @@ wwv_flow_api.create_menu_option(
 ,p_page_id=>19
 );
 wwv_flow_api.create_menu_option(
- p_id=>wwv_flow_api.id(24213365717442943)
-,p_parent_id=>wwv_flow_api.id(24081842045044610)
-,p_short_name=>'BreakageServiceLogPageEntry'
-,p_link=>'f?p=&APP_ID.:9:&SESSION.'
-,p_page_id=>9
-);
-wwv_flow_api.create_menu_option(
- p_id=>wwv_flow_api.id(24214596885442951)
-,p_parent_id=>wwv_flow_api.id(24213365717442943)
-,p_short_name=>'BreakageServiceLogPageEntry'
-,p_link=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:::'
-,p_page_id=>10
-);
-wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(24237216948306697)
 ,p_short_name=>'FileCabinetSecPageEntry'
 ,p_link=>'f?p=&APP_ID.:13:&SESSION.'
@@ -637,6 +634,20 @@ wwv_flow_api.create_menu_option(
 ,p_short_name=>'ParkingsEditPageEntry'
 ,p_link=>'f?p=&APP_ID.:29:&SESSION.::&DEBUG.:::'
 ,p_page_id=>29
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(25621631871233066)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'BreakageServiceLogPage2Entry'
+,p_link=>'f?p=&APP_ID.:30:&SESSION.'
+,p_page_id=>30
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(25622807281233070)
+,p_parent_id=>wwv_flow_api.id(25621631871233066)
+,p_short_name=>'BreakageServiceLogEditPage2'
+,p_link=>'f?p=&APP_ID.:31:&SESSION.'
+,p_page_id=>31
 );
 end;
 /
@@ -7776,12 +7787,9995 @@ end;
 /
 prompt --application/shared_components/globalization/language
 begin
-null;
+wwv_flow_api.create_language_map(
+ p_id=>wwv_flow_api.id(24319816086949025)
+,p_translation_flow_id=>111
+,p_translation_flow_language_cd=>'ru'
+,p_translation_comments=>'Локализация приложения 110 на русский язык'
+);
 end;
 /
 prompt --application/shared_components/globalization/translations
 begin
-null;
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24319999462954685)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>26.111
+,p_translate_from_id=>26
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DriversPage'
+,p_translate_from_text=>'DriversPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24320093954954692)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>3.111
+,p_translate_from_id=>3
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TripsLogPage'
+,p_translate_from_text=>'TripsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24320287656954692)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>15.111
+,p_translate_from_id=>15
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BatteriesLogEditPage'
+,p_translate_from_text=>'BatteriesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24320402756954692)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>101.111
+,p_translate_from_id=>101
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Login Page'
+,p_translate_from_text=>'Login Page'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24320676538954693)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>21.111
+,p_translate_from_id=>21
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VehiclesEditPage'
+,p_translate_from_text=>'VehiclesEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24321096251954693)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>18.111
+,p_translate_from_id=>18
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'InsurancesLogPage'
+,p_translate_from_text=>'InsurancesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24321202096954694)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>4.111
+,p_translate_from_id=>4
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogPage'
+,p_translate_from_text=>'FuellingLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24321479542954694)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>28.111
+,p_translate_from_id=>28
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ParkingsPage'
+,p_translate_from_text=>'ParkingsPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24321662214954694)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>23.111
+,p_translate_from_id=>23
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogEditPage'
+,p_translate_from_text=>'FuellingLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24321845225954694)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>1.111
+,p_translate_from_id=>1
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Главная'
+,p_translate_from_text=>'Home'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24322021049954694)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>2.111
+,p_translate_from_id=>2
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'RunningSecPage'
+,p_translate_from_text=>'RunningSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24322252914954695)
+,p_page_id=>5
+,p_translated_flow_id=>111
+,p_translate_to_id=>5.111
+,p_translate_from_id=>5
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FigurationWayBillPage'
+,p_translate_from_text=>'FigurationWayBillPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24322494939954695)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>8.111
+,p_translate_from_id=>8
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ServiceSecPage'
+,p_translate_from_text=>'ServiceSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24322690161954695)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>19.111
+,p_translate_from_id=>19
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'InsurancesLogEditPage'
+,p_translate_from_text=>'InsurancesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24322890465954695)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>17.111
+,p_translate_from_id=>17
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TiresLogEditPage'
+,p_translate_from_text=>'TiresLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24323076934954696)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>7.111
+,p_translate_from_id=>7
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'WayBillLogPage'
+,p_translate_from_text=>'WayBillLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24323219895954697)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>14.111
+,p_translate_from_id=>14
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BatteriesLogPage'
+,p_translate_from_text=>'BatteriesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24323451935954697)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>16.111
+,p_translate_from_id=>16
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TiresLogPage'
+,p_translate_from_text=>'TiresLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24323857177954697)
+,p_page_id=>13
+,p_translated_flow_id=>111
+,p_translate_to_id=>13.111
+,p_translate_from_id=>13
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FileCabinetSecPage'
+,p_translate_from_text=>'FileCabinetSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24324043847954703)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>22.111
+,p_translate_from_id=>22
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogPage'
+,p_translate_from_text=>'FuellingLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24324265690954703)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>20.111
+,p_translate_from_id=>20
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VehiclesPage'
+,p_translate_from_text=>'VehiclesPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24324409624954703)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>6.111
+,p_translate_from_id=>6
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CalcFuelConsumptionPage'
+,p_translate_from_text=>'CalcFuelConsumptionPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24324689955954703)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>29.111
+,p_translate_from_id=>29
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ParkingsEditPage'
+,p_translate_from_text=>'ParkingsEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24324816155954703)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>27.111
+,p_translate_from_id=>27
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DriversEditPage'
+,p_translate_from_text=>'DriversEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24325094931954709)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>26.111
+,p_translate_from_id=>26
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DriversPage'
+,p_translate_from_text=>'DriversPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24325180766954709)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>3.111
+,p_translate_from_id=>3
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TripsLogPage'
+,p_translate_from_text=>'TripsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24325302163954709)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>15.111
+,p_translate_from_id=>15
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BatteriesLogEditPage'
+,p_translate_from_text=>'BatteriesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24325544235954709)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>101.111
+,p_translate_from_id=>101
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Log In | &APP_NAME.'
+,p_translate_from_text=>'Log In | &APP_NAME.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24325749855954710)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>21.111
+,p_translate_from_id=>21
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VehiclesEditPage'
+,p_translate_from_text=>'VehiclesEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24326144305954710)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>18.111
+,p_translate_from_id=>18
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'InsurancesLogPage'
+,p_translate_from_text=>'InsurancesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24326368082954710)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>4.111
+,p_translate_from_id=>4
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogPage'
+,p_translate_from_text=>'FuellingLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24326568870954711)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>28.111
+,p_translate_from_id=>28
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ParkingsPage'
+,p_translate_from_text=>'ParkingsPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24326773207954711)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>23.111
+,p_translate_from_id=>23
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogEditPage'
+,p_translate_from_text=>'FuellingLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24326909368954711)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>1.111
+,p_translate_from_id=>1
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'&APP_NAME.'
+,p_translate_from_text=>'&APP_NAME.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24327167062954711)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>2.111
+,p_translate_from_id=>2
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'RunningSecPage'
+,p_translate_from_text=>'RunningSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24327356427954714)
+,p_page_id=>5
+,p_translated_flow_id=>111
+,p_translate_to_id=>5.111
+,p_translate_from_id=>5
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FigurationWayBillPage'
+,p_translate_from_text=>'FigurationWayBillPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24327514956954714)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>8.111
+,p_translate_from_id=>8
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ServiceSecPage'
+,p_translate_from_text=>'ServiceSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24327709113954714)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>19.111
+,p_translate_from_id=>19
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'InsurancesLogEditPage'
+,p_translate_from_text=>'InsurancesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24327965510954714)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>17.111
+,p_translate_from_id=>17
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TiresLogEditPage'
+,p_translate_from_text=>'TiresLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24328149269954714)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>7.111
+,p_translate_from_id=>7
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'WayBillLogPage'
+,p_translate_from_text=>'WayBillLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24328330588954715)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>14.111
+,p_translate_from_id=>14
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BatteriesLogPage'
+,p_translate_from_text=>'BatteriesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24328552475954715)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>16.111
+,p_translate_from_id=>16
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TiresLogPage'
+,p_translate_from_text=>'TiresLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24328947500954715)
+,p_page_id=>13
+,p_translated_flow_id=>111
+,p_translate_to_id=>13.111
+,p_translate_from_id=>13
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FileCabinetSecPage'
+,p_translate_from_text=>'FileCabinetSecPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24329144788954715)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>22.111
+,p_translate_from_id=>22
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FuellingLogPage'
+,p_translate_from_text=>'FuellingLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24329381901954716)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>20.111
+,p_translate_from_id=>20
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VehiclesPage'
+,p_translate_from_text=>'VehiclesPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24329548063954716)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>6.111
+,p_translate_from_id=>6
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CalcFuelConsumptionPage'
+,p_translate_from_text=>'CalcFuelConsumptionPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24329786467954716)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>29.111
+,p_translate_from_id=>29
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ParkingsEditPage'
+,p_translate_from_text=>'ParkingsEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24329905525954716)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>27.111
+,p_translate_from_id=>27
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DriversEditPage'
+,p_translate_from_text=>'DriversEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24351197637954761)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>1.111
+,p_translate_from_id=>1
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24351356085954761)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>8.111
+,p_translate_from_id=>8
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24351940973954762)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>21.111
+,p_translate_from_id=>21
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24352348934954762)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>20.111
+,p_translate_from_id=>20
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24352581562954763)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>23.111
+,p_translate_from_id=>23
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24352764024954763)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>22.111
+,p_translate_from_id=>22
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24352981693954763)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>26.111
+,p_translate_from_id=>26
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24353181792954763)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>29.111
+,p_translate_from_id=>29
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24353312273954764)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>27.111
+,p_translate_from_id=>27
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24353567170954764)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>28.111
+,p_translate_from_id=>28
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24353799577954764)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>3.111
+,p_translate_from_id=>3
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24353963855954764)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>4.111
+,p_translate_from_id=>4
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24354111725954764)
+,p_page_id=>5
+,p_translated_flow_id=>111
+,p_translate_to_id=>5.111
+,p_translate_from_id=>5
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24354395003954765)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>6.111
+,p_translate_from_id=>6
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24354548960954766)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>7.111
+,p_translate_from_id=>7
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24354794584954766)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>15.111
+,p_translate_from_id=>15
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24354961604954766)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>17.111
+,p_translate_from_id=>17
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24355132617954767)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>14.111
+,p_translate_from_id=>14
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24355301199954767)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>16.111
+,p_translate_from_id=>16
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24355596312954767)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>19.111
+,p_translate_from_id=>19
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24355776918954767)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>18.111
+,p_translate_from_id=>18
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24355947540954767)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>2.111
+,p_translate_from_id=>2
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24356156791954774)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015744292707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24015744292707113)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24356383918954774)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015813270707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24015813270707113)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Submit'
+,p_translate_from_text=>'Submit'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24357573791954775)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24106921649182379.111)
+,p_translate_from_id=>wwv_flow_api.id(24106921649182379)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24357745930954775)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094802540182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094802540182333)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24357933252954775)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24095104164182334.111)
+,p_translate_from_id=>wwv_flow_api.id(24095104164182334)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24358128064954776)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24095095197182334.111)
+,p_translate_from_id=>wwv_flow_api.id(24095095197182334)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24358382673954776)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094908418182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094908418182333)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24358538979954776)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24120857610457979.111)
+,p_translate_from_id=>wwv_flow_api.id(24120857610457979)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24358757102954776)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24112235439457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24112235439457939)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24358958028954777)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24112147333457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24112147333457939)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24359157221954777)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24112031153457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24112031153457939)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24359373549954780)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24111993369457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24111993369457939)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24359559943954780)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24137822898561708.111)
+,p_translate_from_id=>wwv_flow_api.id(24137822898561708)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24359760749954780)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24124534504561641.111)
+,p_translate_from_id=>wwv_flow_api.id(24124534504561641)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24359957522954780)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24124498942561641.111)
+,p_translate_from_id=>wwv_flow_api.id(24124498942561641)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24360181164954781)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24124367304561641.111)
+,p_translate_from_id=>wwv_flow_api.id(24124367304561641)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24360346967954781)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24124216148561640.111)
+,p_translate_from_id=>wwv_flow_api.id(24124216148561640)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24360550691954781)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24247515603464573.111)
+,p_translate_from_id=>wwv_flow_api.id(24247515603464573)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24360759880954781)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24240122733464506.111)
+,p_translate_from_id=>wwv_flow_api.id(24240122733464506)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24360968360954782)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24240057179464506.111)
+,p_translate_from_id=>wwv_flow_api.id(24240057179464506)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24361120391954782)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239984006464506.111)
+,p_translate_from_id=>wwv_flow_api.id(24239984006464506)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24361399421954782)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239895411464505.111)
+,p_translate_from_id=>wwv_flow_api.id(24239895411464505)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24361526611954782)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24269749866514291.111)
+,p_translate_from_id=>wwv_flow_api.id(24269749866514291)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24361737664954782)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24261220216514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24261220216514234)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24361948583954783)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24261189700514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24261189700514234)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24362105512954783)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24261045945514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24261045945514234)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24362372017954789)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24260985108514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24260985108514234)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24362593429954789)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24298345445715254.111)
+,p_translate_from_id=>wwv_flow_api.id(24298345445715254)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24362731482954789)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24290007887715237.111)
+,p_translate_from_id=>wwv_flow_api.id(24290007887715237)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24362914333954790)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289926797715237.111)
+,p_translate_from_id=>wwv_flow_api.id(24289926797715237)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24363175114954790)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289855512715237.111)
+,p_translate_from_id=>wwv_flow_api.id(24289855512715237)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24363347747954790)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24290116207715237.111)
+,p_translate_from_id=>wwv_flow_api.id(24290116207715237)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24363517740954790)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24315133879789066.111)
+,p_translate_from_id=>wwv_flow_api.id(24315133879789066)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24363732404954790)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24302562685789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24302562685789040)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24363943387954791)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24302448261789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24302448261789040)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24364126818954791)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24302398960789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24302398960789040)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24364366438954791)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24302248746789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24302248746789040)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24364594005954791)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814390507469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814390507469274)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Поехали'
+,p_translate_from_text=>'Поехали'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24364702491954797)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24017908932707124.111)
+,p_translate_from_id=>wwv_flow_api.id(24017908932707124)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'aVehicleID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24364997632954797)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018362804707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018362804707130)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'aFromDate'
+,p_translate_from_text=>'aFromDate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24365146975954797)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018735877707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018735877707130)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'aToDate'
+,p_translate_from_text=>'aToDate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24366569571954799)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097192547182337.111)
+,p_translate_from_id=>wwv_flow_api.id(24097192547182337)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountid'
+,p_translate_from_text=>'Batterymountid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24366710651954799)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097578801182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097578801182338)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24366945357954799)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097984809182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097984809182338)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountdate'
+,p_translate_from_text=>'Batterymountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24367176674954800)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098327887182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098327887182339)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batteryname'
+,p_translate_from_text=>'Batteryname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24367374186954800)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098771122182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098771122182339)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterylifetime'
+,p_translate_from_text=>'Batterylifetime'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24367503351954800)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099162784182340.111)
+,p_translate_from_id=>wwv_flow_api.id(24099162784182340)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymileage'
+,p_translate_from_text=>'Batterymileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24367764183954800)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099572624182340.111)
+,p_translate_from_id=>wwv_flow_api.id(24099572624182340)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymotohours'
+,p_translate_from_text=>'Batterymotohours'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24367944940954800)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099940418182341.111)
+,p_translate_from_id=>wwv_flow_api.id(24099940418182341)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterynotes'
+,p_translate_from_text=>'Batterynotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24368127151954801)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24114246237457945.111)
+,p_translate_from_id=>wwv_flow_api.id(24114246237457945)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountid'
+,p_translate_from_text=>'Tiresmountid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24368332717954801)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24114654980457949.111)
+,p_translate_from_id=>wwv_flow_api.id(24114654980457949)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24368515317954801)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115086090457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115086090457951)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountdate'
+,p_translate_from_text=>'Tiresmountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24368764426954801)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115486118457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115486118457951)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountnotes'
+,p_translate_from_text=>'Tiresmountnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24368990298954801)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24126593498561645.111)
+,p_translate_from_id=>wwv_flow_api.id(24126593498561645)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceid'
+,p_translate_from_text=>'Insuranceid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24369118033954802)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24126994259561647.111)
+,p_translate_from_id=>wwv_flow_api.id(24126994259561647)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24369301237954802)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127314807561648.111)
+,p_translate_from_id=>wwv_flow_api.id(24127314807561648)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24369514020954802)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127601593561658.111)
+,p_translate_from_id=>wwv_flow_api.id(24127601593561658)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancestartdate'
+,p_translate_from_text=>'Insurancestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24369776729954802)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128037761561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128037761561659)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceenddate'
+,p_translate_from_text=>'Insuranceenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24369987720954803)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128407448561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128407448561659)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancepolicy'
+,p_translate_from_text=>'Insurancepolicy'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24370123985954803)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128810896561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24128810896561660)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecompany'
+,p_translate_from_text=>'Insurancecompany'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24370382869954803)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129257171561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24129257171561660)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancetype'
+,p_translate_from_text=>'Insurancetype'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24370591762954803)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129635161561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24129635161561661)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecost'
+,p_translate_from_text=>'Insurancecost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24370743792954803)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130063274561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24130063274561661)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancenotes'
+,p_translate_from_text=>'Insurancenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24370951784954804)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242115020464518.111)
+,p_translate_from_id=>wwv_flow_api.id(24242115020464518)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24371167386954804)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242529292464533.111)
+,p_translate_from_id=>wwv_flow_api.id(24242529292464533)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclename'
+,p_translate_from_text=>'Vehiclename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24371352591954804)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242893157464536.111)
+,p_translate_from_id=>wwv_flow_api.id(24242893157464536)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclenotes'
+,p_translate_from_text=>'Vehiclenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24371521195954804)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24263294372514244.111)
+,p_translate_from_id=>wwv_flow_api.id(24263294372514244)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingid'
+,p_translate_from_text=>'Fuellingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24371651128954804)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24263612430514254.111)
+,p_translate_from_id=>wwv_flow_api.id(24263612430514254)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24371888544954805)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264034124514257.111)
+,p_translate_from_id=>wwv_flow_api.id(24264034124514257)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingdate'
+,p_translate_from_text=>'Fuellingdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24372019360954805)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264481993514258.111)
+,p_translate_from_id=>wwv_flow_api.id(24264481993514258)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingnotes'
+,p_translate_from_text=>'Fuellingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24372281109954805)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292049325715242.111)
+,p_translate_from_id=>wwv_flow_api.id(24292049325715242)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24372434904954806)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292494152715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292494152715243)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Name'
+,p_translate_from_text=>'Name'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24372660487954806)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292814567715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292814567715243)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Surname'
+,p_translate_from_text=>'Surname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24372859490954806)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24293229324715244.111)
+,p_translate_from_id=>wwv_flow_api.id(24293229324715244)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personnotes'
+,p_translate_from_text=>'Personnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24373013456954806)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24304515049789045.111)
+,p_translate_from_id=>wwv_flow_api.id(24304515049789045)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingid'
+,p_translate_from_text=>'Parkingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24373286034954807)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24304972470789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24304972470789046)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24373485743954807)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305313405789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24305313405789046)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnum'
+,p_translate_from_text=>'Parkingnum'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24373639460954807)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305738868789047.111)
+,p_translate_from_id=>wwv_flow_api.id(24305738868789047)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingname'
+,p_translate_from_text=>'Parkingname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24373880041954807)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306144412789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306144412789048)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingaddress'
+,p_translate_from_text=>'Parkingaddress'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24374013305954808)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306586590789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306586590789048)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingcontract'
+,p_translate_from_text=>'Parkingcontract'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24374269242954809)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306956917789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24306956917789049)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnotes'
+,p_translate_from_text=>'Parkingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24374499835954809)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307300349789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24307300349789049)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingfromdate'
+,p_translate_from_text=>'Parkingfromdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24374681904954809)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307708484789050.111)
+,p_translate_from_id=>wwv_flow_api.id(24307708484789050)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingtodate'
+,p_translate_from_text=>'Parkingtodate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24374849799954810)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Username'
+,p_translate_from_text=>'Username'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24375013152954810)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814285737469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814285737469274)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Password'
+,p_translate_from_text=>'Password'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24382495279954838)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101173074182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24101173074182342)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24383027203954839)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116656142457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24116656142457953)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24383641011954840)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131237692561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24131237692561663)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24384286273954840)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244093229464543.111)
+,p_translate_from_id=>wwv_flow_api.id(24244093229464543)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24384891113954841)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265671314514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265671314514262)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24385499431954842)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294421965715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294421965715245)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24386060309954842)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308992245789052.111)
+,p_translate_from_id=>wwv_flow_api.id(24308992245789052)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24389877653954857)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23815360725469286.111)
+,p_translate_from_id=>wwv_flow_api.id(23815360725469286)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'TMS Application'
+,p_translate_from_text=>'TMS Application'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24390096506954857)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040536412012401.111)
+,p_translate_from_id=>wwv_flow_api.id(24040536412012401)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'CarsInfo'
+,p_translate_from_text=>'CarsInfo'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24390231762954857)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040639155012402.111)
+,p_translate_from_id=>wwv_flow_api.id(24040639155012402)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'DriversInfo'
+,p_translate_from_text=>'DriversInfo'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24390494213954857)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040787146012403.111)
+,p_translate_from_id=>wwv_flow_api.id(24040787146012403)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'AlertsInfo'
+,p_translate_from_text=>'AlertsInfo'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24390661017954857)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040909541012405.111)
+,p_translate_from_id=>wwv_flow_api.id(24040909541012405)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'SearchReg'
+,p_translate_from_text=>'SearchReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24390826215954858)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24001700951301164.111)
+,p_translate_from_id=>wwv_flow_api.id(24001700951301164)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24391064477954858)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24002361036301172.111)
+,p_translate_from_id=>wwv_flow_api.id(24002361036301172)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'CurrentStatusReg'
+,p_translate_from_text=>'CurrentStatusReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24391211501954858)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004031512359812.111)
+,p_translate_from_id=>wwv_flow_api.id(24004031512359812)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24391440528954858)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004673019359813.111)
+,p_translate_from_id=>wwv_flow_api.id(24004673019359813)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'TripsLogPageReg'
+,p_translate_from_text=>'TripsLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24391617248954859)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009100156466534.111)
+,p_translate_from_id=>wwv_flow_api.id(24009100156466534)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24391858755954859)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009741562466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24009741562466536)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'FuellingLogPageReg'
+,p_translate_from_text=>'FuellingLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24392043074954860)
+,p_page_id=>5
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24013504891524965.111)
+,p_translate_from_id=>wwv_flow_api.id(24013504891524965)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24392203486954860)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015361316707112.111)
+,p_translate_from_id=>wwv_flow_api.id(24015361316707112)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'CalcFuelConsumptionPageReg'
+,p_translate_from_text=>'CalcFuelConsumptionPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24392469028954860)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24016068533707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24016068533707113)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24392619815954860)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24020061008707137.111)
+,p_translate_from_id=>wwv_flow_api.id(24020061008707137)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24392801883954860)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24024517283805965.111)
+,p_translate_from_id=>wwv_flow_api.id(24024517283805965)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24393057444954861)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025147653805970.111)
+,p_translate_from_id=>wwv_flow_api.id(24025147653805970)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'WayBillLogPageReg'
+,p_translate_from_text=>'WayBillLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24393207903954861)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048408986187406.111)
+,p_translate_from_id=>wwv_flow_api.id(24048408986187406)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'BatteriesServiceInfoReg'
+,p_translate_from_text=>'BatteriesServiceInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24393450242954861)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048815935187407.111)
+,p_translate_from_id=>wwv_flow_api.id(24048815935187407)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'TiresServiceInfoReg'
+,p_translate_from_text=>'TiresServiceInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24393634550954861)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049630174187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24049630174187412)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'MaintenanceInfoReg'
+,p_translate_from_text=>'MaintenanceInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24393867500954861)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24050016515187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24050016515187412)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'RepairInfoReg'
+,p_translate_from_text=>'RepairInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24394046022954862)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040868967012404.111)
+,p_translate_from_id=>wwv_flow_api.id(24040868967012404)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'InspectionInfoReg'
+,p_translate_from_text=>'InspectionInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24394228250954862)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049297332187410.111)
+,p_translate_from_id=>wwv_flow_api.id(24049297332187410)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'InsurancesInfoReg'
+,p_translate_from_text=>'InsurancesInfoReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24395244401954863)
+,p_page_id=>13
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24236883567306697.111)
+,p_translate_from_id=>wwv_flow_api.id(24236883567306697)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24395450516954863)
+,p_page_id=>13
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24254262323841463.111)
+,p_translate_from_id=>wwv_flow_api.id(24254262323841463)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'FileCabinetSecReg'
+,p_translate_from_text=>'FileCabinetSecReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24395615965954863)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103267309182362.111)
+,p_translate_from_id=>wwv_flow_api.id(24103267309182362)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'BatteriesLogPageReg'
+,p_translate_from_text=>'BatteriesLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24395894491954864)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24107562013182380.111)
+,p_translate_from_id=>wwv_flow_api.id(24107562013182380)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24396050528954864)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094462969182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094462969182333)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'BatteriesLogEditPageReg'
+,p_translate_from_text=>'BatteriesLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24396262211954864)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24108186604182381.111)
+,p_translate_from_id=>wwv_flow_api.id(24108186604182381)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24396453667954865)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24118715721457970.111)
+,p_translate_from_id=>wwv_flow_api.id(24118715721457970)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'TiresLogPageReg'
+,p_translate_from_text=>'TiresLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24396618889954865)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24121492529457980.111)
+,p_translate_from_id=>wwv_flow_api.id(24121492529457980)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24396836168954865)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24111534176457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24111534176457939)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'TiresLogEditPageReg'
+,p_translate_from_text=>'TiresLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24397087875954865)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24122008992457982.111)
+,p_translate_from_id=>wwv_flow_api.id(24122008992457982)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24397258686954866)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133326757561696.111)
+,p_translate_from_id=>wwv_flow_api.id(24133326757561696)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'InsurancesLogPageReg'
+,p_translate_from_text=>'InsurancesLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24397409354954866)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24138444842561709.111)
+,p_translate_from_id=>wwv_flow_api.id(24138444842561709)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24397684031954866)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24123874567561640.111)
+,p_translate_from_id=>wwv_flow_api.id(24123874567561640)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'InsurancesLogEditPageReg'
+,p_translate_from_text=>'InsurancesLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24397845304954866)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24139032275561711.111)
+,p_translate_from_id=>wwv_flow_api.id(24139032275561711)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24398048255954866)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24245803227464560.111)
+,p_translate_from_id=>wwv_flow_api.id(24245803227464560)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'VehiclesPageReg'
+,p_translate_from_text=>'VehiclesPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24398270616954867)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24248105951464575.111)
+,p_translate_from_id=>wwv_flow_api.id(24248105951464575)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24398499089954867)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239469141464505.111)
+,p_translate_from_id=>wwv_flow_api.id(24239469141464505)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'VehiclesEditPage'
+,p_translate_from_text=>'VehiclesEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24398676854954867)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24248761604464577.111)
+,p_translate_from_id=>wwv_flow_api.id(24248761604464577)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24398800943954867)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24267774483514280.111)
+,p_translate_from_id=>wwv_flow_api.id(24267774483514280)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'FuellingLogPage'
+,p_translate_from_text=>'FuellingLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24399028384954867)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24270304649514294.111)
+,p_translate_from_id=>wwv_flow_api.id(24270304649514294)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24399284391954868)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24260522446514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24260522446514234)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'FuellingLogPageEditReg'
+,p_translate_from_text=>'FuellingLogPageEditReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24399462597954868)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24270936495514296.111)
+,p_translate_from_id=>wwv_flow_api.id(24270936495514296)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24399698607954868)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296240607715250.111)
+,p_translate_from_id=>wwv_flow_api.id(24296240607715250)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'DriversPageReg'
+,p_translate_from_text=>'DriversPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24399806723954868)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24298920772715255.111)
+,p_translate_from_id=>wwv_flow_api.id(24298920772715255)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24400096919954869)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289422646715236.111)
+,p_translate_from_id=>wwv_flow_api.id(24289422646715236)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'DriversEditPage'
+,p_translate_from_text=>'DriversEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24400276381954869)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24299572285715256.111)
+,p_translate_from_id=>wwv_flow_api.id(24299572285715256)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24400424092954869)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311031030789058.111)
+,p_translate_from_id=>wwv_flow_api.id(24311031030789058)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'ParkingsPage'
+,p_translate_from_text=>'ParkingsPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24400637467954869)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24315797344789067.111)
+,p_translate_from_id=>wwv_flow_api.id(24315797344789067)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24400857117954870)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24301829794789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24301829794789040)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'ParkingsEditPageReg'
+,p_translate_from_text=>'ParkingsEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24401073885954870)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24316376388789068.111)
+,p_translate_from_id=>wwv_flow_api.id(24316376388789068)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24401268549954870)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814075123469268.111)
+,p_translate_from_id=>wwv_flow_api.id(23814075123469268)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Управление транспортом (ГСМ, автошины, АКБ etc.)'
+,p_translate_from_text=>'Управление транспортом (ГСМ, автошины, АКБ etc.)'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24401494237954877)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23815360725469286.111)
+,p_translate_from_id=>wwv_flow_api.id(23815360725469286)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<p>Управление транспортом, ГСМ, шины, АКБ</p>'
+,p_translate_from_text=>'<p>Управление транспортом, ГСМ, шины, АКБ</p>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24401649956954877)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040536412012401.111)
+,p_translate_from_id=>wwv_flow_api.id(24040536412012401)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Агрегированная информация об автомобилях'
+,p_translate_from_text=>'Агрегированная информация об автомобилях'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24401865548954877)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040639155012402.111)
+,p_translate_from_id=>wwv_flow_api.id(24040639155012402)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Агрегированная информация о водителях'
+,p_translate_from_text=>'Агрегированная информация о водителях'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24402048165954877)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040787146012403.111)
+,p_translate_from_id=>wwv_flow_api.id(24040787146012403)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Агрегированная информация о наступивших или наступающих сроках и мероприятиях'
+,p_translate_from_text=>'Агрегированная информация о наступивших или наступающих сроках и мероприятиях'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24402222250954878)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040909541012405.111)
+,p_translate_from_id=>wwv_flow_api.id(24040909541012405)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Область поиска, найдется все'
+,p_translate_from_text=>'Область поиска, найдется все'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24403077445954878)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004673019359813.111)
+,p_translate_from_id=>wwv_flow_api.id(24004673019359813)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TRIPID,',
+'       WAYBILLID,',
+'       TRIPQUEUE,',
+'       TRIPDISTANCE,',
+'       TRIPNAME,',
+'       TRIPNOTES',
+'  from TTRIPSLOG'))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TRIPID,',
+'       WAYBILLID,',
+'       TRIPQUEUE,',
+'       TRIPDISTANCE,',
+'       TRIPNAME,',
+'       TRIPNOTES',
+'  from TTRIPSLOG'))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24403471225954879)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009741562466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24009741562466536)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select FUELLINGID,',
+'       VEHICLEID,',
+'       FUELLINGDATE,',
+'       FUELLINGNOTES',
+'  from TFUELLINGLOG'))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select FUELLINGID,',
+'       VEHICLEID,',
+'       FUELLINGDATE,',
+'       FUELLINGNOTES',
+'  from TFUELLINGLOG'))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24404635319954880)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025147653805970.111)
+,p_translate_from_id=>wwv_flow_api.id(24025147653805970)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select WAYBILLID,',
+'       VEHICLEID,',
+'       PERSONID,',
+'       WAYBILLDATE,',
+'       WAYBILLNOTES',
+'  from TWAYBILLLOG'))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select WAYBILLID,',
+'       VEHICLEID,',
+'       PERSONID,',
+'       WAYBILLDATE,',
+'       WAYBILLNOTES',
+'  from TWAYBILLLOG'))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24404814037954880)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048408986187406.111)
+,p_translate_from_id=>wwv_flow_api.id(24048408986187406)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Систематизированная информация о всех имеющихся аккумуляторах и напоминания о сроках их замены'
+,p_translate_from_text=>'Систематизированная информация о всех имеющихся аккумуляторах и напоминания о сроках их замены'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24405015250954881)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048815935187407.111)
+,p_translate_from_id=>wwv_flow_api.id(24048815935187407)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Уведомления о фактическом износе и плановых сроках замены шин (зима/лето, по пробегу)'
+,p_translate_from_text=>'Уведомления о фактическом износе и плановых сроках замены шин (зима/лето, по пробегу)'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24405817795954881)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049297332187410.111)
+,p_translate_from_id=>wwv_flow_api.id(24049297332187410)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Информация об ближайшем (по параметру настройки) окончании сроков действия страховых полисов или сроках уплаты очередного взноса'
+,p_translate_from_text=>'Информация об ближайшем (по параметру настройки) окончании сроков действия страховых полисов или сроках уплаты очередного взноса'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24407217634954883)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103267309182362.111)
+,p_translate_from_id=>wwv_flow_api.id(24103267309182362)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BATTERYMOUNTID", ',
+'"VEHICLEID",',
+'"BATTERYMOUNTDATE",',
+'"BATTERYNAME",',
+'"BATTERYLIFETIME",',
+'"BATTERYMILEAGE",',
+'"BATTERYMOTOHOURS",',
+'"BATTERYNOTES"',
+'from "#OWNER#"."TBATTERIESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BATTERYMOUNTID", ',
+'"VEHICLEID",',
+'"BATTERYMOUNTDATE",',
+'"BATTERYNAME",',
+'"BATTERYLIFETIME",',
+'"BATTERYMILEAGE",',
+'"BATTERYMOTOHOURS",',
+'"BATTERYNOTES"',
+'from "#OWNER#"."TBATTERIESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24408055129954884)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24118715721457970.111)
+,p_translate_from_id=>wwv_flow_api.id(24118715721457970)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "TIRESMOUNTID", ',
+'"VEHICLEID",',
+'"TIRESMOUNTDATE",',
+'"TIRESMOUNTNOTES"',
+'from "#OWNER#"."TTIRESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "TIRESMOUNTID", ',
+'"VEHICLEID",',
+'"TIRESMOUNTDATE",',
+'"TIRESMOUNTNOTES"',
+'from "#OWNER#"."TTIRESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24408818086954884)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133326757561696.111)
+,p_translate_from_id=>wwv_flow_api.id(24133326757561696)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSURANCEID", ',
+'"PERSONID",',
+'"VEHICLEID",',
+'"INSURANCESTARTDATE",',
+'"INSURANCEENDDATE",',
+'"INSURANCEPOLICY",',
+'"INSURANCECOMPANY",',
+'"INSURANCETYPE",',
+'"INSURANCECOST",',
+'"INSURANCENOTES"',
+'from "#OWNER#"."TINSURANCESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSURANCEID", ',
+'"PERSONID",',
+'"VEHICLEID",',
+'"INSURANCESTARTDATE",',
+'"INSURANCEENDDATE",',
+'"INSURANCEPOLICY",',
+'"INSURANCECOMPANY",',
+'"INSURANCETYPE",',
+'"INSURANCECOST",',
+'"INSURANCENOTES"',
+'from "#OWNER#"."TINSURANCESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24409655133954885)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24245803227464560.111)
+,p_translate_from_id=>wwv_flow_api.id(24245803227464560)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "VEHICLEID", ',
+'"VEHICLENAME",',
+'"VEHICLENOTES"',
+'from "#OWNER#"."TVEHICLES" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "VEHICLEID", ',
+'"VEHICLENAME",',
+'"VEHICLENOTES"',
+'from "#OWNER#"."TVEHICLES" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24410442466954886)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24267774483514280.111)
+,p_translate_from_id=>wwv_flow_api.id(24267774483514280)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FUELLINGID", ',
+'"VEHICLEID",',
+'"FUELLINGDATE",',
+'"FUELLINGNOTES"',
+'from "#OWNER#"."TFUELLINGLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FUELLINGID", ',
+'"VEHICLEID",',
+'"FUELLINGDATE",',
+'"FUELLINGNOTES"',
+'from "#OWNER#"."TFUELLINGLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24411235207954887)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296240607715250.111)
+,p_translate_from_id=>wwv_flow_api.id(24296240607715250)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PERSONID", ',
+'"NAME",',
+'"SURNAME",',
+'"PERSONNOTES"',
+'from "#OWNER#"."TPERSONS" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PERSONID", ',
+'"NAME",',
+'"SURNAME",',
+'"PERSONNOTES"',
+'from "#OWNER#"."TPERSONS" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24412089217954887)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311031030789058.111)
+,p_translate_from_id=>wwv_flow_api.id(24311031030789058)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PARKINGID", ',
+'"VEHICLEID",',
+'"PARKINGNUM",',
+'"PARKINGNAME",',
+'"PARKINGADDRESS",',
+'"PARKINGCONTRACT",',
+'"PARKINGNOTES",',
+'"PARKINGFROMDATE",',
+'"PARKINGTODATE"',
+'from "#OWNER#"."TPARKINGS" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "PARKINGID", ',
+'"VEHICLEID",',
+'"PARKINGNUM",',
+'"PARKINGNAME",',
+'"PARKINGADDRESS",',
+'"PARKINGCONTRACT",',
+'"PARKINGNOTES",',
+'"PARKINGFROMDATE",',
+'"PARKINGTODATE"',
+'from "#OWNER#"."TPARKINGS" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24412895722954888)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814075123469268.111)
+,p_translate_from_id=>wwv_flow_api.id(23814075123469268)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'<p>Для залогиниться используйте имя и пароль пользователя apex</p>',
+'<p>Для получить информацию, чем же конкретно занимается это приложение, обратитесь к разработчику приложения</p>'))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'<p>Для залогиниться используйте имя и пароль пользователя apex</p>',
+'<p>Для получить информацию, чем же конкретно занимается это приложение, обратитесь к разработчику приложения</p>'))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24441563515954953)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814971570469281.111)
+,p_translate_from_id=>wwv_flow_api.id(23814971570469281)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Главная [&A01.]'
+,p_translate_from_text=>'Home [&A01.]'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24441764705954953)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048035193187394.111)
+,p_translate_from_id=>wwv_flow_api.id(24048035193187394)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Обслуживание'
+,p_translate_from_text=>'ServiceSecPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24442183897954953)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24235928989306687.111)
+,p_translate_from_id=>wwv_flow_api.id(24235928989306687)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Картотека'
+,p_translate_from_text=>'FileCabinetSecPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24442330094954954)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24245175898464545.111)
+,p_translate_from_id=>wwv_flow_api.id(24245175898464545)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Автомобили'
+,p_translate_from_text=>'VehiclesPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24442574592954954)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24266780225514268.111)
+,p_translate_from_id=>wwv_flow_api.id(24266780225514268)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал заправок'
+,p_translate_from_text=>'FuellingLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24442758626954954)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24310079102789056.111)
+,p_translate_from_id=>wwv_flow_api.id(24310079102789056)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Места хранения'
+,p_translate_from_text=>'ParkingsPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24442979997954954)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24295545939715247.111)
+,p_translate_from_id=>wwv_flow_api.id(24295545939715247)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водители'
+,p_translate_from_text=>'DriversPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24443127742954954)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24003366609359810.111)
+,p_translate_from_id=>wwv_flow_api.id(24003366609359810)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Поездки'
+,p_translate_from_text=>'TripsLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24443302073954955)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24008315028466530.111)
+,p_translate_from_id=>wwv_flow_api.id(24008315028466530)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал заправок'
+,p_translate_from_text=>'FuellingLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24443510258954955)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24012747429524963.111)
+,p_translate_from_id=>wwv_flow_api.id(24012747429524963)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Оформление путевого листа'
+,p_translate_from_text=>'FigurationWayBillPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24443793371954955)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24014661500707111.111)
+,p_translate_from_id=>wwv_flow_api.id(24014661500707111)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Расчет расхода топлива'
+,p_translate_from_text=>'CalcFuelConsumptionPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24443915925954955)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24023895742805964.111)
+,p_translate_from_id=>wwv_flow_api.id(24023895742805964)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал путевых листов'
+,p_translate_from_text=>'WayBillLogPageEntryDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24444108134954955)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24102289866182346.111)
+,p_translate_from_id=>wwv_flow_api.id(24102289866182346)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Аккумуляторы'
+,p_translate_from_text=>'BatteriesLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24444393357954956)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24117775317457957.111)
+,p_translate_from_id=>wwv_flow_api.id(24117775317457957)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Шины'
+,p_translate_from_text=>'TiresLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24444584881954956)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24132345056561667.111)
+,p_translate_from_id=>wwv_flow_api.id(24132345056561667)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Договоры страхования'
+,p_translate_from_text=>'InsurancesLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24444747266954956)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24001320158301144.111)
+,p_translate_from_id=>wwv_flow_api.id(24001320158301144)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Эксплуатация'
+,p_translate_from_text=>'RunningSecPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24444922330954957)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23813657746469245.111)
+,p_translate_from_id=>wwv_flow_api.id(23813657746469245)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Выход'
+,p_translate_from_text=>'Log Out'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24445183252954957)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251009443769608.111)
+,p_translate_from_id=>wwv_flow_api.id(24251009443769608)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Автомобили'
+,p_translate_from_text=>'Vehicles'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24445327110954957)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251465673769610.111)
+,p_translate_from_id=>wwv_flow_api.id(24251465673769610)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Аккумуляторы'
+,p_translate_from_text=>'Batteries'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24445581339954957)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251887270769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24251887270769611)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водители'
+,p_translate_from_text=>'Drivers'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24445724080954957)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252207211769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252207211769611)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал заправок'
+,p_translate_from_text=>'Fuelling log'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24445905740954958)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252615803769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252615803769611)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Места хранения'
+,p_translate_from_text=>'Parkings'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24446104045954958)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24253031605769612.111)
+,p_translate_from_id=>wwv_flow_api.id(24253031605769612)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Шины'
+,p_translate_from_text=>'Tires'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24529410667955220)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>63
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Search Dialog'
+,p_translate_from_text=>'Search Dialog'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24530036915955233)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>66
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<div class="t-PopupLOV-actions t-Form--large">'
+,p_translate_from_text=>'<div class="t-PopupLOV-actions t-Form--large">'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24530280899955237)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>67
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'</div>'
+,p_translate_from_text=>'</div>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24530825046955249)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>70
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<div class="t-PopupLOV-links">'
+,p_translate_from_text=>'<div class="t-PopupLOV-links">'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24531044189955252)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>71
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'</div>'
+,p_translate_from_text=>'</div>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24531283522955256)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>72
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Search'
+,p_translate_from_text=>'Search'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24531489878955260)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>73
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Close'
+,p_translate_from_text=>'Close'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24531614905955264)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>74
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Next &gt;'
+,p_translate_from_text=>'Next &gt;'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24531899322955268)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>75
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'&lt; Previous'
+,p_translate_from_text=>'&lt; Previous'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24542626727955289)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>78
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<span class="t-Login-iconValidation a-Icon icon-check"></span>'
+,p_translate_from_text=>'<span class="t-Login-iconValidation a-Icon icon-check"></span>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24542873596955289)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814285737469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814285737469274)
+,p_translate_column_id=>78
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<span class="t-Login-iconValidation a-Icon icon-check"></span>'
+,p_translate_from_text=>'<span class="t-Login-iconValidation a-Icon icon-check"></span>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24543073919955294)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24086582390144635.111)
+,p_translate_from_id=>wwv_flow_api.id(24086582390144635)
+,p_translate_column_id=>79
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Действительно хотите выполнить удаление?'
+,p_translate_from_text=>'Would you like to perform this delete action?'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24543271716955299)
+,p_translated_flow_id=>111
+,p_translate_to_id=>110.111
+,p_translate_from_id=>110
+,p_translate_column_id=>80
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Управление транспортом'
+,p_translate_from_text=>'Управление транспортом'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24543470306955302)
+,p_translated_flow_id=>111
+,p_translate_to_id=>110.111
+,p_translate_from_id=>110
+,p_translate_column_id=>81
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<link rel="shortcut icon" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.ico"><link rel="icon" sizes="16x16" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-16x16.png"><link rel="icon" sizes="32x32" '
+||'href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.png">'
+,p_translate_from_text=>'<link rel="shortcut icon" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.ico"><link rel="icon" sizes="16x16" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-16x16.png"><link rel="icon" sizes="32x32" '
+||'href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.png">'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24547158820955372)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23815209113469283.111)
+,p_translate_from_id=>wwv_flow_api.id(23815209113469283)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Главная'
+,p_translate_from_text=>'HomeEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24547308206955372)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24002153008301169.111)
+,p_translate_from_id=>wwv_flow_api.id(24002153008301169)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Эксплуатация'
+,p_translate_from_text=>'RunningSecPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24547593022955373)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004420778359813.111)
+,p_translate_from_id=>wwv_flow_api.id(24004420778359813)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Поездки'
+,p_translate_from_text=>'TripsLogPageEntry'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24547735167955373)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009579073466535.111)
+,p_translate_from_id=>wwv_flow_api.id(24009579073466535)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Заправки'
+,p_translate_from_text=>'FuellingLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24547958184955373)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24013982314524965.111)
+,p_translate_from_id=>wwv_flow_api.id(24013982314524965)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Оформление путевого листа'
+,p_translate_from_text=>'FigurationWayBillPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24548112819955373)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24020411285707138.111)
+,p_translate_from_id=>wwv_flow_api.id(24020411285707138)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Расчет расхода топлива'
+,p_translate_from_text=>'CalcFuelConsumptionPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24548382441955373)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24024913015805970.111)
+,p_translate_from_id=>wwv_flow_api.id(24024913015805970)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал путевых листов'
+,p_translate_from_text=>'WayBillLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24548534977955376)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24081842045044610.111)
+,p_translate_from_id=>wwv_flow_api.id(24081842045044610)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Обслуживание'
+,p_translate_from_text=>'ServiceSecPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24548798004955376)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24107388770182380.111)
+,p_translate_from_id=>wwv_flow_api.id(24107388770182380)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Аккумуляторы'
+,p_translate_from_text=>'BatteriesLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24548921504955377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24108507051182382.111)
+,p_translate_from_id=>wwv_flow_api.id(24108507051182382)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование аккумулятора'
+,p_translate_from_text=>'BatteriesLogEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24549116345955377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24121266147457980.111)
+,p_translate_from_id=>wwv_flow_api.id(24121266147457980)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Шины'
+,p_translate_from_text=>'TiresLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24549373225955377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24122462578457982.111)
+,p_translate_from_id=>wwv_flow_api.id(24122462578457982)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать шины'
+,p_translate_from_text=>'TiresLogEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24549532333955377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24138270459561709.111)
+,p_translate_from_id=>wwv_flow_api.id(24138270459561709)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Договора страхования'
+,p_translate_from_text=>'InsurancesLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24549755494955377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24139443388561711.111)
+,p_translate_from_id=>wwv_flow_api.id(24139443388561711)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать договор страхования'
+,p_translate_from_text=>'InsurancesLogEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24550338212955378)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24237216948306697.111)
+,p_translate_from_id=>wwv_flow_api.id(24237216948306697)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Картотека'
+,p_translate_from_text=>'FileCabinetSecPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24550576002955379)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24247919363464574.111)
+,p_translate_from_id=>wwv_flow_api.id(24247919363464574)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Автомобили'
+,p_translate_from_text=>'VehiclesPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24550797909955379)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24249116890464577.111)
+,p_translate_from_id=>wwv_flow_api.id(24249116890464577)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать автомобиль'
+,p_translate_from_text=>'VehiclesEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24550932020955379)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24270190073514292.111)
+,p_translate_from_id=>wwv_flow_api.id(24270190073514292)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Заправки'
+,p_translate_from_text=>'FuellingLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24551129478955379)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24271357900514296.111)
+,p_translate_from_id=>wwv_flow_api.id(24271357900514296)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование заправки'
+,p_translate_from_text=>'FuellingLogEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24551338736955380)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24298728191715255.111)
+,p_translate_from_id=>wwv_flow_api.id(24298728191715255)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водители'
+,p_translate_from_text=>'DriversPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24551586115955381)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24299933457715256.111)
+,p_translate_from_id=>wwv_flow_api.id(24299933457715256)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать водителя'
+,p_translate_from_text=>'DriversEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24551766519955381)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24315538068789067.111)
+,p_translate_from_id=>wwv_flow_api.id(24315538068789067)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Места хранения'
+,p_translate_from_text=>'ParkingsPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24551902465955381)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24316700552789069.111)
+,p_translate_from_id=>wwv_flow_api.id(24316700552789069)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать место хранения'
+,p_translate_from_text=>'ParkingsEditPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24591188499955464)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23809038806469156.111)
+,p_translate_from_id=>wwv_flow_api.id(23809038806469156)
+,p_translate_column_id=>112
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'<div class="t-PopupLOV-pagination">Row(s) #FIRST_ROW# - #LAST_ROW#</div>'
+,p_translate_from_text=>'<div class="t-PopupLOV-pagination">Row(s) #FIRST_ROW# - #LAST_ROW#</div>'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24661140534955613)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004750754359813.111)
+,p_translate_from_id=>wwv_flow_api.id(24004750754359813)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24661399159955613)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009868652466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24009868652466536)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24661522449955613)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025256682805970.111)
+,p_translate_from_id=>wwv_flow_api.id(24025256682805970)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24661917170955613)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103692387182365.111)
+,p_translate_from_id=>wwv_flow_api.id(24103692387182365)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24662146421955614)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119188366457971.111)
+,p_translate_from_id=>wwv_flow_api.id(24119188366457971)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24662321735955614)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133754798561696.111)
+,p_translate_from_id=>wwv_flow_api.id(24133754798561696)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24662587544955614)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246280445464562.111)
+,p_translate_from_id=>wwv_flow_api.id(24246280445464562)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24662745066955614)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268094114514281.111)
+,p_translate_from_id=>wwv_flow_api.id(24268094114514281)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24662904398955614)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296686176715250.111)
+,p_translate_from_id=>wwv_flow_api.id(24296686176715250)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24663151178955615)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311483597789058.111)
+,p_translate_from_id=>wwv_flow_api.id(24311483597789058)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24663320400955619)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24004750754359813.111)
+,p_translate_from_id=>wwv_flow_api.id(24004750754359813)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24663518819955620)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24009868652466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24009868652466536)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24663728537955620)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025256682805970.111)
+,p_translate_from_id=>wwv_flow_api.id(24025256682805970)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24664105499955620)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103692387182365.111)
+,p_translate_from_id=>wwv_flow_api.id(24103692387182365)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24664302779955620)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119188366457971.111)
+,p_translate_from_id=>wwv_flow_api.id(24119188366457971)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24664505113955621)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133754798561696.111)
+,p_translate_from_id=>wwv_flow_api.id(24133754798561696)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24664781826955621)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246280445464562.111)
+,p_translate_from_id=>wwv_flow_api.id(24246280445464562)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24664939739955621)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268094114514281.111)
+,p_translate_from_id=>wwv_flow_api.id(24268094114514281)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24665178603955621)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296686176715250.111)
+,p_translate_from_id=>wwv_flow_api.id(24296686176715250)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24665321377955621)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311483597789058.111)
+,p_translate_from_id=>wwv_flow_api.id(24311483597789058)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24669971364955638)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005162945359829.111)
+,p_translate_from_id=>wwv_flow_api.id(24005162945359829)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripid'
+,p_translate_from_text=>'Tripid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24670109639955639)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005449943359836.111)
+,p_translate_from_id=>wwv_flow_api.id(24005449943359836)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillid'
+,p_translate_from_text=>'Waybillid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24670380961955639)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005872059359836.111)
+,p_translate_from_id=>wwv_flow_api.id(24005872059359836)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripqueue'
+,p_translate_from_text=>'Tripqueue'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24670505665955639)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24006251483359837.111)
+,p_translate_from_id=>wwv_flow_api.id(24006251483359837)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripdistance'
+,p_translate_from_text=>'Tripdistance'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24670780636955639)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24006607649359837.111)
+,p_translate_from_id=>wwv_flow_api.id(24006607649359837)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripname'
+,p_translate_from_text=>'Tripname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24670978658955640)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24007009209359838.111)
+,p_translate_from_id=>wwv_flow_api.id(24007009209359838)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripnotes'
+,p_translate_from_text=>'Tripnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24671120202955640)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24010281706466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24010281706466536)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingid'
+,p_translate_from_text=>'Fuellingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24671360342955640)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24010698392466537.111)
+,p_translate_from_id=>wwv_flow_api.id(24010698392466537)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24671545563955640)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24011081419466538.111)
+,p_translate_from_id=>wwv_flow_api.id(24011081419466538)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingdate'
+,p_translate_from_text=>'Fuellingdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24671746343955641)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24011407825466539.111)
+,p_translate_from_id=>wwv_flow_api.id(24011407825466539)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingnotes'
+,p_translate_from_text=>'Fuellingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24671905014955641)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025622942805972.111)
+,p_translate_from_id=>wwv_flow_api.id(24025622942805972)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillid'
+,p_translate_from_text=>'Waybillid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24672162382955641)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026082190805972.111)
+,p_translate_from_id=>wwv_flow_api.id(24026082190805972)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24672362445955641)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026487583805973.111)
+,p_translate_from_id=>wwv_flow_api.id(24026487583805973)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24672548071955641)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026848206805973.111)
+,p_translate_from_id=>wwv_flow_api.id(24026848206805973)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybilldate'
+,p_translate_from_text=>'Waybilldate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24672740151955642)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24027265696805974.111)
+,p_translate_from_id=>wwv_flow_api.id(24027265696805974)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillnotes'
+,p_translate_from_text=>'Waybillnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24672917611955642)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103707952182369.111)
+,p_translate_from_id=>wwv_flow_api.id(24103707952182369)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountid'
+,p_translate_from_text=>'Batterymountid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24673102342955642)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104122011182374.111)
+,p_translate_from_id=>wwv_flow_api.id(24104122011182374)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24673305689955642)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104548231182375.111)
+,p_translate_from_id=>wwv_flow_api.id(24104548231182375)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountdate'
+,p_translate_from_text=>'Batterymountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24673509582955643)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104929822182376.111)
+,p_translate_from_id=>wwv_flow_api.id(24104929822182376)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batteryname'
+,p_translate_from_text=>'Batteryname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24673718363955643)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24105332423182377.111)
+,p_translate_from_id=>wwv_flow_api.id(24105332423182377)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterylifetime'
+,p_translate_from_text=>'Batterylifetime'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24673960137955643)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24105728339182377.111)
+,p_translate_from_id=>wwv_flow_api.id(24105728339182377)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymileage'
+,p_translate_from_text=>'Batterymileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24674177875955643)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24106135454182378.111)
+,p_translate_from_id=>wwv_flow_api.id(24106135454182378)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymotohours'
+,p_translate_from_text=>'Batterymotohours'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24674387150955646)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24106501580182379.111)
+,p_translate_from_id=>wwv_flow_api.id(24106501580182379)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterynotes'
+,p_translate_from_text=>'Batterynotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24674521808955646)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119240620457975.111)
+,p_translate_from_id=>wwv_flow_api.id(24119240620457975)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountid'
+,p_translate_from_text=>'Tiresmountid'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24674736457955646)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119615546457976.111)
+,p_translate_from_id=>wwv_flow_api.id(24119615546457976)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24674933290955647)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24120092125457977.111)
+,p_translate_from_id=>wwv_flow_api.id(24120092125457977)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountdate'
+,p_translate_from_text=>'Tiresmountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24675128813955647)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24120419377457978.111)
+,p_translate_from_id=>wwv_flow_api.id(24120419377457978)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountnotes'
+,p_translate_from_text=>'Tiresmountnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24675302003955647)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133802061561700.111)
+,p_translate_from_id=>wwv_flow_api.id(24133802061561700)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceid'
+,p_translate_from_text=>'Insuranceid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24675532678955647)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24134267634561701.111)
+,p_translate_from_id=>wwv_flow_api.id(24134267634561701)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24676944513955649)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246305916464568.111)
+,p_translate_from_id=>wwv_flow_api.id(24246305916464568)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24677121833955649)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246753343464572.111)
+,p_translate_from_id=>wwv_flow_api.id(24246753343464572)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclename'
+,p_translate_from_text=>'Vehiclename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24677305954955649)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24247178405464572.111)
+,p_translate_from_id=>wwv_flow_api.id(24247178405464572)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclenotes'
+,p_translate_from_text=>'Vehiclenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24677576026955649)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268132839514288.111)
+,p_translate_from_id=>wwv_flow_api.id(24268132839514288)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingid'
+,p_translate_from_text=>'Fuellingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24677742365955650)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268529182514289.111)
+,p_translate_from_id=>wwv_flow_api.id(24268529182514289)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24677993319955650)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268915021514290.111)
+,p_translate_from_id=>wwv_flow_api.id(24268915021514290)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingdate'
+,p_translate_from_text=>'Fuellingdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24678186842955650)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24269318253514290.111)
+,p_translate_from_id=>wwv_flow_api.id(24269318253514290)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingnotes'
+,p_translate_from_text=>'Fuellingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24678344978955650)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297548338715253.111)
+,p_translate_from_id=>wwv_flow_api.id(24297548338715253)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Surname'
+,p_translate_from_text=>'Surname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24678553194955651)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297971064715254.111)
+,p_translate_from_id=>wwv_flow_api.id(24297971064715254)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personnotes'
+,p_translate_from_text=>'Personnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24678794488955651)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311526514789059.111)
+,p_translate_from_id=>wwv_flow_api.id(24311526514789059)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingid'
+,p_translate_from_text=>'Parkingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24678944103955651)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311993172789060.111)
+,p_translate_from_id=>wwv_flow_api.id(24311993172789060)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24679177715955651)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296751771715251.111)
+,p_translate_from_id=>wwv_flow_api.id(24296751771715251)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24679391449955652)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297180456715252.111)
+,p_translate_from_id=>wwv_flow_api.id(24297180456715252)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Name'
+,p_translate_from_text=>'Name'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24679530789955652)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24312320435789061.111)
+,p_translate_from_id=>wwv_flow_api.id(24312320435789061)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnum'
+,p_translate_from_text=>'Parkingnum'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24679798175955652)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24312724722789062.111)
+,p_translate_from_id=>wwv_flow_api.id(24312724722789062)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingname'
+,p_translate_from_text=>'Parkingname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24679921620955652)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313196129789063.111)
+,p_translate_from_id=>wwv_flow_api.id(24313196129789063)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingaddress'
+,p_translate_from_text=>'Parkingaddress'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24680151708955652)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313548362789064.111)
+,p_translate_from_id=>wwv_flow_api.id(24313548362789064)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingcontract'
+,p_translate_from_text=>'Parkingcontract'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24680370363955653)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313951559789064.111)
+,p_translate_from_id=>wwv_flow_api.id(24313951559789064)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnotes'
+,p_translate_from_text=>'Parkingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24680500952955653)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24314341094789065.111)
+,p_translate_from_id=>wwv_flow_api.id(24314341094789065)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingfromdate'
+,p_translate_from_text=>'Parkingfromdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24680709951955653)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24314729797789066.111)
+,p_translate_from_id=>wwv_flow_api.id(24314729797789066)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingtodate'
+,p_translate_from_text=>'Parkingtodate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24680941614955653)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24134668732561701.111)
+,p_translate_from_id=>wwv_flow_api.id(24134668732561701)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24681126182955654)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135045666561702.111)
+,p_translate_from_id=>wwv_flow_api.id(24135045666561702)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancestartdate'
+,p_translate_from_text=>'Insurancestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24681319007955654)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135459206561703.111)
+,p_translate_from_id=>wwv_flow_api.id(24135459206561703)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceenddate'
+,p_translate_from_text=>'Insuranceenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24681583832955654)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135817789561703.111)
+,p_translate_from_id=>wwv_flow_api.id(24135817789561703)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancepolicy'
+,p_translate_from_text=>'Insurancepolicy'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24681732322955654)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24136266812561704.111)
+,p_translate_from_id=>wwv_flow_api.id(24136266812561704)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecompany'
+,p_translate_from_text=>'Insurancecompany'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24681981449955655)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24136670410561705.111)
+,p_translate_from_id=>wwv_flow_api.id(24136670410561705)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancetype'
+,p_translate_from_text=>'Insurancetype'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24682192560955655)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24137025542561705.111)
+,p_translate_from_id=>wwv_flow_api.id(24137025542561705)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecost'
+,p_translate_from_text=>'Insurancecost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24682384740955655)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24137418630561706.111)
+,p_translate_from_id=>wwv_flow_api.id(24137418630561706)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancenotes'
+,p_translate_from_text=>'Insurancenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24682549848955661)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005162945359829.111)
+,p_translate_from_id=>wwv_flow_api.id(24005162945359829)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripid'
+,p_translate_from_text=>'Tripid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24682728135955662)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005449943359836.111)
+,p_translate_from_id=>wwv_flow_api.id(24005449943359836)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillid'
+,p_translate_from_text=>'Waybillid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24682951597955662)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24005872059359836.111)
+,p_translate_from_id=>wwv_flow_api.id(24005872059359836)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripqueue'
+,p_translate_from_text=>'Tripqueue'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24683114072955662)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24006251483359837.111)
+,p_translate_from_id=>wwv_flow_api.id(24006251483359837)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripdistance'
+,p_translate_from_text=>'Tripdistance'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24683314581955662)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24006607649359837.111)
+,p_translate_from_id=>wwv_flow_api.id(24006607649359837)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripname'
+,p_translate_from_text=>'Tripname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24683595598955663)
+,p_page_id=>3
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24007009209359838.111)
+,p_translate_from_id=>wwv_flow_api.id(24007009209359838)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tripnotes'
+,p_translate_from_text=>'Tripnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24683768615955663)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24010281706466536.111)
+,p_translate_from_id=>wwv_flow_api.id(24010281706466536)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingid'
+,p_translate_from_text=>'Fuellingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24683973624955663)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24010698392466537.111)
+,p_translate_from_id=>wwv_flow_api.id(24010698392466537)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24684150863955663)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24011081419466538.111)
+,p_translate_from_id=>wwv_flow_api.id(24011081419466538)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingdate'
+,p_translate_from_text=>'Fuellingdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24684393858955663)
+,p_page_id=>4
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24011407825466539.111)
+,p_translate_from_id=>wwv_flow_api.id(24011407825466539)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingnotes'
+,p_translate_from_text=>'Fuellingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24684570202955664)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24025622942805972.111)
+,p_translate_from_id=>wwv_flow_api.id(24025622942805972)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillid'
+,p_translate_from_text=>'Waybillid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24684742899955664)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026082190805972.111)
+,p_translate_from_id=>wwv_flow_api.id(24026082190805972)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24684911695955664)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026487583805973.111)
+,p_translate_from_id=>wwv_flow_api.id(24026487583805973)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24685106914955664)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24026848206805973.111)
+,p_translate_from_id=>wwv_flow_api.id(24026848206805973)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybilldate'
+,p_translate_from_text=>'Waybilldate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24685394900955664)
+,p_page_id=>7
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24027265696805974.111)
+,p_translate_from_id=>wwv_flow_api.id(24027265696805974)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Waybillnotes'
+,p_translate_from_text=>'Waybillnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24685506082955665)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24103707952182369.111)
+,p_translate_from_id=>wwv_flow_api.id(24103707952182369)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountid'
+,p_translate_from_text=>'Batterymountid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24685736680955665)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104122011182374.111)
+,p_translate_from_id=>wwv_flow_api.id(24104122011182374)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24685950037955665)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104548231182375.111)
+,p_translate_from_id=>wwv_flow_api.id(24104548231182375)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymountdate'
+,p_translate_from_text=>'Batterymountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24686100023955665)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24104929822182376.111)
+,p_translate_from_id=>wwv_flow_api.id(24104929822182376)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batteryname'
+,p_translate_from_text=>'Batteryname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24686356184955666)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24105332423182377.111)
+,p_translate_from_id=>wwv_flow_api.id(24105332423182377)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterylifetime'
+,p_translate_from_text=>'Batterylifetime'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24686540978955666)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24105728339182377.111)
+,p_translate_from_id=>wwv_flow_api.id(24105728339182377)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymileage'
+,p_translate_from_text=>'Batterymileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24686768623955666)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24106135454182378.111)
+,p_translate_from_id=>wwv_flow_api.id(24106135454182378)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterymotohours'
+,p_translate_from_text=>'Batterymotohours'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24686952860955666)
+,p_page_id=>14
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24106501580182379.111)
+,p_translate_from_id=>wwv_flow_api.id(24106501580182379)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Batterynotes'
+,p_translate_from_text=>'Batterynotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24687192353955666)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119240620457975.111)
+,p_translate_from_id=>wwv_flow_api.id(24119240620457975)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountid'
+,p_translate_from_text=>'Tiresmountid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24687397110955667)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24119615546457976.111)
+,p_translate_from_id=>wwv_flow_api.id(24119615546457976)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24687597448955667)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24120092125457977.111)
+,p_translate_from_id=>wwv_flow_api.id(24120092125457977)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountdate'
+,p_translate_from_text=>'Tiresmountdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24687728775955667)
+,p_page_id=>16
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24120419377457978.111)
+,p_translate_from_id=>wwv_flow_api.id(24120419377457978)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Tiresmountnotes'
+,p_translate_from_text=>'Tiresmountnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24687972948955667)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24133802061561700.111)
+,p_translate_from_id=>wwv_flow_api.id(24133802061561700)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceid'
+,p_translate_from_text=>'Insuranceid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24688116630955669)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24134267634561701.111)
+,p_translate_from_id=>wwv_flow_api.id(24134267634561701)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24689520456955670)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246305916464568.111)
+,p_translate_from_id=>wwv_flow_api.id(24246305916464568)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24689785239955670)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24246753343464572.111)
+,p_translate_from_id=>wwv_flow_api.id(24246753343464572)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclename'
+,p_translate_from_text=>'Vehiclename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24689942490955670)
+,p_page_id=>20
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24247178405464572.111)
+,p_translate_from_id=>wwv_flow_api.id(24247178405464572)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehiclenotes'
+,p_translate_from_text=>'Vehiclenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24690183906955671)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268132839514288.111)
+,p_translate_from_id=>wwv_flow_api.id(24268132839514288)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingid'
+,p_translate_from_text=>'Fuellingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24690362224955671)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268529182514289.111)
+,p_translate_from_id=>wwv_flow_api.id(24268529182514289)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24690518121955671)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24268915021514290.111)
+,p_translate_from_id=>wwv_flow_api.id(24268915021514290)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingdate'
+,p_translate_from_text=>'Fuellingdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24690745222955672)
+,p_page_id=>22
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24269318253514290.111)
+,p_translate_from_id=>wwv_flow_api.id(24269318253514290)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuellingnotes'
+,p_translate_from_text=>'Fuellingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24690920010955672)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297548338715253.111)
+,p_translate_from_id=>wwv_flow_api.id(24297548338715253)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Surname'
+,p_translate_from_text=>'Surname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24691163770955672)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297971064715254.111)
+,p_translate_from_id=>wwv_flow_api.id(24297971064715254)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personnotes'
+,p_translate_from_text=>'Personnotes'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24691385614955672)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311526514789059.111)
+,p_translate_from_id=>wwv_flow_api.id(24311526514789059)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingid'
+,p_translate_from_text=>'Parkingid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24691533501955672)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24311993172789060.111)
+,p_translate_from_id=>wwv_flow_api.id(24311993172789060)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24691743707955673)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24296751771715251.111)
+,p_translate_from_id=>wwv_flow_api.id(24296751771715251)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24691941439955673)
+,p_page_id=>26
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24297180456715252.111)
+,p_translate_from_id=>wwv_flow_api.id(24297180456715252)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Name'
+,p_translate_from_text=>'Name'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24692147282955673)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24312320435789061.111)
+,p_translate_from_id=>wwv_flow_api.id(24312320435789061)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnum'
+,p_translate_from_text=>'Parkingnum'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24692346546955673)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24312724722789062.111)
+,p_translate_from_id=>wwv_flow_api.id(24312724722789062)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingname'
+,p_translate_from_text=>'Parkingname'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24692525708955674)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313196129789063.111)
+,p_translate_from_id=>wwv_flow_api.id(24313196129789063)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingaddress'
+,p_translate_from_text=>'Parkingaddress'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24692745140955674)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313548362789064.111)
+,p_translate_from_id=>wwv_flow_api.id(24313548362789064)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingcontract'
+,p_translate_from_text=>'Parkingcontract'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24692954456955674)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24313951559789064.111)
+,p_translate_from_id=>wwv_flow_api.id(24313951559789064)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingnotes'
+,p_translate_from_text=>'Parkingnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24693180372955674)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24314341094789065.111)
+,p_translate_from_id=>wwv_flow_api.id(24314341094789065)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingfromdate'
+,p_translate_from_text=>'Parkingfromdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24693300412955674)
+,p_page_id=>28
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24314729797789066.111)
+,p_translate_from_id=>wwv_flow_api.id(24314729797789066)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Parkingtodate'
+,p_translate_from_text=>'Parkingtodate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24693527681955675)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24134668732561701.111)
+,p_translate_from_id=>wwv_flow_api.id(24134668732561701)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24693700184955675)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135045666561702.111)
+,p_translate_from_id=>wwv_flow_api.id(24135045666561702)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancestartdate'
+,p_translate_from_text=>'Insurancestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24693969832955675)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135459206561703.111)
+,p_translate_from_id=>wwv_flow_api.id(24135459206561703)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insuranceenddate'
+,p_translate_from_text=>'Insuranceenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24694166434955675)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24135817789561703.111)
+,p_translate_from_id=>wwv_flow_api.id(24135817789561703)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancepolicy'
+,p_translate_from_text=>'Insurancepolicy'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24694350557955676)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24136266812561704.111)
+,p_translate_from_id=>wwv_flow_api.id(24136266812561704)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecompany'
+,p_translate_from_text=>'Insurancecompany'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24694560593955676)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24136670410561705.111)
+,p_translate_from_id=>wwv_flow_api.id(24136670410561705)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancetype'
+,p_translate_from_text=>'Insurancetype'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24694779258955676)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24137025542561705.111)
+,p_translate_from_id=>wwv_flow_api.id(24137025542561705)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancecost'
+,p_translate_from_text=>'Insurancecost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24694988810955676)
+,p_page_id=>18
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24137418630561706.111)
+,p_translate_from_id=>wwv_flow_api.id(24137418630561706)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Insurancenotes'
+,p_translate_from_text=>'Insurancenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24896569480956336)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24017908932707124.111)
+,p_translate_from_id=>wwv_flow_api.id(24017908932707124)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24898363494956338)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097192547182337.111)
+,p_translate_from_id=>wwv_flow_api.id(24097192547182337)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24898965874956339)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098327887182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098327887182339)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24899713905956340)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099940418182341.111)
+,p_translate_from_id=>wwv_flow_api.id(24099940418182341)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24899913837956340)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24114246237457945.111)
+,p_translate_from_id=>wwv_flow_api.id(24114246237457945)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24900518477956340)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115486118457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115486118457951)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24900782261956341)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24126593498561645.111)
+,p_translate_from_id=>wwv_flow_api.id(24126593498561645)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24901739744956342)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128407448561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128407448561659)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24901943671956342)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128810896561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24128810896561660)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24902115816956342)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129257171561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24129257171561660)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24902580178956343)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130063274561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24130063274561661)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24902723276956343)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242115020464518.111)
+,p_translate_from_id=>wwv_flow_api.id(24242115020464518)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24902941044956343)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242529292464533.111)
+,p_translate_from_id=>wwv_flow_api.id(24242529292464533)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24903117954956343)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242893157464536.111)
+,p_translate_from_id=>wwv_flow_api.id(24242893157464536)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24903305524956344)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24263294372514244.111)
+,p_translate_from_id=>wwv_flow_api.id(24263294372514244)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24903542244956344)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24263612430514254.111)
+,p_translate_from_id=>wwv_flow_api.id(24263612430514254)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24903931616956344)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264481993514258.111)
+,p_translate_from_id=>wwv_flow_api.id(24264481993514258)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24904174646956344)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292049325715242.111)
+,p_translate_from_id=>wwv_flow_api.id(24292049325715242)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24904314086956345)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292494152715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292494152715243)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24904553214956345)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292814567715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292814567715243)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24904775413956345)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24293229324715244.111)
+,p_translate_from_id=>wwv_flow_api.id(24293229324715244)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24904907803956345)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24304515049789045.111)
+,p_translate_from_id=>wwv_flow_api.id(24304515049789045)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24905186044956345)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24304972470789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24304972470789046)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24905314272956346)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305313405789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24305313405789046)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24905533091956346)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305738868789047.111)
+,p_translate_from_id=>wwv_flow_api.id(24305738868789047)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24905745939956346)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306144412789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306144412789048)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24905918423956346)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306586590789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306586590789048)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24906129943956347)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306956917789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24306956917789049)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24906702636956347)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24906931195956347)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814285737469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814285737469274)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24907150967956353)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24017908932707124.111)
+,p_translate_from_id=>wwv_flow_api.id(24017908932707124)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24909557641956355)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098327887182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098327887182339)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24910376238956356)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099940418182341.111)
+,p_translate_from_id=>wwv_flow_api.id(24099940418182341)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24911107146956357)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115486118457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115486118457951)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24912385171956358)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128407448561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128407448561659)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24912527142956358)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128810896561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24128810896561660)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24912764395956358)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129257171561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24129257171561660)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24913127346956359)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130063274561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24130063274561661)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24913528640956359)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242529292464533.111)
+,p_translate_from_id=>wwv_flow_api.id(24242529292464533)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24913742606956359)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242893157464536.111)
+,p_translate_from_id=>wwv_flow_api.id(24242893157464536)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24914183893956360)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24263612430514254.111)
+,p_translate_from_id=>wwv_flow_api.id(24263612430514254)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24914522213956360)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264481993514258.111)
+,p_translate_from_id=>wwv_flow_api.id(24264481993514258)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24914984278956361)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292494152715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292494152715243)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24915107179956361)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292814567715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292814567715243)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24915366879956361)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24293229324715244.111)
+,p_translate_from_id=>wwv_flow_api.id(24293229324715244)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24915773116956362)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24304972470789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24304972470789046)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24915959480956362)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305313405789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24305313405789046)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24916180763956362)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305738868789047.111)
+,p_translate_from_id=>wwv_flow_api.id(24305738868789047)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24916372141956362)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306144412789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306144412789048)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24916551463956362)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306586590789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306586590789048)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24916785769956363)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306956917789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24306956917789049)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24917366193956363)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24917584729956363)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814285737469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814285737469274)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24919718727956370)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097578801182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097578801182338)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24920146861956371)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098327887182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098327887182339)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24920382106956371)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098771122182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098771122182339)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24920520884956371)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099162784182340.111)
+,p_translate_from_id=>wwv_flow_api.id(24099162784182340)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24920703456956372)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099572624182340.111)
+,p_translate_from_id=>wwv_flow_api.id(24099572624182340)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24920931174956372)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099940418182341.111)
+,p_translate_from_id=>wwv_flow_api.id(24099940418182341)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24921312170956372)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24114654980457949.111)
+,p_translate_from_id=>wwv_flow_api.id(24114654980457949)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24921744528956373)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115486118457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115486118457951)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24922193313956373)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24126994259561647.111)
+,p_translate_from_id=>wwv_flow_api.id(24126994259561647)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24922361154956373)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127314807561648.111)
+,p_translate_from_id=>wwv_flow_api.id(24127314807561648)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24922940854956374)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128407448561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128407448561659)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24923119509956374)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128810896561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24128810896561660)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24923380373956374)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129257171561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24129257171561660)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24923558389956375)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129635161561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24129635161561661)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24923738060956375)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130063274561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24130063274561661)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24924124145956375)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242529292464533.111)
+,p_translate_from_id=>wwv_flow_api.id(24242529292464533)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24924328929956375)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242893157464536.111)
+,p_translate_from_id=>wwv_flow_api.id(24242893157464536)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24925180525956376)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264481993514258.111)
+,p_translate_from_id=>wwv_flow_api.id(24264481993514258)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24925542627956377)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292494152715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292494152715243)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24925718104956377)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292814567715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292814567715243)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24925916029956377)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24293229324715244.111)
+,p_translate_from_id=>wwv_flow_api.id(24293229324715244)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24926533376956378)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305313405789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24305313405789046)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24926771866956378)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305738868789047.111)
+,p_translate_from_id=>wwv_flow_api.id(24305738868789047)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24926932999956378)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306144412789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306144412789048)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24927149543956378)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306586590789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306586590789048)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24927363641956379)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306956917789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24306956917789049)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24928330705956385)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24017908932707124.111)
+,p_translate_from_id=>wwv_flow_api.id(24017908932707124)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24928538967956385)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018362804707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018362804707130)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24928787816956385)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018735877707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018735877707130)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24930503894956387)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097984809182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097984809182338)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24930754385956388)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24098327887182339.111)
+,p_translate_from_id=>wwv_flow_api.id(24098327887182339)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24931550801956388)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24099940418182341.111)
+,p_translate_from_id=>wwv_flow_api.id(24099940418182341)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24932169341956389)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115086090457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115086090457951)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24932313559956389)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115486118457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115486118457951)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24933176967956390)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127601593561658.111)
+,p_translate_from_id=>wwv_flow_api.id(24127601593561658)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24933369069956390)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128037761561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128037761561659)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24933582428956391)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128407448561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128407448561659)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24933735414956391)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128810896561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24128810896561660)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24933967548956391)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24129257171561660.111)
+,p_translate_from_id=>wwv_flow_api.id(24129257171561660)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24934301256956391)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130063274561661.111)
+,p_translate_from_id=>wwv_flow_api.id(24130063274561661)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24934788628956392)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242529292464533.111)
+,p_translate_from_id=>wwv_flow_api.id(24242529292464533)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24934916779956392)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24242893157464536.111)
+,p_translate_from_id=>wwv_flow_api.id(24242893157464536)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24935572848956393)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264034124514257.111)
+,p_translate_from_id=>wwv_flow_api.id(24264034124514257)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24935776594956393)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264481993514258.111)
+,p_translate_from_id=>wwv_flow_api.id(24264481993514258)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24936101560956393)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292494152715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292494152715243)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24936395451956393)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24292814567715243.111)
+,p_translate_from_id=>wwv_flow_api.id(24292814567715243)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24936540410956394)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24293229324715244.111)
+,p_translate_from_id=>wwv_flow_api.id(24293229324715244)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24937154005956394)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305313405789046.111)
+,p_translate_from_id=>wwv_flow_api.id(24305313405789046)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24937367853956394)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24305738868789047.111)
+,p_translate_from_id=>wwv_flow_api.id(24305738868789047)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24937586754956395)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306144412789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306144412789048)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24937797671956395)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306586590789048.111)
+,p_translate_from_id=>wwv_flow_api.id(24306586590789048)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24937956854956395)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24306956917789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24306956917789049)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24938145147956395)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307300349789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24307300349789049)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24938326826956396)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307708484789050.111)
+,p_translate_from_id=>wwv_flow_api.id(24307708484789050)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24938581237956396)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24938912900956401)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24017908932707124.111)
+,p_translate_from_id=>wwv_flow_api.id(24017908932707124)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24939177043956401)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018362804707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018362804707130)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24939319139956402)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018735877707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018735877707130)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24941144515956403)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097984809182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097984809182338)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24942632793956405)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115086090457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115086090457951)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24943665855956406)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127601593561658.111)
+,p_translate_from_id=>wwv_flow_api.id(24127601593561658)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24943842217956406)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128037761561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128037761561659)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24946073376956408)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264034124514257.111)
+,p_translate_from_id=>wwv_flow_api.id(24264034124514257)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24948622136956411)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307300349789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24307300349789049)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24948847921956411)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307708484789050.111)
+,p_translate_from_id=>wwv_flow_api.id(24307708484789050)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24949042492956411)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24960214927956431)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018362804707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018362804707130)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24960457394956431)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24018735877707130.111)
+,p_translate_from_id=>wwv_flow_api.id(24018735877707130)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24962284477956433)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24097984809182338.111)
+,p_translate_from_id=>wwv_flow_api.id(24097984809182338)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24963839265956435)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24115086090457951.111)
+,p_translate_from_id=>wwv_flow_api.id(24115086090457951)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24964833595956436)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24127601593561658.111)
+,p_translate_from_id=>wwv_flow_api.id(24127601593561658)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24965047789956436)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24128037761561659.111)
+,p_translate_from_id=>wwv_flow_api.id(24128037761561659)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24967261382956438)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24264034124514257.111)
+,p_translate_from_id=>wwv_flow_api.id(24264034124514257)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24969854532956441)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307300349789049.111)
+,p_translate_from_id=>wwv_flow_api.id(24307300349789049)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(24970022195956441)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24307708484789050.111)
+,p_translate_from_id=>wwv_flow_api.id(24307708484789050)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25003815038956493)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101514105182343.111)
+,p_translate_from_id=>wwv_flow_api.id(24101514105182343)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25004455680956494)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24117085288457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24117085288457953)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25005020206956494)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131613214561664.111)
+,p_translate_from_id=>wwv_flow_api.id(24131613214561664)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25005602992956495)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244439908464544.111)
+,p_translate_from_id=>wwv_flow_api.id(24244439908464544)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25006275679956496)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24266041979514263.111)
+,p_translate_from_id=>wwv_flow_api.id(24266041979514263)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25006830302956496)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294810878715246.111)
+,p_translate_from_id=>wwv_flow_api.id(24294810878715246)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25007479738956497)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24309337062789053.111)
+,p_translate_from_id=>wwv_flow_api.id(24309337062789053)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25008290662956498)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814701148469277.111)
+,p_translate_from_id=>wwv_flow_api.id(23814701148469277)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25009474262956503)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24100748234182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24100748234182342)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TBATTERIESLOG'
+,p_translate_from_text=>'TBATTERIESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25009682636956503)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101173074182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24101173074182342)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TBATTERIESLOG'
+,p_translate_from_text=>'TBATTERIESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25010018929956504)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116254538457952.111)
+,p_translate_from_id=>wwv_flow_api.id(24116254538457952)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TTIRESLOG'
+,p_translate_from_text=>'TTIRESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25010241325956504)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116656142457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24116656142457953)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TTIRESLOG'
+,p_translate_from_text=>'TTIRESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25010668203956504)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130837868561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24130837868561663)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TINSURANCESLOG'
+,p_translate_from_text=>'TINSURANCESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25010812836956505)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131237692561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24131237692561663)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TINSURANCESLOG'
+,p_translate_from_text=>'TINSURANCESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25011287305956505)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24243665547464538.111)
+,p_translate_from_id=>wwv_flow_api.id(24243665547464538)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TVEHICLES'
+,p_translate_from_text=>'TVEHICLES'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25011490418956505)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244093229464543.111)
+,p_translate_from_id=>wwv_flow_api.id(24244093229464543)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TVEHICLES'
+,p_translate_from_text=>'TVEHICLES'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25011829206956506)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265259377514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265259377514262)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TFUELLINGLOG'
+,p_translate_from_text=>'TFUELLINGLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25012045905956506)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265671314514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265671314514262)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TFUELLINGLOG'
+,p_translate_from_text=>'TFUELLINGLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25012422460956506)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294070045715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294070045715245)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TPERSONS'
+,p_translate_from_text=>'TPERSONS'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25012607181956507)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294421965715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294421965715245)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TPERSONS'
+,p_translate_from_text=>'TPERSONS'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25013047813956507)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308584064789051.111)
+,p_translate_from_id=>wwv_flow_api.id(24308584064789051)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TPARKINGS'
+,p_translate_from_text=>'TPARKINGS'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25013264020956507)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308992245789052.111)
+,p_translate_from_id=>wwv_flow_api.id(24308992245789052)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TPARKINGS'
+,p_translate_from_text=>'TPARKINGS'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25015406734956514)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24100748234182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24100748234182342)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P15_BATTERYMOUNTID'
+,p_translate_from_text=>'P15_BATTERYMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25015689450956514)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101173074182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24101173074182342)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P15_BATTERYMOUNTID'
+,p_translate_from_text=>'P15_BATTERYMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25016076618956514)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116254538457952.111)
+,p_translate_from_id=>wwv_flow_api.id(24116254538457952)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P17_TIRESMOUNTID'
+,p_translate_from_text=>'P17_TIRESMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25016215587956515)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116656142457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24116656142457953)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P17_TIRESMOUNTID'
+,p_translate_from_text=>'P17_TIRESMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25016678456956515)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130837868561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24130837868561663)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P19_INSURANCEID'
+,p_translate_from_text=>'P19_INSURANCEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25016889671956515)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131237692561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24131237692561663)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P19_INSURANCEID'
+,p_translate_from_text=>'P19_INSURANCEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25017273462956516)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24243665547464538.111)
+,p_translate_from_id=>wwv_flow_api.id(24243665547464538)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P21_VEHICLEID'
+,p_translate_from_text=>'P21_VEHICLEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25017401661956516)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244093229464543.111)
+,p_translate_from_id=>wwv_flow_api.id(24244093229464543)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P21_VEHICLEID'
+,p_translate_from_text=>'P21_VEHICLEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25017879620956516)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265259377514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265259377514262)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P23_FUELLINGID'
+,p_translate_from_text=>'P23_FUELLINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25018064720956517)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265671314514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265671314514262)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P23_FUELLINGID'
+,p_translate_from_text=>'P23_FUELLINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25018422101956517)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294070045715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294070045715245)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P27_PERSONID'
+,p_translate_from_text=>'P27_PERSONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25018659278956517)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294421965715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294421965715245)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P27_PERSONID'
+,p_translate_from_text=>'P27_PERSONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25019002918956518)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308584064789051.111)
+,p_translate_from_id=>wwv_flow_api.id(24308584064789051)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P29_PARKINGID'
+,p_translate_from_text=>'P29_PARKINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25019295042956518)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308992245789052.111)
+,p_translate_from_id=>wwv_flow_api.id(24308992245789052)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P29_PARKINGID'
+,p_translate_from_text=>'P29_PARKINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25021401832956524)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24100748234182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24100748234182342)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BATTERYMOUNTID'
+,p_translate_from_text=>'BATTERYMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25021658218956525)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101173074182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24101173074182342)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BATTERYMOUNTID'
+,p_translate_from_text=>'BATTERYMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25022082145956525)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116254538457952.111)
+,p_translate_from_id=>wwv_flow_api.id(24116254538457952)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TIRESMOUNTID'
+,p_translate_from_text=>'TIRESMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25022253920956525)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116656142457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24116656142457953)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TIRESMOUNTID'
+,p_translate_from_text=>'TIRESMOUNTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25022666842956526)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24130837868561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24130837868561663)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'INSURANCEID'
+,p_translate_from_text=>'INSURANCEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25022838595956526)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131237692561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24131237692561663)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'INSURANCEID'
+,p_translate_from_text=>'INSURANCEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25023233591956526)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24243665547464538.111)
+,p_translate_from_id=>wwv_flow_api.id(24243665547464538)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VEHICLEID'
+,p_translate_from_text=>'VEHICLEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25023400443956527)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244093229464543.111)
+,p_translate_from_id=>wwv_flow_api.id(24244093229464543)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'VEHICLEID'
+,p_translate_from_text=>'VEHICLEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25023882141956527)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265259377514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265259377514262)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FUELLINGID'
+,p_translate_from_text=>'FUELLINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25024020564956527)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265671314514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265671314514262)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FUELLINGID'
+,p_translate_from_text=>'FUELLINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25024415820956528)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294070045715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294070045715245)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'PERSONID'
+,p_translate_from_text=>'PERSONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25024670515956528)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294421965715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294421965715245)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'PERSONID'
+,p_translate_from_text=>'PERSONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25025047543956528)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308584064789051.111)
+,p_translate_from_id=>wwv_flow_api.id(24308584064789051)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'PARKINGID'
+,p_translate_from_text=>'PARKINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25025213418956528)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308992245789052.111)
+,p_translate_from_id=>wwv_flow_api.id(24308992245789052)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'PARKINGID'
+,p_translate_from_text=>'PARKINGID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25068395802956633)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23771190817469008.111)
+,p_translate_from_id=>wwv_flow_api.id(23771190817469008)
+,p_translate_column_id=>298
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25068766873956634)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23771067735469006.111)
+,p_translate_from_id=>wwv_flow_api.id(23771067735469006)
+,p_translate_column_id=>298
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25069579192956642)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23771190817469008.111)
+,p_translate_from_id=>wwv_flow_api.id(23771190817469008)
+,p_translate_column_id=>300
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25074379993956674)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23815360725469286.111)
+,p_translate_from_id=>wwv_flow_api.id(23815360725469286)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25074510072956674)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040536412012401.111)
+,p_translate_from_id=>wwv_flow_api.id(24040536412012401)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25074754223956674)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040639155012402.111)
+,p_translate_from_id=>wwv_flow_api.id(24040639155012402)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25074957159956675)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040787146012403.111)
+,p_translate_from_id=>wwv_flow_api.id(24040787146012403)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25075108471956675)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040909541012405.111)
+,p_translate_from_id=>wwv_flow_api.id(24040909541012405)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25075599503956675)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24002361036301172.111)
+,p_translate_from_id=>wwv_flow_api.id(24002361036301172)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25076714772956676)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015361316707112.111)
+,p_translate_from_id=>wwv_flow_api.id(24015361316707112)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25076901595956677)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24016068533707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24016068533707113)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25077972725956678)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048815935187407.111)
+,p_translate_from_id=>wwv_flow_api.id(24048815935187407)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25078121449956678)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049630174187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24049630174187412)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25078352333956678)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24050016515187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24050016515187412)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25078532026956678)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040868967012404.111)
+,p_translate_from_id=>wwv_flow_api.id(24040868967012404)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25078786419956679)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049297332187410.111)
+,p_translate_from_id=>wwv_flow_api.id(24049297332187410)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25080571021956681)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094462969182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094462969182333)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25081313203956682)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24111534176457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24111534176457939)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25082118237956682)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24123874567561640.111)
+,p_translate_from_id=>wwv_flow_api.id(24123874567561640)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25082945766956683)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239469141464505.111)
+,p_translate_from_id=>wwv_flow_api.id(24239469141464505)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25083744539956684)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24260522446514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24260522446514234)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25084560611956685)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289422646715236.111)
+,p_translate_from_id=>wwv_flow_api.id(24289422646715236)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25085350869956686)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24301829794789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24301829794789040)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25085776915956686)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814075123469268.111)
+,p_translate_from_id=>wwv_flow_api.id(23814075123469268)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25085998766956691)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23815360725469286.111)
+,p_translate_from_id=>wwv_flow_api.id(23815360725469286)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25086111644956691)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040536412012401.111)
+,p_translate_from_id=>wwv_flow_api.id(24040536412012401)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25086359460956691)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040639155012402.111)
+,p_translate_from_id=>wwv_flow_api.id(24040639155012402)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25086526794956692)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040787146012403.111)
+,p_translate_from_id=>wwv_flow_api.id(24040787146012403)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25086793649956692)
+,p_page_id=>1
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040909541012405.111)
+,p_translate_from_id=>wwv_flow_api.id(24040909541012405)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25087124404956692)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24002361036301172.111)
+,p_translate_from_id=>wwv_flow_api.id(24002361036301172)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25088307902956693)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015361316707112.111)
+,p_translate_from_id=>wwv_flow_api.id(24015361316707112)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25088537704956694)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24016068533707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24016068533707113)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25089352586956694)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048408986187406.111)
+,p_translate_from_id=>wwv_flow_api.id(24048408986187406)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25089585920956695)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048815935187407.111)
+,p_translate_from_id=>wwv_flow_api.id(24048815935187407)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25089791874956695)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049630174187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24049630174187412)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25089959172956695)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24050016515187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24050016515187412)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25090130832956695)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24040868967012404.111)
+,p_translate_from_id=>wwv_flow_api.id(24040868967012404)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25090398149956696)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049297332187410.111)
+,p_translate_from_id=>wwv_flow_api.id(24049297332187410)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25092114468956697)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094462969182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094462969182333)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25092906134956698)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24111534176457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24111534176457939)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25093737820956699)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24123874567561640.111)
+,p_translate_from_id=>wwv_flow_api.id(24123874567561640)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25094505146956700)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239469141464505.111)
+,p_translate_from_id=>wwv_flow_api.id(24239469141464505)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25095345326956701)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24260522446514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24260522446514234)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25096178514956701)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289422646715236.111)
+,p_translate_from_id=>wwv_flow_api.id(24289422646715236)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25096988944956702)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24301829794789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24301829794789040)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25097319977956703)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814075123469268.111)
+,p_translate_from_id=>wwv_flow_api.id(23814075123469268)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25098619791956709)
+,p_page_id=>2
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24002361036301172.111)
+,p_translate_from_id=>wwv_flow_api.id(24002361036301172)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25099838622956710)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24015361316707112.111)
+,p_translate_from_id=>wwv_flow_api.id(24015361316707112)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25100058937956710)
+,p_page_id=>6
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24016068533707113.111)
+,p_translate_from_id=>wwv_flow_api.id(24016068533707113)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25100807681956711)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048408986187406.111)
+,p_translate_from_id=>wwv_flow_api.id(24048408986187406)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25101013331956711)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24048815935187407.111)
+,p_translate_from_id=>wwv_flow_api.id(24048815935187407)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25101268593956711)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049630174187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24049630174187412)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25101441171956711)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24050016515187412.111)
+,p_translate_from_id=>wwv_flow_api.id(24050016515187412)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25101822877956712)
+,p_page_id=>8
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24049297332187410.111)
+,p_translate_from_id=>wwv_flow_api.id(24049297332187410)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25103624575956714)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24094462969182333.111)
+,p_translate_from_id=>wwv_flow_api.id(24094462969182333)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25104471733956715)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24111534176457939.111)
+,p_translate_from_id=>wwv_flow_api.id(24111534176457939)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25105243699956715)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24123874567561640.111)
+,p_translate_from_id=>wwv_flow_api.id(24123874567561640)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25106084034956716)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24239469141464505.111)
+,p_translate_from_id=>wwv_flow_api.id(24239469141464505)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25106884103956717)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24260522446514234.111)
+,p_translate_from_id=>wwv_flow_api.id(24260522446514234)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25107617901956718)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24289422646715236.111)
+,p_translate_from_id=>wwv_flow_api.id(24289422646715236)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25108461926956718)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24301829794789040.111)
+,p_translate_from_id=>wwv_flow_api.id(24301829794789040)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25244347325956902)
+,p_page_id=>15
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24101173074182342.111)
+,p_translate_from_id=>wwv_flow_api.id(24101173074182342)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25244932779956903)
+,p_page_id=>17
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24116656142457953.111)
+,p_translate_from_id=>wwv_flow_api.id(24116656142457953)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25245537131956903)
+,p_page_id=>19
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24131237692561663.111)
+,p_translate_from_id=>wwv_flow_api.id(24131237692561663)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25246152357956904)
+,p_page_id=>21
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24244093229464543.111)
+,p_translate_from_id=>wwv_flow_api.id(24244093229464543)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25246729844956904)
+,p_page_id=>23
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24265671314514262.111)
+,p_translate_from_id=>wwv_flow_api.id(24265671314514262)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25247390786956905)
+,p_page_id=>27
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24294421965715245.111)
+,p_translate_from_id=>wwv_flow_api.id(24294421965715245)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25247983254956906)
+,p_page_id=>29
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24308992245789052.111)
+,p_translate_from_id=>wwv_flow_api.id(24308992245789052)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25348302287957195)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251009443769608.111)
+,p_translate_from_id=>wwv_flow_api.id(24251009443769608)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'View and edit file Vehicles'
+,p_translate_from_text=>'View and edit file Vehicles'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25348569420957195)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251465673769610.111)
+,p_translate_from_id=>wwv_flow_api.id(24251465673769610)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'List of all batteries that purchased and used'
+,p_translate_from_text=>'List of all batteries that purchased and used'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25348723774957195)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251887270769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24251887270769611)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Employees who can be a car drivers'
+,p_translate_from_text=>'Employees who can be a car drivers'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25348931313957195)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252207211769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252207211769611)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fuelling'
+,p_translate_from_text=>'Fuelling'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25349185987957196)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252615803769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252615803769611)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'All car parkings'
+,p_translate_from_text=>'All car parkings'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25349337177957196)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24253031605769612.111)
+,p_translate_from_id=>wwv_flow_api.id(24253031605769612)
+,p_translate_column_id=>376
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Just all tires'
+,p_translate_from_text=>'Just all tires'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25353134233957203)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251009443769608.111)
+,p_translate_from_id=>wwv_flow_api.id(24251009443769608)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'chartIcon'
+,p_translate_from_text=>'chartIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25353392280957204)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251465673769610.111)
+,p_translate_from_id=>wwv_flow_api.id(24251465673769610)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'chartIcon'
+,p_translate_from_text=>'chartIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25353504910957204)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24251887270769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24251887270769611)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'reportIcon'
+,p_translate_from_text=>'reportIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25353771198957204)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252207211769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252207211769611)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'chartIcon'
+,p_translate_from_text=>'chartIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25353975405957204)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24252615803769611.111)
+,p_translate_from_id=>wwv_flow_api.id(24252615803769611)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'reportIcon'
+,p_translate_from_text=>'reportIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25354172068957205)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(24253031605769612.111)
+,p_translate_from_id=>wwv_flow_api.id(24253031605769612)
+,p_translate_column_id=>377
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'chartIcon'
+,p_translate_from_text=>'chartIcon'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25450950004957372)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814132908469272.111)
+,p_translate_from_id=>wwv_flow_api.id(23814132908469272)
+,p_translate_column_id=>396
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Имя пользователя'
+,p_translate_from_text=>'Имя пользователя'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25451112110957372)
+,p_page_id=>101
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23814285737469274.111)
+,p_translate_from_id=>wwv_flow_api.id(23814285737469274)
+,p_translate_column_id=>396
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Пароль'
+,p_translate_from_text=>'Пароль'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25451300596957377)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(23813595700469208.111)
+,p_translate_from_id=>wwv_flow_api.id(23813595700469208)
+,p_translate_column_id=>397
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Desktop'
+,p_translate_from_text=>'Desktop'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25626588762291385)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>30.111
+,p_translate_from_id=>30
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Ремонты'
+,p_translate_from_text=>'BreakageServiceLogPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25626616868291385)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>31.111
+,p_translate_from_id=>31
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование ремонта'
+,p_translate_from_text=>'BreakageServiceLogEditPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25627003535291391)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>30.111
+,p_translate_from_id=>30
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Ремонты'
+,p_translate_from_text=>'BreakageServiceLogPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25627277071291391)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>31.111
+,p_translate_from_id=>31
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование ремонта'
+,p_translate_from_text=>'BreakageServiceLogEditPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25629934188291417)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>30.111
+,p_translate_from_id=>30
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25630197313291417)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>31.111
+,p_translate_from_id=>31
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25630574130291423)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610839971232999.111)
+,p_translate_from_id=>wwv_flow_api.id(25610839971232999)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Create'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25630795510291423)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25621264663233065.111)
+,p_translate_from_id=>wwv_flow_api.id(25621264663233065)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Create'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25630961608291424)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610915648232999.111)
+,p_translate_from_id=>wwv_flow_api.id(25610915648232999)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Apply Changes'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25631155201291424)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25611019753233000.111)
+,p_translate_from_id=>wwv_flow_api.id(25611019753233000)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Delete'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25631326383291424)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25611153966233000.111)
+,p_translate_from_id=>wwv_flow_api.id(25611153966233000)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Cancel'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25632095392291430)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613129404233007.111)
+,p_translate_from_id=>wwv_flow_api.id(25613129404233007)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservid'
+,p_translate_from_text=>'Breakageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25632274881291431)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613442346233020.111)
+,p_translate_from_id=>wwv_flow_api.id(25613442346233020)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25632472200291431)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613896193233024.111)
+,p_translate_from_id=>wwv_flow_api.id(25613896193233024)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservdate'
+,p_translate_from_text=>'Breakageservdate'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25632633767291431)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakagename'
+,p_translate_from_text=>'Breakagename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25632846677291431)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614660702233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614660702233025)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservcost'
+,p_translate_from_text=>'Breakageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25633086488291432)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615089753233026.111)
+,p_translate_from_id=>wwv_flow_api.id(25615089753233026)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservnotes'
+,p_translate_from_text=>'Breakageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25635142358291448)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616250142233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25616250142233031)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25635630131291457)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618325782233051.111)
+,p_translate_from_id=>wwv_flow_api.id(25618325782233051)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Ремонты'
+,p_translate_from_text=>'BreakageServiceLogPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25635852527291457)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25621844257233068.111)
+,p_translate_from_id=>wwv_flow_api.id(25621844257233068)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25636083978291458)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610403740232995.111)
+,p_translate_from_id=>wwv_flow_api.id(25610403740232995)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактирование ремонта'
+,p_translate_from_text=>'BreakageServiceLogEditPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25636278375291458)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25622444928233070.111)
+,p_translate_from_id=>wwv_flow_api.id(25622444928233070)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25636836711291465)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618325782233051.111)
+,p_translate_from_id=>wwv_flow_api.id(25618325782233051)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BREAKAGESERVID", ',
+'"VEHICLEID",',
+'"BREAKAGESERVDATE",',
+'"BREAKAGENAME",',
+'"BREAKAGESERVCOST",',
+'"BREAKAGESERVNOTES"',
+'from "#OWNER#"."TBREAKAGESERVICELOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BREAKAGESERVID", ',
+'"VEHICLEID",',
+'"BREAKAGESERVDATE",',
+'"BREAKAGENAME",',
+'"BREAKAGESERVCOST",',
+'"BREAKAGESERVNOTES"',
+'from "#OWNER#"."TBREAKAGESERVICELOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25640401133291495)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25617370999233036.111)
+,p_translate_from_id=>wwv_flow_api.id(25617370999233036)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Ремонты'
+,p_translate_from_text=>'BreakageServiceLogPage2DNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25647197136291765)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25621631871233066.111)
+,p_translate_from_id=>wwv_flow_api.id(25621631871233066)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Ремонты'
+,p_translate_from_text=>'BreakageServiceLogPage2Entry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25647209955291765)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25622807281233070.111)
+,p_translate_from_id=>wwv_flow_api.id(25622807281233070)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование ремонта'
+,p_translate_from_text=>'BreakageServiceLogEditPage2'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25658081677291896)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618774674233051.111)
+,p_translate_from_id=>wwv_flow_api.id(25618774674233051)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25658301307291901)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618774674233051.111)
+,p_translate_from_id=>wwv_flow_api.id(25618774674233051)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25659132176291914)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25619630739233062.111)
+,p_translate_from_id=>wwv_flow_api.id(25619630739233062)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservdate'
+,p_translate_from_text=>'Breakageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25659308005291914)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620038136233063.111)
+,p_translate_from_id=>wwv_flow_api.id(25620038136233063)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakagename'
+,p_translate_from_text=>'Breakagename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25659595827291914)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25619209727233062.111)
+,p_translate_from_id=>wwv_flow_api.id(25619209727233062)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25659756155291915)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618859877233058.111)
+,p_translate_from_id=>wwv_flow_api.id(25618859877233058)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservid'
+,p_translate_from_text=>'Breakageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25659977078291915)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620834901233065.111)
+,p_translate_from_id=>wwv_flow_api.id(25620834901233065)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservnotes'
+,p_translate_from_text=>'Breakageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25660179679291915)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620409695233064.111)
+,p_translate_from_id=>wwv_flow_api.id(25620409695233064)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservcost'
+,p_translate_from_text=>'Breakageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25660974036291923)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25619630739233062.111)
+,p_translate_from_id=>wwv_flow_api.id(25619630739233062)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservdate'
+,p_translate_from_text=>'Breakageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25661189798291923)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620038136233063.111)
+,p_translate_from_id=>wwv_flow_api.id(25620038136233063)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakagename'
+,p_translate_from_text=>'Breakagename'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25661306650291923)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25619209727233062.111)
+,p_translate_from_id=>wwv_flow_api.id(25619209727233062)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'ID Автомобиля'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25661550515291927)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25618859877233058.111)
+,p_translate_from_id=>wwv_flow_api.id(25618859877233058)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservid'
+,p_translate_from_text=>'Breakageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25661704662291927)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620834901233065.111)
+,p_translate_from_id=>wwv_flow_api.id(25620834901233065)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservnotes'
+,p_translate_from_text=>'Breakageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25661961947291927)
+,p_page_id=>30
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25620409695233064.111)
+,p_translate_from_id=>wwv_flow_api.id(25620409695233064)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Breakageservcost'
+,p_translate_from_text=>'Breakageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25686383119292380)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613129404233007.111)
+,p_translate_from_id=>wwv_flow_api.id(25613129404233007)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25686919650292381)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25687312000292381)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615089753233026.111)
+,p_translate_from_id=>wwv_flow_api.id(25615089753233026)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25688984420292391)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25689327186292392)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615089753233026.111)
+,p_translate_from_id=>wwv_flow_api.id(25615089753233026)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25690514318292398)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613442346233020.111)
+,p_translate_from_id=>wwv_flow_api.id(25613442346233020)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25690953240292399)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25691118469292399)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614660702233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614660702233025)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25691363641292399)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615089753233026.111)
+,p_translate_from_id=>wwv_flow_api.id(25615089753233026)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25692690470292406)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613896193233024.111)
+,p_translate_from_id=>wwv_flow_api.id(25613896193233024)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25692813927292406)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25693246604292407)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615089753233026.111)
+,p_translate_from_id=>wwv_flow_api.id(25615089753233026)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25694483840292413)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613896193233024.111)
+,p_translate_from_id=>wwv_flow_api.id(25613896193233024)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25694636550292414)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25614289801233025.111)
+,p_translate_from_id=>wwv_flow_api.id(25614289801233025)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25698087854292426)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25613896193233024.111)
+,p_translate_from_id=>wwv_flow_api.id(25613896193233024)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25705226183292452)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616620605233032.111)
+,p_translate_from_id=>wwv_flow_api.id(25616620605233032)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25705762603292457)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615885949233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25615885949233031)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TBREAKAGESERVICELOG'
+,p_translate_from_text=>'TBREAKAGESERVICELOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25705969801292458)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616250142233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25616250142233031)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TBREAKAGESERVICELOG'
+,p_translate_from_text=>'TBREAKAGESERVICELOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25706638111292463)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615885949233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25615885949233031)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P31_BREAKAGESERVID'
+,p_translate_from_text=>'P31_BREAKAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25706884080292463)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616250142233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25616250142233031)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P31_BREAKAGESERVID'
+,p_translate_from_text=>'P31_BREAKAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25707525586292469)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25615885949233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25615885949233031)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BREAKAGESERVID'
+,p_translate_from_text=>'BREAKAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25707703316292469)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616250142233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25616250142233031)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BREAKAGESERVID'
+,p_translate_from_text=>'BREAKAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25714172662292574)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610403740232995.111)
+,p_translate_from_id=>wwv_flow_api.id(25610403740232995)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25715308226292580)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610403740232995.111)
+,p_translate_from_id=>wwv_flow_api.id(25610403740232995)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25716577861292587)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25610403740232995.111)
+,p_translate_from_id=>wwv_flow_api.id(25610403740232995)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(25734881062292663)
+,p_page_id=>31
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(25616250142233031.111)
+,p_translate_from_id=>wwv_flow_api.id(25616250142233031)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
 end;
 /
 prompt --application/shared_components/globalization/messages
@@ -8693,423 +18687,6 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'N'
-);
-end;
-/
-prompt --application/pages/page_00009
-begin
-wwv_flow_api.create_page(
- p_id=>9
-,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
-,p_name=>'BreakageServiceLogPage'
-,p_page_mode=>'NORMAL'
-,p_step_title=>'BreakageServiceLogPage'
-,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
-,p_first_item=>'NO_FIRST_ITEM'
-,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
-,p_overwrite_navigation_list=>'N'
-,p_page_is_public_y_n=>'N'
-,p_cache_mode=>'NOCACHE'
-,p_help_text=>'No help is available for this page.'
-,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160217121502'
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(24210006893442923)
-,p_plug_name=>'BreakageServiceLogPageGeg'
-,p_region_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_api.id(23787082064469083)
-,p_plug_display_sequence=>10
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_display_point=>'BODY'
-,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
-'select "BREAKAGESERVID", ',
-'"VEHICLEID",',
-'"BREAKAGESERVDATE",',
-'"BREAKAGENAME",',
-'"BREAKAGESERVCOST",',
-'"BREAKAGESERVNOTES"',
-'from "#OWNER#"."TBREAKAGESERVICELOG" ',
-'  ',
-''))
-,p_plug_source_type=>'NATIVE_IR'
-,p_plug_query_row_template=>1
-);
-wwv_flow_api.create_worksheet(
- p_id=>wwv_flow_api.id(24210417593442925)
-,p_name=>'BreakageServiceLogPageGeg'
-,p_max_row_count=>'1000000'
-,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
-,p_no_data_found_message=>'No data found.'
-,p_show_nulls_as=>'-'
-,p_pagination_type=>'ROWS_X_TO_Y'
-,p_pagination_display_pos=>'BOTTOM_RIGHT'
-,p_report_list_mode=>'TABS'
-,p_show_detail_link=>'C'
-,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
-,p_detail_link=>'f?p=&APP_ID.:10:&APP_SESSION.::::P10_BREAKAGESERVID:#BREAKAGESERVID#'
-,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
-,p_owner=>'SCASSETS_ADMIN'
-,p_internal_uid=>24210417593442925
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24210515365442935)
-,p_db_column_name=>'BREAKAGESERVID'
-,p_display_order=>1
-,p_column_identifier=>'A'
-,p_column_label=>'Breakageservid'
-,p_column_type=>'NUMBER'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24210995608442940)
-,p_db_column_name=>'VEHICLEID'
-,p_display_order=>2
-,p_column_identifier=>'B'
-,p_column_label=>'Vehicleid'
-,p_column_type=>'NUMBER'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24211333710442940)
-,p_db_column_name=>'BREAKAGESERVDATE'
-,p_display_order=>3
-,p_column_identifier=>'C'
-,p_column_label=>'Breakageservdate'
-,p_column_type=>'DATE'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24211761504442941)
-,p_db_column_name=>'BREAKAGENAME'
-,p_display_order=>4
-,p_column_identifier=>'D'
-,p_column_label=>'Breakagename'
-,p_column_type=>'STRING'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24212137982442941)
-,p_db_column_name=>'BREAKAGESERVCOST'
-,p_display_order=>5
-,p_column_identifier=>'E'
-,p_column_label=>'Breakageservcost'
-,p_column_type=>'NUMBER'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(24212504871442942)
-,p_db_column_name=>'BREAKAGESERVNOTES'
-,p_display_order=>6
-,p_column_identifier=>'F'
-,p_column_label=>'Breakageservnotes'
-,p_column_type=>'STRING'
-,p_tz_dependent=>'N'
-);
-wwv_flow_api.create_worksheet_rpt(
- p_id=>wwv_flow_api.id(24215697959449858)
-,p_application_user=>'APXWS_DEFAULT'
-,p_report_seq=>10
-,p_report_alias=>'242157'
-,p_status=>'PUBLIC'
-,p_is_default=>'Y'
-,p_display_rows=>50
-,p_report_columns=>'BREAKAGESERVID:VEHICLEID:BREAKAGESERVDATE:BREAKAGENAME:BREAKAGESERVCOST:BREAKAGESERVNOTES'
-,p_flashback_enabled=>'N'
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(24213520522442946)
-,p_plug_name=>'Breadcrumb'
-,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
-,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_api.id(23790833953469089)
-,p_plug_display_sequence=>10
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_display_point=>'REGION_POSITION_01'
-,p_menu_id=>wwv_flow_api.id(23814842776469277)
-,p_plug_source_type=>'NATIVE_BREADCRUMB'
-,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
-,p_plug_query_row_template=>1
-);
-wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(24212978314442943)
-,p_button_sequence=>30
-,p_button_plug_id=>wwv_flow_api.id(24210006893442923)
-,p_button_name=>'CREATE'
-,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(23808383794469147)
-,p_button_image_alt=>'Create'
-,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
-,p_button_redirect_url=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:10'
-,p_grid_new_grid=>false
-);
-end;
-/
-prompt --application/pages/page_00010
-begin
-wwv_flow_api.create_page(
- p_id=>10
-,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
-,p_name=>'BreakageServiceLogPage'
-,p_page_mode=>'NORMAL'
-,p_step_title=>'BreakageServiceLogPage'
-,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
-,p_first_item=>'NO_FIRST_ITEM'
-,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
-,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
-,p_overwrite_navigation_list=>'N'
-,p_page_is_public_y_n=>'N'
-,p_protection_level=>'C'
-,p_cache_mode=>'NOCACHE'
-,p_help_text=>'No help is available for this page.'
-,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160217121353'
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(24202149500442830)
-,p_plug_name=>'BreakageServiceLogPageReg'
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_plug_template=>wwv_flow_api.id(23787520712469085)
-,p_plug_display_sequence=>10
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_display_point=>'BODY'
-,p_plug_query_row_template=>1
-,p_attribute_01=>'N'
-,p_attribute_02=>'TEXT'
-,p_attribute_03=>'Y'
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(24214173557442950)
-,p_plug_name=>'Breadcrumb'
-,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
-,p_component_template_options=>'#DEFAULT#'
-,p_plug_template=>wwv_flow_api.id(23790833953469089)
-,p_plug_display_sequence=>10
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_display_point=>'REGION_POSITION_01'
-,p_menu_id=>wwv_flow_api.id(23814842776469277)
-,p_plug_source_type=>'NATIVE_BREADCRUMB'
-,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
-,p_plug_query_row_template=>1
-);
-wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(24202688846442835)
-,p_button_sequence=>30
-,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_button_name=>'SAVE'
-,p_button_action=>'SUBMIT'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(23808383794469147)
-,p_button_is_hot=>'Y'
-,p_button_image_alt=>'Apply Changes'
-,p_button_position=>'REGION_TEMPLATE_CHANGE'
-,p_button_condition=>'P10_BREAKAGESERVID'
-,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
-,p_database_action=>'UPDATE'
-);
-wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(24202804558442835)
-,p_button_sequence=>10
-,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_button_name=>'CANCEL'
-,p_button_action=>'REDIRECT_PAGE'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(23808383794469147)
-,p_button_image_alt=>'Cancel'
-,p_button_position=>'REGION_TEMPLATE_CLOSE'
-,p_button_redirect_url=>'f?p=&APP_ID.:9:&SESSION.::&DEBUG.:::'
-,p_grid_new_grid=>false
-);
-wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(24202588930442835)
-,p_button_sequence=>40
-,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_button_name=>'CREATE'
-,p_button_action=>'SUBMIT'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(23808383794469147)
-,p_button_is_hot=>'Y'
-,p_button_image_alt=>'Create'
-,p_button_position=>'REGION_TEMPLATE_CREATE'
-,p_button_condition=>'P10_BREAKAGESERVID'
-,p_button_condition_type=>'ITEM_IS_NULL'
-,p_grid_new_grid=>false
-,p_database_action=>'INSERT'
-);
-wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(24202789593442835)
-,p_button_sequence=>20
-,p_button_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_button_name=>'DELETE'
-,p_button_action=>'REDIRECT_URL'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(23808383794469147)
-,p_button_image_alt=>'Delete'
-,p_button_position=>'REGION_TEMPLATE_DELETE'
-,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
-,p_button_execute_validations=>'N'
-,p_button_condition=>'P10_BREAKAGESERVID'
-,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
-,p_database_action=>'DELETE'
-);
-wwv_flow_api.create_page_branch(
- p_id=>wwv_flow_api.id(24204485717442846)
-,p_branch_action=>'f?p=&APP_ID.:9:&SESSION.&success_msg=#SUCCESS_MSG#'
-,p_branch_point=>'AFTER_PROCESSING'
-,p_branch_type=>'REDIRECT_URL'
-,p_branch_sequence=>1
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24204806078442851)
-,p_name=>'P10_BREAKAGESERVID'
-,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Breakageservid'
-,p_source=>'BREAKAGESERVID'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_HIDDEN'
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_protection_level=>'S'
-,p_attribute_01=>'Y'
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24205243507442866)
-,p_name=>'P10_VEHICLEID'
-,p_item_sequence=>20
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Vehicleid'
-,p_source=>'VEHICLEID'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_NUMBER_FIELD'
-,p_cSize=>32
-,p_cMaxlength=>255
-,p_cHeight=>1
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_attribute_03=>'right'
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24205685539442873)
-,p_name=>'P10_BREAKAGESERVDATE'
-,p_item_sequence=>30
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Breakageservdate'
-,p_source=>'BREAKAGESERVDATE'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_DATE_PICKER'
-,p_cSize=>32
-,p_cMaxlength=>255
-,p_cHeight=>1
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_attribute_04=>'button'
-,p_attribute_05=>'N'
-,p_attribute_07=>'NONE'
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24206024156442873)
-,p_name=>'P10_BREAKAGENAME'
-,p_item_sequence=>40
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Breakagename'
-,p_source=>'BREAKAGENAME'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_TEXT_FIELD'
-,p_cSize=>32
-,p_cMaxlength=>255
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_attribute_01=>'N'
-,p_attribute_02=>'N'
-,p_attribute_03=>'N'
-,p_attribute_04=>'TEXT'
-,p_attribute_05=>'NONE'
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24206479514442874)
-,p_name=>'P10_BREAKAGESERVCOST'
-,p_item_sequence=>50
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Breakageservcost'
-,p_source=>'BREAKAGESERVCOST'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_NUMBER_FIELD'
-,p_cSize=>32
-,p_cMaxlength=>255
-,p_cHeight=>1
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_attribute_03=>'right'
-);
-wwv_flow_api.create_page_item(
- p_id=>wwv_flow_api.id(24206814199442874)
-,p_name=>'P10_BREAKAGESERVNOTES'
-,p_item_sequence=>60
-,p_item_plug_id=>wwv_flow_api.id(24202149500442830)
-,p_use_cache_before_default=>'NO'
-,p_prompt=>'Breakageservnotes'
-,p_source=>'BREAKAGESERVNOTES'
-,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_TEXTAREA'
-,p_cSize=>60
-,p_cMaxlength=>1024
-,p_cHeight=>4
-,p_label_alignment=>'RIGHT'
-,p_field_template=>wwv_flow_api.id(23807818149469141)
-,p_item_template_options=>'#DEFAULT#'
-,p_attribute_01=>'Y'
-,p_attribute_02=>'N'
-,p_attribute_03=>'N'
-,p_attribute_04=>'BOTH'
-);
-wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(24207684407442879)
-,p_process_sequence=>10
-,p_process_point=>'AFTER_HEADER'
-,p_process_type=>'NATIVE_FORM_FETCH'
-,p_process_name=>'Fetch Row from TBREAKAGESERVICELOG'
-,p_attribute_02=>'TBREAKAGESERVICELOG'
-,p_attribute_03=>'P10_BREAKAGESERVID'
-,p_attribute_04=>'BREAKAGESERVID'
-);
-wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(24208006716442881)
-,p_process_sequence=>30
-,p_process_point=>'AFTER_SUBMIT'
-,p_process_type=>'NATIVE_FORM_PROCESS'
-,p_process_name=>'Process Row of TBREAKAGESERVICELOG'
-,p_attribute_02=>'TBREAKAGESERVICELOG'
-,p_attribute_03=>'P10_BREAKAGESERVID'
-,p_attribute_04=>'BREAKAGESERVID'
-,p_attribute_11=>'I:U:D'
-,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-,p_process_success_message=>'Action Processed.'
-);
-wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(24208433462442881)
-,p_process_sequence=>40
-,p_process_point=>'AFTER_SUBMIT'
-,p_process_type=>'NATIVE_SESSION_STATE'
-,p_process_name=>'reset page'
-,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
-,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-,p_process_when_button_id=>wwv_flow_api.id(24202789593442835)
 );
 end;
 /
@@ -10884,7 +20461,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160221134021'
+,p_last_upd_yyyymmddhh24miss=>'20160221163437'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(24267774483514280)
@@ -10911,14 +20488,17 @@ wwv_flow_api.create_worksheet(
 ,p_max_row_count=>'1000000'
 ,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
 ,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
 ,p_show_nulls_as=>'-'
 ,p_pagination_type=>'ROWS_X_TO_Y'
 ,p_pagination_display_pos=>'BOTTOM_RIGHT'
 ,p_report_list_mode=>'TABS'
 ,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
 ,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
-,p_detail_link=>'f?p=&APP_ID.:23:&APP_SESSION.::::P23_FUELLINGID:#FUELLINGID#'
+,p_detail_link=>'f?p=&APP_ID.:23:&SESSION.::&DEBUG.::P23_FUELLINGID:#FUELLINGID#'
 ,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
 ,p_owner=>'SCASSETS_ADMIN'
 ,p_internal_uid=>24268094114514281
 );
@@ -10938,7 +20518,9 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_identifier=>'B'
 ,p_column_label=>'Vehicleid'
 ,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
 ,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
 );
 wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(24268915021514290)
@@ -11018,7 +20600,7 @@ wwv_flow_api.create_page(
 ,p_cache_timeout_seconds=>21600
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160221140805'
+,p_last_upd_yyyymmddhh24miss=>'20160221172629'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(24260522446514234)
@@ -11144,15 +20726,19 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Vehicleid'
 ,p_source=>'VEHICLEID'
 ,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_NUMBER_FIELD'
-,p_cSize=>32
-,p_cMaxlength=>255
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select vehiclename as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
 ,p_cHeight=>1
-,p_label_alignment=>'RIGHT'
 ,p_field_template=>wwv_flow_api.id(23807818149469141)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
-,p_attribute_03=>'right'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(24264034124514257)
@@ -11610,7 +21196,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160221142603'
+,p_last_upd_yyyymmddhh24miss=>'20160221173122'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(24311031030789058)
@@ -11642,14 +21228,17 @@ wwv_flow_api.create_worksheet(
 ,p_max_row_count=>'1000000'
 ,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
 ,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
 ,p_show_nulls_as=>'-'
 ,p_pagination_type=>'ROWS_X_TO_Y'
 ,p_pagination_display_pos=>'BOTTOM_RIGHT'
 ,p_report_list_mode=>'TABS'
 ,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
 ,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
-,p_detail_link=>'f?p=&APP_ID.:29:&APP_SESSION.::::P29_PARKINGID:#PARKINGID#'
+,p_detail_link=>'f?p=&APP_ID.:29:&SESSION.::&DEBUG.::P29_PARKINGID:#PARKINGID#'
 ,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
 ,p_owner=>'SCASSETS_ADMIN'
 ,p_internal_uid=>24311483597789058
 );
@@ -11669,7 +21258,9 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_identifier=>'B'
 ,p_column_label=>'Vehicleid'
 ,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
 ,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
 );
 wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(24312320435789061)
@@ -11793,7 +21384,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160221142548'
+,p_last_upd_yyyymmddhh24miss=>'20160221173341'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(24301829794789040)
@@ -11916,14 +21507,22 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Vehicleid'
 ,p_source=>'VEHICLEID'
 ,p_source_type=>'DB_COLUMN'
-,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select vehiclename as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
 ,p_cSize=>32
 ,p_cMaxlength=>255
 ,p_cHeight=>1
 ,p_label_alignment=>'RIGHT'
 ,p_field_template=>wwv_flow_api.id(23807818149469141)
 ,p_item_template_options=>'#DEFAULT#'
-,p_attribute_03=>'right'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(24305313405789046)
@@ -12105,6 +21704,436 @@ wwv_flow_api.create_page_process(
 );
 end;
 /
+prompt --application/pages/page_00030
+begin
+wwv_flow_api.create_page(
+ p_id=>30
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BreakageServiceLogPage2'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BreakageServiceLogPage2'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221184103'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(25618325782233051)
+,p_plug_name=>'BreakageServiceLogPage2'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "BREAKAGESERVID", ',
+'"VEHICLEID",',
+'"BREAKAGESERVDATE",',
+'"BREAKAGENAME",',
+'"BREAKAGESERVCOST",',
+'"BREAKAGESERVNOTES"',
+'from "#OWNER#"."TBREAKAGESERVICELOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(25618774674233051)
+,p_name=>'BreakageServiceLogPage2'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:31:&SESSION.::&DEBUG.::P31_BREAKAGESERVID:#BREAKAGESERVID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>25618774674233051
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25618859877233058)
+,p_db_column_name=>'BREAKAGESERVID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Breakageservid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25619209727233062)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25619630739233062)
+,p_db_column_name=>'BREAKAGESERVDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Breakageservdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25620038136233063)
+,p_db_column_name=>'BREAKAGENAME'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Breakagename'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25620409695233064)
+,p_db_column_name=>'BREAKAGESERVCOST'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Breakageservcost'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(25620834901233065)
+,p_db_column_name=>'BREAKAGESERVNOTES'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Breakageservnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(25623267639236844)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'256233'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'BREAKAGESERVID:VEHICLEID:BREAKAGESERVDATE:BREAKAGENAME:BREAKAGESERVCOST:BREAKAGESERVNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(25621844257233068)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(25621264663233065)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(25618325782233051)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:31:&SESSION.::&DEBUG.:31'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00031
+begin
+wwv_flow_api.create_page(
+ p_id=>31
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'BreakageServiceLogEditPage2'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'BreakageServiceLogEditPage2'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160221184137'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(25610403740232995)
+,p_plug_name=>'BreakageServiceLogEditPage2'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(23787520712469085)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(25622444928233070)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(25610915648232999)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P31_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(25611153966233000)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:30:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(25610839971232999)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P31_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(25611019753233000)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P31_BREAKAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(25612765701233005)
+,p_branch_action=>'f?p=&APP_ID.:30:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25613129404233007)
+,p_name=>'P31_BREAKAGESERVID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservid'
+,p_source=>'BREAKAGESERVID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25613442346233020)
+,p_name=>'P31_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select vehiclename as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25613896193233024)
+,p_name=>'P31_BREAKAGESERVDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservdate'
+,p_source=>'BREAKAGESERVDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25614289801233025)
+,p_name=>'P31_BREAKAGENAME'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakagename'
+,p_source=>'BREAKAGENAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25614660702233025)
+,p_name=>'P31_BREAKAGESERVCOST'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservcost'
+,p_source=>'BREAKAGESERVCOST'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(25615089753233026)
+,p_name=>'P31_BREAKAGESERVNOTES'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(25610403740232995)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Breakageservnotes'
+,p_source=>'BREAKAGESERVNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1024
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(25615885949233031)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TBREAKAGESERVICELOG'
+,p_attribute_02=>'TBREAKAGESERVICELOG'
+,p_attribute_03=>'P31_BREAKAGESERVID'
+,p_attribute_04=>'BREAKAGESERVID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(25616250142233031)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TBREAKAGESERVICELOG'
+,p_attribute_02=>'TBREAKAGESERVICELOG'
+,p_attribute_03=>'P31_BREAKAGESERVID'
+,p_attribute_04=>'BREAKAGESERVID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(25616620605233032)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(25611019753233000)
+);
+end;
+/
 prompt --application/pages/page_00101
 begin
 wwv_flow_api.create_page(
@@ -12268,7 +22297,9 @@ end;
 /
 prompt --application/deployment/definition
 begin
-null;
+wwv_flow_api.create_install(
+ p_id=>wwv_flow_api.id(25570696960086180)
+);
 end;
 /
 prompt --application/deployment/install
