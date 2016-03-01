@@ -43,7 +43,7 @@ create or replace package body TMSWayBill_pkg is
     -- <LocalVariable> <Datatype>;
   begin
     -- <Statement>;
-    vFullname := to_char(aDate) || ': ' || aVehicleID ||': ' || aPersonID;
+    vFullname := to_char(aDate) || ': ' || tmsVehicle_pkg.fullname(aVehicleID) ||': ' || tmsPerson_pkg.fullname(aPersonID);
     return(vFullname);
   end;
 
