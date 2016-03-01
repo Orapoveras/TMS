@@ -17,7 +17,7 @@
 
   -- Public function and procedure declarations
   function fullname(aDate twaybilllog.waybilldate%type,
-                    aVehileID twaybilllog.vehicleid%type,
+                    aVehicleID twaybilllog.vehicleid%type,
                     aPersonID twaybilllog.personid%type
                    ) return fullname_t;
 
@@ -32,18 +32,18 @@ create or replace package body TMSWayBill_pkg is
   -- <ConstantName> constant <Datatype> := <Value>;
 
   -- Private variable declarations
-  vFullname fullname_t;
+  vFullname TMSWAYBILL_PKG.fullname_t;
 
   -- Function and procedure implementations
   -- Public function and procedure declarations
   function fullname(aDate twaybilllog.waybilldate%type,
-                    aVehileID twaybilllog.vehicleid%type,
+                    aVehicleID twaybilllog.vehicleid%type,
                     aPersonID twaybilllog.personid%type
                    ) return fullname_t is
     -- <LocalVariable> <Datatype>;
   begin
     -- <Statement>;
-    vFullname := to_char(aDate) || ': ' || aVehileID ||': ' || aPersonID;
+    vFullname := to_char(aDate) || ': ' || aVehicleID ||': ' || aPersonID;
     return(vFullname);
   end;
 
