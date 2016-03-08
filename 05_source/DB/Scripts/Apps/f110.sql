@@ -27,7 +27,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 -- Application Export:
 --   Application:     110
 --   Name:            Scassets_sketch_05
---   Date and Time:   20:53 Tuesday March 1, 2016
+--   Date and Time:   17:10 Tuesday March 8, 2016
 --   Exported By:     SCASSETS_ADMIN
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,14 +36,14 @@ prompt APPLICATION 110 - Scassets_sketch_05
 --
 
 -- Application Statistics:
---   Pages:                     35
---     Items:                   86
+--   Pages:                     47
+--     Items:                  118
 --     Computations:             3
 --     Validations:              2
---     Processes:               51
---     Regions:                 78
---     Buttons:                 74
---     Dynamic Actions:          6
+--     Processes:               74
+--     Regions:                102
+--     Buttons:                104
+--     Dynamic Actions:         21
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -51,7 +51,7 @@ prompt APPLICATION 110 - Scassets_sketch_05
 --     Navigation:
 --       Lists:                  3
 --       Breadcrumbs:            1
---         Entries:             34
+--         Entries:             46
 --     Security:
 --       Authentication:         1
 --     User Interface:
@@ -123,7 +123,7 @@ wwv_flow_api.create_flow(
 ,p_substitution_value_02=>'<link rel="shortcut icon" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.ico"><link rel="icon" sizes="16x16" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-16x16.png"><link rel="icon" sizes="32x32" '
 ||'href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="#IMAGE_PREFIX#apex_ui/img/favicons/app-sample-database-application.png">'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160301205318'
+,p_last_upd_yyyymmddhh24miss=>'20160308170219'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_ui_type_name => null
 );
@@ -152,13 +152,14 @@ wwv_flow_api.create_list_item(
 ,p_list_item_link_target=>'f?p=&APP_ID.:2:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-truck'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'2,3,4,5,6,7,9,32,43,10'
+,p_list_item_current_for_pages=>'2,3,4,5,6,7,9,32,43,10,37,41'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24003366609359810)
 ,p_list_item_display_sequence=>30
 ,p_list_item_link_text=>'TripsLogPageDNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:3:&SESSION.::&DEBUG.::::'
+,p_list_item_disp_cond_type=>'NEVER'
 ,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'3'
@@ -167,7 +168,7 @@ wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24008315028466530)
 ,p_list_item_display_sequence=>40
 ,p_list_item_link_text=>'FuellingLogPageDNMEntry'
-,p_list_item_link_target=>'f?p=&APP_ID.:4:&SESSION.::&DEBUG.::::'
+,p_list_item_link_target=>'f?p=&APP_ID.:22:&SESSION.::&DEBUG.::::'
 ,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'4'
@@ -195,6 +196,7 @@ wwv_flow_api.create_list_item(
 ,p_list_item_display_sequence=>70
 ,p_list_item_link_text=>'WayBillLogPageEntryDNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:7:&SESSION.::&DEBUG.::::'
+,p_list_item_disp_cond_type=>'NEVER'
 ,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'7'
@@ -203,7 +205,8 @@ wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(25794215225056612)
 ,p_list_item_display_sequence=>200
 ,p_list_item_link_text=>'WayBillLogPage2DNMEntry'
-,p_list_item_link_target=>'f?p=&APP_ID.:32:&SESSION.::&DEBUG.'
+,p_list_item_link_target=>'f?p=&APP_ID.:32:&SESSION.::&DEBUG.::::'
+,p_list_item_disp_cond_type=>'NEVER'
 ,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'32,33,34'
@@ -213,6 +216,7 @@ wwv_flow_api.create_list_item(
 ,p_list_item_display_sequence=>210
 ,p_list_item_link_text=>'WayBillLogPage3DNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:38:&SESSION.::&DEBUG.::::'
+,p_list_item_disp_cond_type=>'NEVER'
 ,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'38,39'
@@ -236,13 +240,31 @@ wwv_flow_api.create_list_item(
 ,p_list_item_current_for_pages=>'10,11'
 );
 wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26791580494385748)
+,p_list_item_display_sequence=>260
+,p_list_item_link_text=>'CarAccidentsLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:37:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'37,40'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26810693010458351)
+,p_list_item_display_sequence=>270
+,p_list_item_link_text=>'FinesLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:41:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24001320158301144)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'41,42'
+);
+wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24048035193187394)
 ,p_list_item_display_sequence=>80
 ,p_list_item_link_text=>'ServiceSecPageDNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:8:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-gear'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'8,11,13,14,16,18,30'
+,p_list_item_current_for_pages=>'8,11,13,14,16,18,30,24,35'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24102289866182346)
@@ -281,12 +303,30 @@ wwv_flow_api.create_list_item(
 ,p_list_item_current_for_pages=>'30,31'
 );
 wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26541018321403321)
+,p_list_item_display_sequence=>240
+,p_list_item_link_text=>'MileageServicePageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:24:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'24,25'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26562617149622992)
+,p_list_item_display_sequence=>250
+,p_list_item_link_text=>'InspectionsLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:35:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24048035193187394)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'35,36'
+);
+wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24235928989306687)
 ,p_list_item_display_sequence=>130
 ,p_list_item_link_text=>'FileCabinetSecPageDNMEntry'
 ,p_list_item_link_target=>'f?p=&APP_ID.:13:&SESSION.::&DEBUG.'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'13,22,28'
+,p_list_item_current_for_pages=>'13,22,28,45,47'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(24245175898464545)
@@ -323,6 +363,24 @@ wwv_flow_api.create_list_item(
 ,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'28,29'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26829642062611805)
+,p_list_item_display_sequence=>280
+,p_list_item_link_text=>'DriverLicensesLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:45:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'45,46'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(26847361524704011)
+,p_list_item_display_sequence=>290
+,p_list_item_link_text=>'MedicalCertificatesLogPageDNMEntry'
+,p_list_item_link_target=>'f?p=&APP_ID.:47:&SESSION.::&DEBUG.'
+,p_parent_list_item_id=>wwv_flow_api.id(24235928989306687)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'47,48'
 );
 wwv_flow_api.create_list(
  p_id=>wwv_flow_api.id(23813463607469206)
@@ -767,6 +825,90 @@ wwv_flow_api.create_menu_option(
 ,p_short_name=>'TripsLegEditPage2'
 ,p_link=>'f?p=&APP_ID.:11:&SESSION.'
 ,p_page_id=>11
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26547842674403332)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'MileageServicePageEntry'
+,p_link=>'f?p=&APP_ID.:24:&SESSION.'
+,p_page_id=>24
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26549032359403335)
+,p_parent_id=>wwv_flow_api.id(26547842674403332)
+,p_short_name=>'MileageServiceEditPage'
+,p_link=>'f?p=&APP_ID.:25:&SESSION.'
+,p_page_id=>25
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26567911054623003)
+,p_parent_id=>wwv_flow_api.id(24081842045044610)
+,p_short_name=>'InspectionsLogPageEntry'
+,p_link=>'f?p=&APP_ID.:35:&SESSION.'
+,p_page_id=>35
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26569129228623005)
+,p_parent_id=>wwv_flow_api.id(26567911054623003)
+,p_short_name=>'InspectionsLogEditPage'
+,p_link=>'f?p=&APP_ID.:36:&SESSION.'
+,p_page_id=>36
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26797111406385792)
+,p_parent_id=>wwv_flow_api.id(24002153008301169)
+,p_short_name=>'CarAccidentsLogPageEntry'
+,p_link=>'f?p=&APP_ID.:37:&SESSION.'
+,p_page_id=>37
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26798319235385798)
+,p_parent_id=>wwv_flow_api.id(26797111406385792)
+,p_short_name=>'CarAccidentsEditLogPage'
+,p_link=>'f?p=&APP_ID.:40:&SESSION.'
+,p_page_id=>40
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26816295648458360)
+,p_parent_id=>wwv_flow_api.id(24002153008301169)
+,p_short_name=>'FinesLogPageEntry'
+,p_link=>'f?p=&APP_ID.:41:&SESSION.'
+,p_page_id=>41
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26817427701458362)
+,p_parent_id=>wwv_flow_api.id(26816295648458360)
+,p_short_name=>'FinesLogEditPage'
+,p_link=>'f?p=&APP_ID.:42:&SESSION.'
+,p_page_id=>42
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26833538507611816)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'DriverLicensesLogPageEntry'
+,p_link=>'f?p=&APP_ID.:45:&SESSION.'
+,p_page_id=>45
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26834723216611818)
+,p_parent_id=>wwv_flow_api.id(26833538507611816)
+,p_short_name=>'DriverLicensesLogEditPage'
+,p_link=>'f?p=&APP_ID.:46:&SESSION.'
+,p_page_id=>46
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26852979823704025)
+,p_parent_id=>wwv_flow_api.id(24237216948306697)
+,p_short_name=>'MedicalCertificatesLogPageEntry'
+,p_link=>'f?p=&APP_ID.:47:&SESSION.'
+,p_page_id=>47
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(26854107211704028)
+,p_parent_id=>wwv_flow_api.id(26852979823704025)
+,p_short_name=>'MedicalCertificatesLogEditPage'
+,p_link=>'f?p=&APP_ID.:48:&SESSION.'
+,p_page_id=>48
 );
 end;
 /
@@ -10025,7 +10167,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'Y'
-,p_translate_to_text=>'TMS Application'
+,p_translate_to_text=>'Управление транспортом (ГСМ, автошины, АКБ etc.)'
 ,p_translate_from_text=>'TMS Application'
 );
 wwv_flow_api.create_translation(
@@ -17159,7 +17301,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Apply Changes'
+,p_translate_to_text=>'Применить изменения'
 ,p_translate_from_text=>'Apply Changes'
 );
 wwv_flow_api.create_translation(
@@ -17175,6 +17317,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Удалить'
 ,p_translate_from_text=>'Delete'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25631326383291424)
 ,p_page_id=>31
@@ -17188,9 +17333,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Отмена'
 ,p_translate_from_text=>'Cancel'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25632095392291430)
 ,p_page_id=>31
@@ -18103,6 +18245,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Удалить'
 ,p_translate_from_text=>'Delete'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25834408399106328)
 ,p_page_id=>33
@@ -18116,9 +18261,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Добавить'
 ,p_translate_from_text=>'Create'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25834629926106328)
 ,p_page_id=>34
@@ -19013,6 +19155,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'right'
 ,p_translate_from_text=>'right'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25915333077107327)
 ,p_page_id=>34
@@ -19026,9 +19171,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'right'
 ,p_translate_from_text=>'right'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(25915522749107327)
 ,p_page_id=>34
@@ -19939,6 +20081,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Редактирование поездок'
 ,p_translate_from_text=>'TripsLogPage3Reg'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26058278827220298)
 ,p_page_id=>39
@@ -19952,9 +20097,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Breadcrumb'
 ,p_translate_from_text=>'Breadcrumb'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26058463718220305)
 ,p_page_id=>38
@@ -20826,7 +20968,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Apply Changes'
+,p_translate_to_text=>'Применить изменения'
 ,p_translate_from_text=>'Apply Changes'
 );
 wwv_flow_api.create_translation(
@@ -20881,6 +21023,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Удалить'
 ,p_translate_from_text=>'Delete'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26190499588284455)
 ,p_page_id=>44
@@ -20894,9 +21039,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Waybillid'
 ,p_translate_from_text=>'Waybillid'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26190668600284455)
 ,p_page_id=>44
@@ -21052,7 +21194,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Журнал путевых листов 4'
+,p_translate_to_text=>'Журнал путевых листов'
 ,p_translate_from_text=>'WayBillLogPage4DNMEntry'
 );
 wwv_flow_api.create_translation(
@@ -21622,7 +21764,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Apply Changes'
+,p_translate_to_text=>'Применить изменения'
 ,p_translate_from_text=>'Apply Changes'
 );
 wwv_flow_api.create_translation(
@@ -21635,7 +21777,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Delete'
+,p_translate_to_text=>'Удалить'
 ,p_translate_from_text=>'Delete'
 );
 wwv_flow_api.create_translation(
@@ -21648,7 +21790,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Create'
+,p_translate_to_text=>'Добавить'
 ,p_translate_from_text=>'Create'
 );
 wwv_flow_api.create_translation(
@@ -21661,7 +21803,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Create'
+,p_translate_to_text=>'Добавить'
 ,p_translate_from_text=>'Create'
 );
 wwv_flow_api.create_translation(
@@ -21674,7 +21816,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Cancel'
+,p_translate_to_text=>'Отмена'
 ,p_translate_from_text=>'Cancel'
 );
 wwv_flow_api.create_translation(
@@ -21820,6 +21962,9 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Buttons'
 ,p_translate_from_text=>'Buttons'
 );
+end;
+/
+begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26336771419514113)
 ,p_page_id=>27
@@ -21833,9 +21978,6 @@ wwv_flow_api.create_translation(
 ,p_translate_to_text=>'Buttons'
 ,p_translate_from_text=>'Buttons'
 );
-end;
-/
-begin
 wwv_flow_api.create_translation(
  p_id=>wwv_flow_api.id(26337046232514120)
 ,p_page_id=>10
@@ -21876,7 +22018,7 @@ wwv_flow_api.create_translation(
 ,p_translate_to_lang_code=>'ru'
 ,p_translation_specific_to_item=>'NO'
 ,p_template_translatable=>'N'
-,p_translate_to_text=>'Поездки 2'
+,p_translate_to_text=>'Поездки'
 ,p_translate_from_text=>'TripsLogPage2DNMEntry'
 );
 wwv_flow_api.create_translation(
@@ -22526,6 +22668,5150 @@ wwv_flow_api.create_translation(
 ,p_template_translatable=>'N'
 ,p_translate_to_text=>'Y'
 ,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572194888658169)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>25.111
+,p_translate_from_id=>25
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование планового ТО'
+,p_translate_from_text=>'MileageServiceEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572282342658171)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>24.111
+,p_translate_from_id=>24
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'MileageServicePage'
+,p_translate_from_text=>'MileageServicePage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572313399658171)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>36.111
+,p_translate_from_id=>36
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование государственного техосмотра'
+,p_translate_from_text=>'InspectionsLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572546082658173)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>35.111
+,p_translate_from_id=>35
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Государственные техосмотры'
+,p_translate_from_text=>'InspectionsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572739900658178)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>25.111
+,p_translate_from_id=>25
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование планового ТО'
+,p_translate_from_text=>'MileageServiceEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26572908780658179)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>24.111
+,p_translate_from_id=>24
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'MileageServicePage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26573132964658179)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>36.111
+,p_translate_from_id=>36
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование государственного техосмотра'
+,p_translate_from_text=>'InspectionsLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26573309492658179)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>35.111
+,p_translate_from_id=>35
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Государственные техосмотры'
+,p_translate_from_text=>'InspectionsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26576743332658203)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>25.111
+,p_translate_from_id=>25
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26576975882658204)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>24.111
+,p_translate_from_id=>24
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26577154389658204)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>36.111
+,p_translate_from_id=>36
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26577309138658204)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>35.111
+,p_translate_from_id=>35
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26577589555658211)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555802892622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555802892622977)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26577739568658211)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532603504403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532603504403296)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26577932428658211)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555676046622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555676046622977)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26578142435658211)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26556346594622978.111)
+,p_translate_from_id=>wwv_flow_api.id(26556346594622978)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26578323207658212)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532463797403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532463797403296)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26578593566658213)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26566640077623001.111)
+,p_translate_from_id=>wwv_flow_api.id(26566640077623001)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26578738675658214)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555744693622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555744693622977)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26578964609658215)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26533138813403297.111)
+,p_translate_from_id=>wwv_flow_api.id(26533138813403297)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26579115348658215)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26546580224403331.111)
+,p_translate_from_id=>wwv_flow_api.id(26546580224403331)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26579368642658215)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532576474403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532576474403296)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26579584048658233)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26535561753403300.111)
+,p_translate_from_id=>wwv_flow_api.id(26535561753403300)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservid'
+,p_translate_from_text=>'Mileageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26579794440658233)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26535917349403301.111)
+,p_translate_from_id=>wwv_flow_api.id(26535917349403301)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26579917002658233)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536379667403302.111)
+,p_translate_from_id=>wwv_flow_api.id(26536379667403302)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservdate'
+,p_translate_from_text=>'Mileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26580141370658233)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536773003403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26536773003403303)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Nextmileageservdate'
+,p_translate_from_text=>'Nextmileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26580323626658233)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537132247403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26537132247403303)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Currmileage'
+,p_translate_from_text=>'Currmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26580535792658234)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537588789403304.111)
+,p_translate_from_id=>wwv_flow_api.id(26537588789403304)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Intervalmileage'
+,p_translate_from_text=>'Intervalmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26580798878658234)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537992458403304.111)
+,p_translate_from_id=>wwv_flow_api.id(26537992458403304)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservcost'
+,p_translate_from_text=>'Mileageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26580977129658234)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26538321023403305.111)
+,p_translate_from_id=>wwv_flow_api.id(26538321023403305)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservnotes'
+,p_translate_from_text=>'Mileageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26581133869658235)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26558740903622981.111)
+,p_translate_from_id=>wwv_flow_api.id(26558740903622981)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionid'
+,p_translate_from_text=>'Inspectionid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26581336450658236)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559145772622982.111)
+,p_translate_from_id=>wwv_flow_api.id(26559145772622982)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26581521784658236)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559591319622984.111)
+,p_translate_from_id=>wwv_flow_api.id(26559591319622984)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectiondate'
+,p_translate_from_text=>'Inspectiondate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26581779961658236)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559912404622985.111)
+,p_translate_from_id=>wwv_flow_api.id(26559912404622985)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionnotes'
+,p_translate_from_text=>'Inspectionnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26583532634658265)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539523284403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539523284403307)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26584434791658273)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561156943622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561156943622988)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26585066045658286)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26541930314403323.111)
+,p_translate_from_id=>wwv_flow_api.id(26541930314403323)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'MileageServicePageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26585217756658286)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26548051323403332.111)
+,p_translate_from_id=>wwv_flow_api.id(26548051323403332)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26585487437658286)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532088756403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532088756403296)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактирование планового ТО'
+,p_translate_from_text=>'MileageServiceEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26585686762658286)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532768016403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532768016403296)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26585817591658286)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26563628352622996.111)
+,p_translate_from_id=>wwv_flow_api.id(26563628352622996)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Государственные техосмотры'
+,p_translate_from_text=>'InspectionsLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26586027202658287)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26568173881623003.111)
+,p_translate_from_id=>wwv_flow_api.id(26568173881623003)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26586268146658287)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555914294622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555914294622977)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26586463589658287)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555369782622975.111)
+,p_translate_from_id=>wwv_flow_api.id(26555369782622975)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактирование государственного техосмотра'
+,p_translate_from_text=>'InspectionsLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26586615090658294)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26541930314403323.111)
+,p_translate_from_id=>wwv_flow_api.id(26541930314403323)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MILEAGESERVID", ',
+'"VEHICLEID",',
+'"MILEAGESERVDATE",',
+'"NEXTMILEAGESERVDATE",',
+'"CURRMILEAGE",',
+'"INTERVALMILEAGE",',
+'"MILEAGESERVCOST",',
+'"MILEAGESERVNOTES"',
+'from "#OWNER#"."TMILEAGESERVICELOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MILEAGESERVID", ',
+'"VEHICLEID",',
+'"MILEAGESERVDATE",',
+'"NEXTMILEAGESERVDATE",',
+'"CURRMILEAGE",',
+'"INTERVALMILEAGE",',
+'"MILEAGESERVCOST",',
+'"MILEAGESERVNOTES"',
+'from "#OWNER#"."TMILEAGESERVICELOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26587443058658295)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26563628352622996.111)
+,p_translate_from_id=>wwv_flow_api.id(26563628352622996)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSPECTIONID", ',
+'"VEHICLEID",',
+'"INSPECTIONDATE",',
+'"INSPECTIONNOTES"',
+'from "#OWNER#"."TINSPECTIONSLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSPECTIONID", ',
+'"VEHICLEID",',
+'"INSPECTIONDATE",',
+'"INSPECTIONNOTES"',
+'from "#OWNER#"."TINSPECTIONSLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26591401560658327)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26562617149622992.111)
+,p_translate_from_id=>wwv_flow_api.id(26562617149622992)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Государственные техосмотры'
+,p_translate_from_text=>'InspectionsLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26591679645658328)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26541018321403321.111)
+,p_translate_from_id=>wwv_flow_api.id(26541018321403321)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'MileageServicePageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26600499621658618)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26547842674403332.111)
+,p_translate_from_id=>wwv_flow_api.id(26547842674403332)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'MileageServicePageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26600559213658619)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26549032359403335.111)
+,p_translate_from_id=>wwv_flow_api.id(26549032359403335)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование планового ТО'
+,p_translate_from_text=>'MileageServiceEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26600792284658619)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26569129228623005.111)
+,p_translate_from_id=>wwv_flow_api.id(26569129228623005)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование государственного техосмотра'
+,p_translate_from_text=>'InspectionsLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26600932411658619)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26567911054623003.111)
+,p_translate_from_id=>wwv_flow_api.id(26567911054623003)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Государственные техосмотры'
+,p_translate_from_text=>'InspectionsLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26615021191658764)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542376155403324.111)
+,p_translate_from_id=>wwv_flow_api.id(26542376155403324)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26615207114658764)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564071658622997.111)
+,p_translate_from_id=>wwv_flow_api.id(26564071658622997)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26615481012658768)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542376155403324.111)
+,p_translate_from_id=>wwv_flow_api.id(26542376155403324)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26615695273658769)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564071658622997.111)
+,p_translate_from_id=>wwv_flow_api.id(26564071658622997)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26616523425658786)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544029909403327.111)
+,p_translate_from_id=>wwv_flow_api.id(26544029909403327)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Currmileage'
+,p_translate_from_text=>'Currmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26616719802658786)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26565372522623000.111)
+,p_translate_from_id=>wwv_flow_api.id(26565372522623000)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionnotes'
+,p_translate_from_text=>'Inspectionnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26616955295658786)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542805157403325.111)
+,p_translate_from_id=>wwv_flow_api.id(26542805157403325)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26617108742658788)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26543655889403326.111)
+,p_translate_from_id=>wwv_flow_api.id(26543655889403326)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Nextmileageservdate'
+,p_translate_from_text=>'Nextmileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26617323050658788)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564967195622999.111)
+,p_translate_from_id=>wwv_flow_api.id(26564967195622999)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectiondate'
+,p_translate_from_text=>'Inspectiondate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26617590277658789)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26543262790403325.111)
+,p_translate_from_id=>wwv_flow_api.id(26543262790403325)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservdate'
+,p_translate_from_text=>'Mileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26617719662658789)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542454451403324.111)
+,p_translate_from_id=>wwv_flow_api.id(26542454451403324)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservid'
+,p_translate_from_text=>'Mileageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26617986865658789)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564167100622997.111)
+,p_translate_from_id=>wwv_flow_api.id(26564167100622997)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionid'
+,p_translate_from_text=>'Inspectionid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26618130694658789)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26545271211403329.111)
+,p_translate_from_id=>wwv_flow_api.id(26545271211403329)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservnotes'
+,p_translate_from_text=>'Mileageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26618320625658790)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564551353622998.111)
+,p_translate_from_id=>wwv_flow_api.id(26564551353622998)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26618551995658790)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544839223403328.111)
+,p_translate_from_id=>wwv_flow_api.id(26544839223403328)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservcost'
+,p_translate_from_text=>'Mileageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26618763462658790)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544437807403328.111)
+,p_translate_from_id=>wwv_flow_api.id(26544437807403328)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Intervalmileage'
+,p_translate_from_text=>'Intervalmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26618914533658800)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544029909403327.111)
+,p_translate_from_id=>wwv_flow_api.id(26544029909403327)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Currmileage'
+,p_translate_from_text=>'Currmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26619176583658800)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26565372522623000.111)
+,p_translate_from_id=>wwv_flow_api.id(26565372522623000)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionnotes'
+,p_translate_from_text=>'Inspectionnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26619397038658800)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542805157403325.111)
+,p_translate_from_id=>wwv_flow_api.id(26542805157403325)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26619506827658800)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26543655889403326.111)
+,p_translate_from_id=>wwv_flow_api.id(26543655889403326)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Nextmileageservdate'
+,p_translate_from_text=>'Nextmileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26619771731658800)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564967195622999.111)
+,p_translate_from_id=>wwv_flow_api.id(26564967195622999)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectiondate'
+,p_translate_from_text=>'Inspectiondate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26619960044658801)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26543262790403325.111)
+,p_translate_from_id=>wwv_flow_api.id(26543262790403325)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservdate'
+,p_translate_from_text=>'Mileageservdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26620148003658801)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26542454451403324.111)
+,p_translate_from_id=>wwv_flow_api.id(26542454451403324)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservid'
+,p_translate_from_text=>'Mileageservid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26620338991658801)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564167100622997.111)
+,p_translate_from_id=>wwv_flow_api.id(26564167100622997)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Inspectionid'
+,p_translate_from_text=>'Inspectionid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26620506124658801)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26545271211403329.111)
+,p_translate_from_id=>wwv_flow_api.id(26545271211403329)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservnotes'
+,p_translate_from_text=>'Mileageservnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26620764763658801)
+,p_page_id=>35
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26564551353622998.111)
+,p_translate_from_id=>wwv_flow_api.id(26564551353622998)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26620949943658802)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544839223403328.111)
+,p_translate_from_id=>wwv_flow_api.id(26544839223403328)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Mileageservcost'
+,p_translate_from_text=>'Mileageservcost'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26621160042658802)
+,p_page_id=>24
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26544437807403328.111)
+,p_translate_from_id=>wwv_flow_api.id(26544437807403328)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Intervalmileage'
+,p_translate_from_text=>'Intervalmileage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26652850954659248)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26535561753403300.111)
+,p_translate_from_id=>wwv_flow_api.id(26535561753403300)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26653057780659249)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26535917349403301.111)
+,p_translate_from_id=>wwv_flow_api.id(26535917349403301)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26654296275659250)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26538321023403305.111)
+,p_translate_from_id=>wwv_flow_api.id(26538321023403305)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26654450861659250)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26558740903622981.111)
+,p_translate_from_id=>wwv_flow_api.id(26558740903622981)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26654677281659250)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559145772622982.111)
+,p_translate_from_id=>wwv_flow_api.id(26559145772622982)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26655022576659251)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559912404622985.111)
+,p_translate_from_id=>wwv_flow_api.id(26559912404622985)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26655412559659257)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26535917349403301.111)
+,p_translate_from_id=>wwv_flow_api.id(26535917349403301)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26656682522659259)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26538321023403305.111)
+,p_translate_from_id=>wwv_flow_api.id(26538321023403305)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26657052023659259)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559145772622982.111)
+,p_translate_from_id=>wwv_flow_api.id(26559145772622982)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26657432960659260)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559912404622985.111)
+,p_translate_from_id=>wwv_flow_api.id(26559912404622985)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26658468818659266)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537132247403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26537132247403303)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26658673619659266)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537588789403304.111)
+,p_translate_from_id=>wwv_flow_api.id(26537588789403304)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26658891055659267)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26537992458403304.111)
+,p_translate_from_id=>wwv_flow_api.id(26537992458403304)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'right'
+,p_translate_from_text=>'right'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26659020997659267)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26538321023403305.111)
+,p_translate_from_id=>wwv_flow_api.id(26538321023403305)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26659832782659268)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559912404622985.111)
+,p_translate_from_id=>wwv_flow_api.id(26559912404622985)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26660341400659274)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536379667403302.111)
+,p_translate_from_id=>wwv_flow_api.id(26536379667403302)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26660585571659274)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536773003403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26536773003403303)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26661310490659275)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26538321023403305.111)
+,p_translate_from_id=>wwv_flow_api.id(26538321023403305)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26661959058659276)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559591319622984.111)
+,p_translate_from_id=>wwv_flow_api.id(26559591319622984)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26662150685659276)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559912404622985.111)
+,p_translate_from_id=>wwv_flow_api.id(26559912404622985)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26662707482659282)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536379667403302.111)
+,p_translate_from_id=>wwv_flow_api.id(26536379667403302)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26662943365659282)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536773003403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26536773003403303)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26664328451659284)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559591319622984.111)
+,p_translate_from_id=>wwv_flow_api.id(26559591319622984)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26667546610659296)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536379667403302.111)
+,p_translate_from_id=>wwv_flow_api.id(26536379667403302)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26667750238659296)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26536773003403303.111)
+,p_translate_from_id=>wwv_flow_api.id(26536773003403303)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26669152907659298)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26559591319622984.111)
+,p_translate_from_id=>wwv_flow_api.id(26559591319622984)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26677119349659322)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539910683403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539910683403307)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26677998637659323)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561503290622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561503290622988)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26678393824659328)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539182778403306.111)
+,p_translate_from_id=>wwv_flow_api.id(26539182778403306)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'TMILEAGESERVICELOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26678579134659328)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539523284403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539523284403307)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Плановые ТО'
+,p_translate_from_text=>'TMILEAGESERVICELOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26679195086659329)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26560706694622987.111)
+,p_translate_from_id=>wwv_flow_api.id(26560706694622987)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TINSPECTIONSLOG'
+,p_translate_from_text=>'TINSPECTIONSLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26679352830659329)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561156943622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561156943622988)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TINSPECTIONSLOG'
+,p_translate_from_text=>'TINSPECTIONSLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26679992941659335)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539182778403306.111)
+,p_translate_from_id=>wwv_flow_api.id(26539182778403306)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P25_MILEAGESERVID'
+,p_translate_from_text=>'P25_MILEAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26680128258659335)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539523284403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539523284403307)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P25_MILEAGESERVID'
+,p_translate_from_text=>'P25_MILEAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26680792023659336)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26560706694622987.111)
+,p_translate_from_id=>wwv_flow_api.id(26560706694622987)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P36_INSPECTIONID'
+,p_translate_from_text=>'P36_INSPECTIONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26680991400659336)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561156943622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561156943622988)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P36_INSPECTIONID'
+,p_translate_from_text=>'P36_INSPECTIONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26681575260659342)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539182778403306.111)
+,p_translate_from_id=>wwv_flow_api.id(26539182778403306)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'MILEAGESERVID'
+,p_translate_from_text=>'MILEAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26681727582659342)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539523284403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539523284403307)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'MILEAGESERVID'
+,p_translate_from_text=>'MILEAGESERVID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26682399519659342)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26560706694622987.111)
+,p_translate_from_id=>wwv_flow_api.id(26560706694622987)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'INSPECTIONID'
+,p_translate_from_text=>'INSPECTIONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26682577526659343)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561156943622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561156943622988)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'INSPECTIONID'
+,p_translate_from_text=>'INSPECTIONID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26705001610659466)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532088756403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532088756403296)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26705239914659466)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532768016403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532768016403296)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26705877847659467)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555914294622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555914294622977)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26706026366659467)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555369782622975.111)
+,p_translate_from_id=>wwv_flow_api.id(26555369782622975)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26706561697659473)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532088756403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532088756403296)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26706781779659473)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532768016403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532768016403296)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26707352362659474)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555914294622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555914294622977)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26707559168659474)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555369782622975.111)
+,p_translate_from_id=>wwv_flow_api.id(26555369782622975)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26708123133659480)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532088756403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532088756403296)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26708324206659480)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26532768016403296.111)
+,p_translate_from_id=>wwv_flow_api.id(26532768016403296)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26708913221659481)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555914294622977.111)
+,p_translate_from_id=>wwv_flow_api.id(26555914294622977)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26709166802659481)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26555369782622975.111)
+,p_translate_from_id=>wwv_flow_api.id(26555369782622975)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26732775678659558)
+,p_page_id=>25
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26539523284403307.111)
+,p_translate_from_id=>wwv_flow_api.id(26539523284403307)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26733538027659558)
+,p_page_id=>36
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26561156943622988.111)
+,p_translate_from_id=>wwv_flow_api.id(26561156943622988)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26857305723766178)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>41.111
+,p_translate_from_id=>41
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Штрафы, нарушения'
+,p_translate_from_text=>'FinesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26857430092766178)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>46.111
+,p_translate_from_id=>46
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать водительское удостоверение'
+,p_translate_from_text=>'DriverLicensesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26857608330766180)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>42.111
+,p_translate_from_id=>42
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование штрафа'
+,p_translate_from_text=>'FinesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26857839884766180)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>37.111
+,p_translate_from_id=>37
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал ДТП'
+,p_translate_from_text=>'CarAccidentsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26858048204766180)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>48.111
+,p_translate_from_id=>48
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать медицинскую справку'
+,p_translate_from_text=>'MedicalCertificatesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26858205002766180)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>45.111
+,p_translate_from_id=>45
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водительские удостоверения'
+,p_translate_from_text=>'DriverLicensesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26858484189766181)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>47.111
+,p_translate_from_id=>47
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Медицинские справки'
+,p_translate_from_text=>'MedicalCertificatesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26858641085766181)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>40.111
+,p_translate_from_id=>40
+,p_translate_column_id=>5
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать ДТП'
+,p_translate_from_text=>'CarAccidentsEditLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26858855518766187)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>41.111
+,p_translate_from_id=>41
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Штрафы, нарушения'
+,p_translate_from_text=>'FinesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26859084404766187)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>46.111
+,p_translate_from_id=>46
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать водительское удостоверение'
+,p_translate_from_text=>'DriverLicensesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26859298635766187)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>42.111
+,p_translate_from_id=>42
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование штрафа'
+,p_translate_from_text=>'FinesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26859444862766187)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>37.111
+,p_translate_from_id=>37
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал ДТП'
+,p_translate_from_text=>'CarAccidentsLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26859670225766188)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>48.111
+,p_translate_from_id=>48
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать медицинскую справку'
+,p_translate_from_text=>'MedicalCertificatesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26859851398766188)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>45.111
+,p_translate_from_id=>45
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водительские удостоверения'
+,p_translate_from_text=>'DriverLicensesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26860003779766188)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>47.111
+,p_translate_from_id=>47
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Медицинские справки'
+,p_translate_from_text=>'MedicalCertificatesLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26860254306766188)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>40.111
+,p_translate_from_id=>40
+,p_translate_column_id=>6
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать ДТП'
+,p_translate_from_text=>'CarAccidentsEditLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26866703305766216)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>41.111
+,p_translate_from_id=>41
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26866954129766216)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>46.111
+,p_translate_from_id=>46
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26867102063766217)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>42.111
+,p_translate_from_id=>42
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26867392910766217)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>37.111
+,p_translate_from_id=>37
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26867596048766217)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>48.111
+,p_translate_from_id=>48
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26867711875766217)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>45.111
+,p_translate_from_id=>45
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26867979006766217)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>47.111
+,p_translate_from_id=>47
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26868121677766218)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>40.111
+,p_translate_from_id=>40
+,p_translate_column_id=>12
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No help is available for this page.'
+,p_translate_from_text=>'No help is available for this page.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26868365770766224)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784271186385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784271186385710)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26868569056766224)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803384759458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803384759458337)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26868701998766224)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840117733703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840117733703998)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26868907626766225)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840054556703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840054556703998)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26869130879766225)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26851665582704024.111)
+,p_translate_from_id=>wwv_flow_api.id(26851665582704024)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26869398863766225)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823525814611791.111)
+,p_translate_from_id=>wwv_flow_api.id(26823525814611791)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Применить изменения'
+,p_translate_from_text=>'Apply Changes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26869531674766225)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784850400385711.111)
+,p_translate_from_id=>wwv_flow_api.id(26784850400385711)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26869771346766225)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803956819458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803956819458337)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26869952589766226)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840628641703999.111)
+,p_translate_from_id=>wwv_flow_api.id(26840628641703999)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26870192787766226)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26814919356458359.111)
+,p_translate_from_id=>wwv_flow_api.id(26814919356458359)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26870390932766226)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26833189237611815.111)
+,p_translate_from_id=>wwv_flow_api.id(26833189237611815)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26870555155766226)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823611804611791.111)
+,p_translate_from_id=>wwv_flow_api.id(26823611804611791)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26870723290766227)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784394001385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784394001385710)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26870909364766227)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784119877385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784119877385710)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26871186960766227)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803297051458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803297051458337)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26871360853766227)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823484415611791.111)
+,p_translate_from_id=>wwv_flow_api.id(26823484415611791)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26871538302766230)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803437895458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803437895458337)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Удалить'
+,p_translate_from_text=>'Delete'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26871782159766230)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26795867489385790.111)
+,p_translate_from_id=>wwv_flow_api.id(26795867489385790)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26871994582766230)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823737518611791.111)
+,p_translate_from_id=>wwv_flow_api.id(26823737518611791)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Отмена'
+,p_translate_from_text=>'Cancel'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26872108091766230)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26839919662703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26839919662703998)
+,p_translate_column_id=>13
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Добавить'
+,p_translate_from_text=>'Create'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26872357672766238)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26787231709385719.111)
+,p_translate_from_id=>wwv_flow_api.id(26787231709385719)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentid'
+,p_translate_from_text=>'Caraccidentid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26872511378766238)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26787619518385732.111)
+,p_translate_from_id=>wwv_flow_api.id(26787619518385732)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26872745276766238)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788028517385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788028517385736)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26872991545766238)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788435787385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788435787385736)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentdate'
+,p_translate_from_text=>'Caraccidentdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26873175347766239)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788891904385737.111)
+,p_translate_from_id=>wwv_flow_api.id(26788891904385737)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentnotes'
+,p_translate_from_text=>'Caraccidentnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26873330809766239)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26806344730458341.111)
+,p_translate_from_id=>wwv_flow_api.id(26806344730458341)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fineid'
+,p_translate_from_text=>'Fineid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26873577225766239)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26806726179458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26806726179458343)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26873759446766239)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807122400458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26807122400458343)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26873986373766239)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807594117458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807594117458344)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finedate'
+,p_translate_from_text=>'Finedate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26874123464766240)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807919100458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807919100458344)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finenotes'
+,p_translate_from_text=>'Finenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26874394540766240)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26825792105611795.111)
+,p_translate_from_id=>wwv_flow_api.id(26825792105611795)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseid'
+,p_translate_from_text=>'Driverlicenseid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26874574481766240)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826110856611796.111)
+,p_translate_from_id=>wwv_flow_api.id(26826110856611796)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26874774900766240)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826570181611797.111)
+,p_translate_from_id=>wwv_flow_api.id(26826570181611797)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи удостоверения'
+,p_translate_from_text=>'Driverlicensestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26874903383766241)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826973040611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26826973040611798)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseenddate'
+,p_translate_from_text=>'Driverlicenseenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26875196822766241)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26827371250611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26827371250611798)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicensenotes'
+,p_translate_from_text=>'Driverlicensenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26875302480766241)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843010460704002.111)
+,p_translate_from_id=>wwv_flow_api.id(26843010460704002)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateid'
+,p_translate_from_text=>'Medicalcertificateid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26875518336766241)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843462807704003.111)
+,p_translate_from_id=>wwv_flow_api.id(26843462807704003)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26875734522766242)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843857624704004.111)
+,p_translate_from_id=>wwv_flow_api.id(26843857624704004)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи справки'
+,p_translate_from_text=>'Medicalcertificatestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26875943954766242)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844273135704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844273135704005)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateenddate'
+,p_translate_from_text=>'Medicalcertificateenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26876172855766242)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844628943704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844628943704005)
+,p_translate_column_id=>14
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificatenotes'
+,p_translate_from_text=>'Medicalcertificatenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26879390241766261)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845874175704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845874175704007)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26880745940766263)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790030313385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26790030313385741)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26881713846766264)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809156361458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26809156361458346)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26881901247766264)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828533243611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828533243611802)
+,p_translate_column_id=>18
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Action Processed.'
+,p_translate_from_text=>'Action Processed.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26882355920766274)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792576119385770.111)
+,p_translate_from_id=>wwv_flow_api.id(26792576119385770)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Журнал ДТП'
+,p_translate_from_text=>'CarAccidentsLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26882505043766274)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26797335433385795.111)
+,p_translate_from_id=>wwv_flow_api.id(26797335433385795)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26882775569766275)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26783709612385706.111)
+,p_translate_from_id=>wwv_flow_api.id(26783709612385706)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактировать ДТП'
+,p_translate_from_text=>'CarAccidentsEditLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26882971063766275)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784451667385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784451667385710)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26883196462766275)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26811554848458353.111)
+,p_translate_from_id=>wwv_flow_api.id(26811554848458353)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Штрафы, нарушения'
+,p_translate_from_text=>'FinesLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26883310711766275)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26816458319458361.111)
+,p_translate_from_id=>wwv_flow_api.id(26816458319458361)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26883507237766275)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803517367458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803517367458337)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26883710820766276)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26802853467458336.111)
+,p_translate_from_id=>wwv_flow_api.id(26802853467458336)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактирование штрафа'
+,p_translate_from_text=>'FinesLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26883946361766276)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26830656074611807.111)
+,p_translate_from_id=>wwv_flow_api.id(26830656074611807)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Водительские удостоверения'
+,p_translate_from_text=>'DriverLicensesLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26884109498766276)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26833743633611816.111)
+,p_translate_from_id=>wwv_flow_api.id(26833743633611816)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26884325157766276)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823033098611790.111)
+,p_translate_from_id=>wwv_flow_api.id(26823033098611790)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактировать водительское удостоверение'
+,p_translate_from_text=>'DriverLicensesLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26884585367766277)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26837616297639812.111)
+,p_translate_from_id=>wwv_flow_api.id(26837616297639812)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26884760398766277)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848260262704014.111)
+,p_translate_from_id=>wwv_flow_api.id(26848260262704014)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Медицинские справки'
+,p_translate_from_text=>'MedicalCertificatesLogPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26884945802766277)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26853138072704026.111)
+,p_translate_from_id=>wwv_flow_api.id(26853138072704026)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Breadcrumb'
+,p_translate_from_text=>'Breadcrumb'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26885183805766277)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26839597424703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26839597424703998)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Редактировать медицинскую справку'
+,p_translate_from_text=>'MedicalCertificatesLogEditPageReg'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26885362790766278)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840217836703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840217836703998)
+,p_translate_column_id=>20
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'Y'
+,p_translate_to_text=>'Buttons'
+,p_translate_from_text=>'Buttons'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26885565401766285)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792576119385770.111)
+,p_translate_from_id=>wwv_flow_api.id(26792576119385770)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "CARACCIDENTID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"CARACCIDENTDATE",',
+'"CARACCIDENTNOTES"',
+'from "#OWNER#"."TCARACCIDENTSLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "CARACCIDENTID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"CARACCIDENTDATE",',
+'"CARACCIDENTNOTES"',
+'from "#OWNER#"."TCARACCIDENTSLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26886319334766290)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26811554848458353.111)
+,p_translate_from_id=>wwv_flow_api.id(26811554848458353)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FINEID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"FINEDATE",',
+'"FINENOTES"',
+'from "#OWNER#"."TFINESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FINEID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"FINEDATE",',
+'"FINENOTES"',
+'from "#OWNER#"."TFINESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26887110591766291)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26830656074611807.111)
+,p_translate_from_id=>wwv_flow_api.id(26830656074611807)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "DRIVERLICENSEID", ',
+'"PERSONID",',
+'"DRIVERLICENSESTARTDATE",',
+'"DRIVERLICENSEENDDATE",',
+'"DRIVERLICENSENOTES"',
+'from "#OWNER#"."TDRIVERLICENSESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "DRIVERLICENSEID", ',
+'"PERSONID",',
+'"DRIVERLICENSESTARTDATE",',
+'"DRIVERLICENSEENDDATE",',
+'"DRIVERLICENSENOTES"',
+'from "#OWNER#"."TDRIVERLICENSESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26887966090766292)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848260262704014.111)
+,p_translate_from_id=>wwv_flow_api.id(26848260262704014)
+,p_translate_column_id=>21
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MEDICALCERTIFICATEID", ',
+'"PERSONID",',
+'"MEDICALCERTIFICATESTARTDATE",',
+'"MEDICALCERTIFICATEENDDATE",',
+'"MEDICALCERTIFICATENOTES"',
+'from "#OWNER#"."TMEDICALCERTIFICATESLOG" ',
+'  ',
+''))
+,p_translate_from_text=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MEDICALCERTIFICATEID", ',
+'"PERSONID",',
+'"MEDICALCERTIFICATESTARTDATE",',
+'"MEDICALCERTIFICATEENDDATE",',
+'"MEDICALCERTIFICATENOTES"',
+'from "#OWNER#"."TMEDICALCERTIFICATESLOG" ',
+'  ',
+''))
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26895053365766325)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26829642062611805.111)
+,p_translate_from_id=>wwv_flow_api.id(26829642062611805)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водительские удостоверения'
+,p_translate_from_text=>'DriverLicensesLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26895209731766326)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26810693010458351.111)
+,p_translate_from_id=>wwv_flow_api.id(26810693010458351)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Штрафы, нарушения'
+,p_translate_from_text=>'FinesLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26895417539766326)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26847361524704011.111)
+,p_translate_from_id=>wwv_flow_api.id(26847361524704011)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Медицинские справки'
+,p_translate_from_text=>'MedicalCertificatesLogPageDNMEntry'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26895641171766326)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26791580494385748.111)
+,p_translate_from_id=>wwv_flow_api.id(26791580494385748)
+,p_translate_column_id=>28
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал ДТП'
+,p_translate_from_text=>'CarAccidentsLogPageDNMEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26912519332766614)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26854107211704028.111)
+,p_translate_from_id=>wwv_flow_api.id(26854107211704028)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать медицинскую справку'
+,p_translate_from_text=>'MedicalCertificatesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26912653047766614)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26834723216611818.111)
+,p_translate_from_id=>wwv_flow_api.id(26834723216611818)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать водительское удостоверение'
+,p_translate_from_text=>'DriverLicensesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26912813988766614)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26833538507611816.111)
+,p_translate_from_id=>wwv_flow_api.id(26833538507611816)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Водительские удостоверения'
+,p_translate_from_text=>'DriverLicensesLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26913003329766615)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26817427701458362.111)
+,p_translate_from_id=>wwv_flow_api.id(26817427701458362)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактирование штрафа'
+,p_translate_from_text=>'FinesLogEditPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26913263803766615)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26798319235385798.111)
+,p_translate_from_id=>wwv_flow_api.id(26798319235385798)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Редактировать ДТП'
+,p_translate_from_text=>'CarAccidentsEditLogPage'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26913487689766615)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26816295648458360.111)
+,p_translate_from_id=>wwv_flow_api.id(26816295648458360)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Штрафы, нарушения'
+,p_translate_from_text=>'FinesLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26913649839766615)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26797111406385792.111)
+,p_translate_from_id=>wwv_flow_api.id(26797111406385792)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Журнал ДТП'
+,p_translate_from_text=>'CarAccidentsLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26913892003766616)
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26852979823704025.111)
+,p_translate_from_id=>wwv_flow_api.id(26852979823704025)
+,p_translate_column_id=>100
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Медицинские справки'
+,p_translate_from_text=>'MedicalCertificatesLogPageEntry'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26940329356766769)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792868078385771.111)
+,p_translate_from_id=>wwv_flow_api.id(26792868078385771)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26940598836766769)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26811997822458353.111)
+,p_translate_from_id=>wwv_flow_api.id(26811997822458353)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26940719488766769)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831073123611808.111)
+,p_translate_from_id=>wwv_flow_api.id(26831073123611808)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26940997789766770)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848603725704015.111)
+,p_translate_from_id=>wwv_flow_api.id(26848603725704015)
+,p_translate_column_id=>146
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_translate_from_text=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26941152705766774)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792868078385771.111)
+,p_translate_from_id=>wwv_flow_api.id(26792868078385771)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26941310345766775)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26811997822458353.111)
+,p_translate_from_id=>wwv_flow_api.id(26811997822458353)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26941564969766775)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831073123611808.111)
+,p_translate_from_id=>wwv_flow_api.id(26831073123611808)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26941784142766775)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848603725704015.111)
+,p_translate_from_id=>wwv_flow_api.id(26848603725704015)
+,p_translate_column_id=>147
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'No data found.'
+,p_translate_from_text=>'No data found.'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26943580148766791)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26793329531385783.111)
+,p_translate_from_id=>wwv_flow_api.id(26793329531385783)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26943798988766791)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848752170704015.111)
+,p_translate_from_id=>wwv_flow_api.id(26848752170704015)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateid'
+,p_translate_from_text=>'Medicalcertificateid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26943901707766792)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26850358750704022.111)
+,p_translate_from_id=>wwv_flow_api.id(26850358750704022)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificatenotes'
+,p_translate_from_text=>'Medicalcertificatenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26944101083766792)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792910468385779.111)
+,p_translate_from_id=>wwv_flow_api.id(26792910468385779)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentid'
+,p_translate_from_text=>'Caraccidentid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26944328582766792)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849559693704017.111)
+,p_translate_from_id=>wwv_flow_api.id(26849559693704017)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи справки'
+,p_translate_from_text=>'Medicalcertificatestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26944518847766792)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26813615602458357.111)
+,p_translate_from_id=>wwv_flow_api.id(26813615602458357)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finenotes'
+,p_translate_from_text=>'Finenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26944764789766792)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26793781496385784.111)
+,p_translate_from_id=>wwv_flow_api.id(26793781496385784)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26944931189766793)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831155722611809.111)
+,p_translate_from_id=>wwv_flow_api.id(26831155722611809)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseid'
+,p_translate_from_text=>'Driverlicenseid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26945167208766793)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26794513269385786.111)
+,p_translate_from_id=>wwv_flow_api.id(26794513269385786)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentnotes'
+,p_translate_from_text=>'Caraccidentnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26945336623766793)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26794113779385785.111)
+,p_translate_from_id=>wwv_flow_api.id(26794113779385785)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentdate'
+,p_translate_from_text=>'Caraccidentdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26945531043766793)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26832396457611814.111)
+,p_translate_from_id=>wwv_flow_api.id(26832396457611814)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseenddate'
+,p_translate_from_text=>'Driverlicenseenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26945719570766794)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812059006458354.111)
+,p_translate_from_id=>wwv_flow_api.id(26812059006458354)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fineid'
+,p_translate_from_text=>'Fineid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26945931834766794)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812476034458355.111)
+,p_translate_from_id=>wwv_flow_api.id(26812476034458355)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26946175229766794)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849134968704016.111)
+,p_translate_from_id=>wwv_flow_api.id(26849134968704016)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26946337525766794)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849948649704022.111)
+,p_translate_from_id=>wwv_flow_api.id(26849948649704022)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateenddate'
+,p_translate_from_text=>'Medicalcertificateenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26946582322766794)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26813224672458356.111)
+,p_translate_from_id=>wwv_flow_api.id(26813224672458356)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finedate'
+,p_translate_from_text=>'Finedate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26946763278766795)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831565302611809.111)
+,p_translate_from_id=>wwv_flow_api.id(26831565302611809)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26946918600766795)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831970420611814.111)
+,p_translate_from_id=>wwv_flow_api.id(26831970420611814)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи удостоверения'
+,p_translate_from_text=>'Driverlicensestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26947140909766795)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26832788741611815.111)
+,p_translate_from_id=>wwv_flow_api.id(26832788741611815)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicensenotes'
+,p_translate_from_text=>'Driverlicensenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26947323625766795)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812819374458356.111)
+,p_translate_from_id=>wwv_flow_api.id(26812819374458356)
+,p_translate_column_id=>148
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26947524424766803)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26793329531385783.111)
+,p_translate_from_id=>wwv_flow_api.id(26793329531385783)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26947676251766804)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26848752170704015.111)
+,p_translate_from_id=>wwv_flow_api.id(26848752170704015)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateid'
+,p_translate_from_text=>'Medicalcertificateid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26947859355766804)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26850358750704022.111)
+,p_translate_from_id=>wwv_flow_api.id(26850358750704022)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificatenotes'
+,p_translate_from_text=>'Medicalcertificatenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26948092026766804)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26792910468385779.111)
+,p_translate_from_id=>wwv_flow_api.id(26792910468385779)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentid'
+,p_translate_from_text=>'Caraccidentid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26948261586766804)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849559693704017.111)
+,p_translate_from_id=>wwv_flow_api.id(26849559693704017)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи справки'
+,p_translate_from_text=>'Medicalcertificatestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26948430009766804)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26813615602458357.111)
+,p_translate_from_id=>wwv_flow_api.id(26813615602458357)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finenotes'
+,p_translate_from_text=>'Finenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26948617078766805)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26793781496385784.111)
+,p_translate_from_id=>wwv_flow_api.id(26793781496385784)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26948873867766805)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831155722611809.111)
+,p_translate_from_id=>wwv_flow_api.id(26831155722611809)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseid'
+,p_translate_from_text=>'Driverlicenseid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26949061883766805)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26794513269385786.111)
+,p_translate_from_id=>wwv_flow_api.id(26794513269385786)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentnotes'
+,p_translate_from_text=>'Caraccidentnotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26949280481766805)
+,p_page_id=>37
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26794113779385785.111)
+,p_translate_from_id=>wwv_flow_api.id(26794113779385785)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Caraccidentdate'
+,p_translate_from_text=>'Caraccidentdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26949420539766806)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26832396457611814.111)
+,p_translate_from_id=>wwv_flow_api.id(26832396457611814)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicenseenddate'
+,p_translate_from_text=>'Driverlicenseenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26949679838766806)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812059006458354.111)
+,p_translate_from_id=>wwv_flow_api.id(26812059006458354)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Fineid'
+,p_translate_from_text=>'Fineid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26949801456766806)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812476034458355.111)
+,p_translate_from_id=>wwv_flow_api.id(26812476034458355)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Vehicleid'
+,p_translate_from_text=>'Vehicleid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26950025896766806)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849134968704016.111)
+,p_translate_from_id=>wwv_flow_api.id(26849134968704016)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26950225007766806)
+,p_page_id=>47
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26849948649704022.111)
+,p_translate_from_id=>wwv_flow_api.id(26849948649704022)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Medicalcertificateenddate'
+,p_translate_from_text=>'Medicalcertificateenddate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26950486809766807)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26813224672458356.111)
+,p_translate_from_id=>wwv_flow_api.id(26813224672458356)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Finedate'
+,p_translate_from_text=>'Finedate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26950689890766807)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831565302611809.111)
+,p_translate_from_id=>wwv_flow_api.id(26831565302611809)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26950880740766807)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26831970420611814.111)
+,p_translate_from_id=>wwv_flow_api.id(26831970420611814)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Дата выдачи удостоверения'
+,p_translate_from_text=>'Driverlicensestartdate'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26951096026766807)
+,p_page_id=>45
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26832788741611815.111)
+,p_translate_from_id=>wwv_flow_api.id(26832788741611815)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Driverlicensenotes'
+,p_translate_from_text=>'Driverlicensenotes'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(26951212402766808)
+,p_page_id=>41
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26812819374458356.111)
+,p_translate_from_id=>wwv_flow_api.id(26812819374458356)
+,p_translate_column_id=>149
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Personid'
+,p_translate_from_text=>'Personid'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27004003098767283)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26787231709385719.111)
+,p_translate_from_id=>wwv_flow_api.id(26787231709385719)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27004287708767283)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26787619518385732.111)
+,p_translate_from_id=>wwv_flow_api.id(26787619518385732)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27004421023767283)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788028517385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788028517385736)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27004825343767284)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788891904385737.111)
+,p_translate_from_id=>wwv_flow_api.id(26788891904385737)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27005018403767284)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26806344730458341.111)
+,p_translate_from_id=>wwv_flow_api.id(26806344730458341)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27005225464767284)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26806726179458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26806726179458343)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27005495190767284)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807122400458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26807122400458343)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27005826822767285)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807919100458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807919100458344)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27006062150767285)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26825792105611795.111)
+,p_translate_from_id=>wwv_flow_api.id(26825792105611795)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27006287076767285)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826110856611796.111)
+,p_translate_from_id=>wwv_flow_api.id(26826110856611796)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27006844835767286)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26827371250611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26827371250611798)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27007006095767286)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843010460704002.111)
+,p_translate_from_id=>wwv_flow_api.id(26843010460704002)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27007211824767286)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843462807704003.111)
+,p_translate_from_id=>wwv_flow_api.id(26843462807704003)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27007893975767287)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844628943704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844628943704005)
+,p_translate_column_id=>268
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27008298806767294)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26787619518385732.111)
+,p_translate_from_id=>wwv_flow_api.id(26787619518385732)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27008462734767295)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788028517385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788028517385736)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27008845988767295)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788891904385737.111)
+,p_translate_from_id=>wwv_flow_api.id(26788891904385737)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27009260994767296)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26806726179458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26806726179458343)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27009486452767296)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807122400458343.111)
+,p_translate_from_id=>wwv_flow_api.id(26807122400458343)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27009859369767296)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807919100458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807919100458344)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27010281216767297)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826110856611796.111)
+,p_translate_from_id=>wwv_flow_api.id(26826110856611796)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27010846140767297)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26827371250611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26827371250611798)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27011290437767298)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843462807704003.111)
+,p_translate_from_id=>wwv_flow_api.id(26843462807704003)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27011817419767298)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844628943704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844628943704005)
+,p_translate_column_id=>269
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27012707563767306)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788891904385737.111)
+,p_translate_from_id=>wwv_flow_api.id(26788891904385737)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27013756390767307)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807919100458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807919100458344)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27014733398767308)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26827371250611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26827371250611798)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27015747072767309)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844628943704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844628943704005)
+,p_translate_column_id=>270
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27016525577767316)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788435787385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788435787385736)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27016770684767316)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788891904385737.111)
+,p_translate_from_id=>wwv_flow_api.id(26788891904385737)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27017554622767317)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807594117458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807594117458344)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27017774803767317)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807919100458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807919100458344)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27018370409767318)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826570181611797.111)
+,p_translate_from_id=>wwv_flow_api.id(26826570181611797)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27018550228767318)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826973040611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26826973040611798)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27018709840767318)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26827371250611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26827371250611798)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27019335645767319)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843857624704004.111)
+,p_translate_from_id=>wwv_flow_api.id(26843857624704004)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27019502505767319)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844273135704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844273135704005)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'button'
+,p_translate_from_text=>'button'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27019715501767319)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844628943704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844628943704005)
+,p_translate_column_id=>271
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'BOTH'
+,p_translate_from_text=>'BOTH'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27020586970767326)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788435787385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788435787385736)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27021588271767327)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807594117458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807594117458344)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27022360141767328)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826570181611797.111)
+,p_translate_from_id=>wwv_flow_api.id(26826570181611797)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27022570862767329)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826973040611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26826973040611798)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27023384675767329)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843857624704004.111)
+,p_translate_from_id=>wwv_flow_api.id(26843857624704004)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27023595110767330)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844273135704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844273135704005)
+,p_translate_column_id=>272
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27028510068767344)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26788435787385736.111)
+,p_translate_from_id=>wwv_flow_api.id(26788435787385736)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27029509535767345)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26807594117458344.111)
+,p_translate_from_id=>wwv_flow_api.id(26807594117458344)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27030395417767346)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826570181611797.111)
+,p_translate_from_id=>wwv_flow_api.id(26826570181611797)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27030524942767346)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26826973040611798.111)
+,p_translate_from_id=>wwv_flow_api.id(26826973040611798)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27031353491767347)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26843857624704004.111)
+,p_translate_from_id=>wwv_flow_api.id(26843857624704004)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27031511632767347)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26844273135704005.111)
+,p_translate_from_id=>wwv_flow_api.id(26844273135704005)
+,p_translate_column_id=>274
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'NONE'
+,p_translate_from_text=>'NONE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27044316247767379)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790449617385742.111)
+,p_translate_from_id=>wwv_flow_api.id(26790449617385742)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27045148568767379)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809529179458347.111)
+,p_translate_from_id=>wwv_flow_api.id(26809529179458347)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27045955661767380)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828951981611803.111)
+,p_translate_from_id=>wwv_flow_api.id(26828951981611803)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27046501065767381)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26846266849704008.111)
+,p_translate_from_id=>wwv_flow_api.id(26846266849704008)
+,p_translate_column_id=>278
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_translate_from_text=>'CLEAR_CACHE_CURRENT_PAGE'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27046940398767386)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26789639574385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26789639574385741)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TCARACCIDENTSLOG'
+,p_translate_from_text=>'TCARACCIDENTSLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27047120147767386)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790030313385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26790030313385741)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TCARACCIDENTSLOG'
+,p_translate_from_text=>'TCARACCIDENTSLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27047783928767387)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26808737902458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26808737902458346)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TFINESLOG'
+,p_translate_from_text=>'TFINESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27047932186767387)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809156361458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26809156361458346)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TFINESLOG'
+,p_translate_from_text=>'TFINESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27048567007767388)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828120000611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828120000611802)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TDRIVERLICENSESLOG'
+,p_translate_from_text=>'TDRIVERLICENSESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27048705949767388)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828533243611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828533243611802)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TDRIVERLICENSESLOG'
+,p_translate_from_text=>'TDRIVERLICENSESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27049160196767389)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845446413704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845446413704007)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TMEDICALCERTIFICATESLOG'
+,p_translate_from_text=>'TMEDICALCERTIFICATESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27049304470767389)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845874175704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845874175704007)
+,p_translate_column_id=>279
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TMEDICALCERTIFICATESLOG'
+,p_translate_from_text=>'TMEDICALCERTIFICATESLOG'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27049979521767395)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26789639574385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26789639574385741)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P40_CARACCIDENTID'
+,p_translate_from_text=>'P40_CARACCIDENTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27050156340767396)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790030313385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26790030313385741)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P40_CARACCIDENTID'
+,p_translate_from_text=>'P40_CARACCIDENTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27050724153767396)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26808737902458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26808737902458346)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P42_FINEID'
+,p_translate_from_text=>'P42_FINEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27050988602767396)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809156361458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26809156361458346)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P42_FINEID'
+,p_translate_from_text=>'P42_FINEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27051593883767397)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828120000611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828120000611802)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P46_DRIVERLICENSEID'
+,p_translate_from_text=>'P46_DRIVERLICENSEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27051737830767397)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828533243611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828533243611802)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P46_DRIVERLICENSEID'
+,p_translate_from_text=>'P46_DRIVERLICENSEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27052119917767398)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845446413704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845446413704007)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P48_MEDICALCERTIFICATEID'
+,p_translate_from_text=>'P48_MEDICALCERTIFICATEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27052317586767398)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845874175704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845874175704007)
+,p_translate_column_id=>280
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'P48_MEDICALCERTIFICATEID'
+,p_translate_from_text=>'P48_MEDICALCERTIFICATEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27052904989767404)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26789639574385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26789639574385741)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CARACCIDENTID'
+,p_translate_from_text=>'CARACCIDENTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27053029698767404)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790030313385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26790030313385741)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'CARACCIDENTID'
+,p_translate_from_text=>'CARACCIDENTID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27053685463767405)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26808737902458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26808737902458346)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FINEID'
+,p_translate_from_text=>'FINEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27053810159767405)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809156361458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26809156361458346)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'FINEID'
+,p_translate_from_text=>'FINEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27054496414767406)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828120000611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828120000611802)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DRIVERLICENSEID'
+,p_translate_from_text=>'DRIVERLICENSEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27054605169767406)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828533243611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828533243611802)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'DRIVERLICENSEID'
+,p_translate_from_text=>'DRIVERLICENSEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27055077784767406)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845446413704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845446413704007)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'MEDICALCERTIFICATEID'
+,p_translate_from_text=>'MEDICALCERTIFICATEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27055213960767407)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845874175704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845874175704007)
+,p_translate_column_id=>281
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'MEDICALCERTIFICATEID'
+,p_translate_from_text=>'MEDICALCERTIFICATEID'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27092195429767572)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26783709612385706.111)
+,p_translate_from_id=>wwv_flow_api.id(26783709612385706)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27092321450767572)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784451667385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784451667385710)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27092981045767573)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803517367458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803517367458337)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27093168344767573)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26802853467458336.111)
+,p_translate_from_id=>wwv_flow_api.id(26802853467458336)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27093778170767574)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823033098611790.111)
+,p_translate_from_id=>wwv_flow_api.id(26823033098611790)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+end;
+/
+begin
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27093916678767574)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26837616297639812.111)
+,p_translate_from_id=>wwv_flow_api.id(26837616297639812)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27094556576767575)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26839597424703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26839597424703998)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27094704568767575)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840217836703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840217836703998)
+,p_translate_column_id=>308
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'N'
+,p_translate_from_text=>'N'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27095305584767581)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26783709612385706.111)
+,p_translate_from_id=>wwv_flow_api.id(26783709612385706)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27095561946767581)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784451667385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784451667385710)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27096110280767582)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803517367458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803517367458337)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27096358131767582)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26802853467458336.111)
+,p_translate_from_id=>wwv_flow_api.id(26802853467458336)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27096951905767583)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823033098611790.111)
+,p_translate_from_id=>wwv_flow_api.id(26823033098611790)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27097161822767583)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26837616297639812.111)
+,p_translate_from_id=>wwv_flow_api.id(26837616297639812)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'HTML'
+,p_translate_from_text=>'HTML'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27097706172767584)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26839597424703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26839597424703998)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27097925064767584)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840217836703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840217836703998)
+,p_translate_column_id=>309
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'TEXT'
+,p_translate_from_text=>'TEXT'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27098534872767591)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26783709612385706.111)
+,p_translate_from_id=>wwv_flow_api.id(26783709612385706)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27098755696767591)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26784451667385710.111)
+,p_translate_from_id=>wwv_flow_api.id(26784451667385710)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27099383042767591)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26803517367458337.111)
+,p_translate_from_id=>wwv_flow_api.id(26803517367458337)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27099572137767592)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26802853467458336.111)
+,p_translate_from_id=>wwv_flow_api.id(26802853467458336)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27100181795767592)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26823033098611790.111)
+,p_translate_from_id=>wwv_flow_api.id(26823033098611790)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27100368561767593)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26837616297639812.111)
+,p_translate_from_id=>wwv_flow_api.id(26837616297639812)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27100920673767593)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26839597424703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26839597424703998)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27101114114767593)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26840217836703998.111)
+,p_translate_from_id=>wwv_flow_api.id(26840217836703998)
+,p_translate_column_id=>310
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'Y'
+,p_translate_from_text=>'Y'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27143857872767701)
+,p_page_id=>40
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26790030313385741.111)
+,p_translate_from_id=>wwv_flow_api.id(26790030313385741)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27144615779767701)
+,p_page_id=>42
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26809156361458346.111)
+,p_translate_from_id=>wwv_flow_api.id(26809156361458346)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27145490034767702)
+,p_page_id=>46
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26828533243611802.111)
+,p_translate_from_id=>wwv_flow_api.id(26828533243611802)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
+);
+wwv_flow_api.create_translation(
+ p_id=>wwv_flow_api.id(27146094884767703)
+,p_page_id=>48
+,p_translated_flow_id=>111
+,p_translate_to_id=>wwv_flow_api.id(26845874175704007.111)
+,p_translate_from_id=>wwv_flow_api.id(26845874175704007)
+,p_translate_column_id=>323
+,p_translate_to_lang_code=>'ru'
+,p_translation_specific_to_item=>'NO'
+,p_template_translatable=>'N'
+,p_translate_to_text=>'I:U:D'
+,p_translate_from_text=>'I:U:D'
 );
 end;
 /
@@ -26132,6 +31418,557 @@ wwv_flow_api.create_page_process(
 );
 end;
 /
+prompt --application/pages/page_00024
+begin
+wwv_flow_api.create_page(
+ p_id=>24
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'MileageServicePage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'MileageServicePage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308125919'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26541930314403323)
+,p_plug_name=>'MileageServicePageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MILEAGESERVID", ',
+'"VEHICLEID",',
+'"MILEAGESERVDATE",',
+'"NEXTMILEAGESERVDATE",',
+'"CURRMILEAGE",',
+'"INTERVALMILEAGE",',
+'"MILEAGESERVCOST",',
+'"MILEAGESERVNOTES"',
+'from "#OWNER#"."TMILEAGESERVICELOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26542376155403324)
+,p_name=>'MileageServicePageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:25:&SESSION.::&DEBUG.::P25_MILEAGESERVID:#MILEAGESERVID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26542376155403324
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26542454451403324)
+,p_db_column_name=>'MILEAGESERVID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Mileageservid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26542805157403325)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26543262790403325)
+,p_db_column_name=>'MILEAGESERVDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Mileageservdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26543655889403326)
+,p_db_column_name=>'NEXTMILEAGESERVDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Nextmileageservdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26544029909403327)
+,p_db_column_name=>'CURRMILEAGE'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Currmileage'
+,p_column_type=>'NUMBER'
+,p_heading_alignment=>'RIGHT'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G990'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26544437807403328)
+,p_db_column_name=>'INTERVALMILEAGE'
+,p_display_order=>6
+,p_column_identifier=>'F'
+,p_column_label=>'Intervalmileage'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G999G999G990'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26544839223403328)
+,p_db_column_name=>'MILEAGESERVCOST'
+,p_display_order=>7
+,p_column_identifier=>'G'
+,p_column_label=>'Mileageservcost'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_format_mask=>'999G999G999G999G990D00'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26545271211403329)
+,p_db_column_name=>'MILEAGESERVNOTES'
+,p_display_order=>8
+,p_column_identifier=>'H'
+,p_column_label=>'Mileageservnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26549295026404775)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'265493'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'MILEAGESERVID:VEHICLEID:MILEAGESERVDATE:NEXTMILEAGESERVDATE:CURRMILEAGE:INTERVALMILEAGE:MILEAGESERVCOST:MILEAGESERVNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26548051323403332)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26546580224403331)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26541930314403323)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:25:&SESSION.::&DEBUG.:25'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26545637282403330)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(26541930314403323)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26546166410403330)
+,p_event_id=>wwv_flow_api.id(26545637282403330)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26541930314403323)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26546962145403331)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26546580224403331)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26547481365403332)
+,p_event_id=>wwv_flow_api.id(26546962145403331)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26541930314403323)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
+prompt --application/pages/page_00025
+begin
+wwv_flow_api.create_page(
+ p_id=>25
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'MileageServiceEditPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'MileageServiceEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308130657'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26532088756403296)
+,p_plug_name=>'MileageServiceEditPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26532768016403296)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26533138813403297)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26532768016403296)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26532603504403296)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26532768016403296)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P25_MILEAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26532576474403296)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26532768016403296)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P25_MILEAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26532463797403296)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26532768016403296)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P25_MILEAGESERVID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26535561753403300)
+,p_name=>'P25_MILEAGESERVID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Mileageservid'
+,p_source=>'MILEAGESERVID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26535917349403301)
+,p_name=>'P25_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TMSVehicle_pkg.fullname(v.vehicleid) as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26536379667403302)
+,p_name=>'P25_MILEAGESERVDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Mileageservdate'
+,p_source=>'MILEAGESERVDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26536773003403303)
+,p_name=>'P25_NEXTMILEAGESERVDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Nextmileageservdate'
+,p_source=>'NEXTMILEAGESERVDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26537132247403303)
+,p_name=>'P25_CURRMILEAGE'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Currmileage'
+,p_source=>'CURRMILEAGE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26537588789403304)
+,p_name=>'P25_INTERVALMILEAGE'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Intervalmileage'
+,p_source=>'INTERVALMILEAGE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26537992458403304)
+,p_name=>'P25_MILEAGESERVCOST'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Mileageservcost'
+,p_source=>'MILEAGESERVCOST'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26538321023403305)
+,p_name=>'P25_MILEAGESERVNOTES'
+,p_item_sequence=>80
+,p_item_plug_id=>wwv_flow_api.id(26532088756403296)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Mileageservnotes'
+,p_source=>'MILEAGESERVNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1024
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26533231793403297)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26533138813403297)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26534038071403298)
+,p_event_id=>wwv_flow_api.id(26533231793403297)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26539182778403306)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TMILEAGESERVICELOG'
+,p_attribute_02=>'TMILEAGESERVICELOG'
+,p_attribute_03=>'P25_MILEAGESERVID'
+,p_attribute_04=>'MILEAGESERVID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26539523284403307)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TMILEAGESERVICELOG'
+,p_attribute_02=>'TMILEAGESERVICELOG'
+,p_attribute_03=>'P25_MILEAGESERVID'
+,p_attribute_04=>'MILEAGESERVID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26539910683403307)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26532603504403296)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26540314909403308)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+);
+end;
+/
 prompt --application/pages/page_00026
 begin
 wwv_flow_api.create_page(
@@ -26732,7 +32569,7 @@ wwv_flow_api.create_page(
 ,p_cache_mode=>'NOCACHE'
 ,p_help_text=>'No help is available for this page.'
 ,p_last_updated_by=>'SCASSETS_ADMIN'
-,p_last_upd_yyyymmddhh24miss=>'20160301191659'
+,p_last_upd_yyyymmddhh24miss=>'20160308130202'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(24301829794789040)
@@ -28328,6 +34165,627 @@ wwv_flow_api.create_page_process(
 );
 end;
 /
+prompt --application/pages/page_00035
+begin
+wwv_flow_api.create_page(
+ p_id=>35
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'InspectionsLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'InspectionsLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308132322'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26563628352622996)
+,p_plug_name=>'InspectionsLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "INSPECTIONID", ',
+'"VEHICLEID",',
+'"INSPECTIONDATE",',
+'"INSPECTIONNOTES"',
+'from "#OWNER#"."TINSPECTIONSLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26564071658622997)
+,p_name=>'InspectionsLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:36:&SESSION.::&DEBUG.::P36_INSPECTIONID:#INSPECTIONID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26564071658622997
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26564167100622997)
+,p_db_column_name=>'INSPECTIONID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Inspectionid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26564551353622998)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26564967195622999)
+,p_db_column_name=>'INSPECTIONDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Inspectiondate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26565372522623000)
+,p_db_column_name=>'INSPECTIONNOTES'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Inspectionnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26569389720624168)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'265694'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'INSPECTIONID:VEHICLEID:INSPECTIONDATE:INSPECTIONNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26568173881623003)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26566640077623001)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26563628352622996)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:36:&SESSION.::&DEBUG.:36'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26565780583623000)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(26563628352622996)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26566255109623001)
+,p_event_id=>wwv_flow_api.id(26565780583623000)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26563628352622996)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26567082354623002)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26566640077623001)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26567525478623002)
+,p_event_id=>wwv_flow_api.id(26567082354623002)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26563628352622996)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
+prompt --application/pages/page_00036
+begin
+wwv_flow_api.create_page(
+ p_id=>36
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'InspectionsLogEditPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'InspectionsLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308132428'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26555369782622975)
+,p_plug_name=>'InspectionsLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26555914294622977)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26556346594622978)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26555914294622977)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26555802892622977)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26555914294622977)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P36_INSPECTIONID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26555744693622977)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26555914294622977)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P36_INSPECTIONID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26555676046622977)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26555914294622977)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P36_INSPECTIONID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26558740903622981)
+,p_name=>'P36_INSPECTIONID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26555369782622975)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Inspectionid'
+,p_source=>'INSPECTIONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26559145772622982)
+,p_name=>'P36_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26555369782622975)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TMSVehicle_pkg.fullname(v.vehicleid) as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26559591319622984)
+,p_name=>'P36_INSPECTIONDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26555369782622975)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Inspectiondate'
+,p_source=>'INSPECTIONDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26559912404622985)
+,p_name=>'P36_INSPECTIONNOTES'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26555369782622975)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Inspectionnotes'
+,p_source=>'INSPECTIONNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26556458747622978)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26556346594622978)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26557281635622979)
+,p_event_id=>wwv_flow_api.id(26556458747622978)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26560706694622987)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TINSPECTIONSLOG'
+,p_attribute_02=>'TINSPECTIONSLOG'
+,p_attribute_03=>'P36_INSPECTIONID'
+,p_attribute_04=>'INSPECTIONID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26561156943622988)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TINSPECTIONSLOG'
+,p_attribute_02=>'TINSPECTIONSLOG'
+,p_attribute_03=>'P36_INSPECTIONID'
+,p_attribute_04=>'INSPECTIONID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26561503290622988)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26555802892622977)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26561974638622988)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+);
+end;
+/
+prompt --application/pages/page_00037
+begin
+wwv_flow_api.create_page(
+ p_id=>37
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'CarAccidentsLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'CarAccidentsLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308153125'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26792576119385770)
+,p_plug_name=>'CarAccidentsLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "CARACCIDENTID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"CARACCIDENTDATE",',
+'"CARACCIDENTNOTES"',
+'from "#OWNER#"."TCARACCIDENTSLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26792868078385771)
+,p_name=>'CarAccidentsLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:40:&SESSION.::&DEBUG.::P40_CARACCIDENTID:#CARACCIDENTID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26792868078385771
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26792910468385779)
+,p_db_column_name=>'CARACCIDENTID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Caraccidentid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26793329531385783)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26793781496385784)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25770365198445916)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26794113779385785)
+,p_db_column_name=>'CARACCIDENTDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Caraccidentdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26794513269385786)
+,p_db_column_name=>'CARACCIDENTNOTES'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Caraccidentnotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26798684572387946)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'267987'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'CARACCIDENTID:VEHICLEID:PERSONID:CARACCIDENTDATE:CARACCIDENTNOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26797335433385795)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26795867489385790)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26792576119385770)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:40:&SESSION.::&DEBUG.:40'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26794989901385787)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(26792576119385770)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26795467315385789)
+,p_event_id=>wwv_flow_api.id(26794989901385787)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26792576119385770)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26796220608385791)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26795867489385790)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26796746876385791)
+,p_event_id=>wwv_flow_api.id(26796220608385791)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26792576119385770)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
 prompt --application/pages/page_00038
 begin
 wwv_flow_api.create_page(
@@ -29041,6 +35499,760 @@ wwv_flow_api.create_page_process(
 );
 end;
 /
+prompt --application/pages/page_00040
+begin
+wwv_flow_api.create_page(
+ p_id=>40
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'CarAccidentsEditLogPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'CarAccidentsEditLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308153416'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26783709612385706)
+,p_plug_name=>'CarAccidentsEditLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26784451667385710)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26784850400385711)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26784451667385710)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26784394001385710)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26784451667385710)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P40_CARACCIDENTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26784271186385710)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26784451667385710)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P40_CARACCIDENTID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26784119877385710)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26784451667385710)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P40_CARACCIDENTID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26787231709385719)
+,p_name=>'P40_CARACCIDENTID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26783709612385706)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Caraccidentid'
+,p_source=>'CARACCIDENTID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26787619518385732)
+,p_name=>'P40_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26783709612385706)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TMSVehicle_pkg.fullname(v.vehicleid) as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26788028517385736)
+,p_name=>'P40_PERSONID'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26783709612385706)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELPERSONLOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select tmsperson_pkg.fullname(p.name, p.surname) as d,',
+'       personid as r',
+'  from tpersons p',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26788435787385736)
+,p_name=>'P40_CARACCIDENTDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26783709612385706)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Caraccidentdate'
+,p_source=>'CARACCIDENTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26788891904385737)
+,p_name=>'P40_CARACCIDENTNOTES'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26783709612385706)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Caraccidentnotes'
+,p_source=>'CARACCIDENTNOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26784989285385711)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26784850400385711)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26785749071385715)
+,p_event_id=>wwv_flow_api.id(26784989285385711)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26789639574385741)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TCARACCIDENTSLOG'
+,p_attribute_02=>'TCARACCIDENTSLOG'
+,p_attribute_03=>'P40_CARACCIDENTID'
+,p_attribute_04=>'CARACCIDENTID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26790030313385741)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TCARACCIDENTSLOG'
+,p_attribute_02=>'TCARACCIDENTSLOG'
+,p_attribute_03=>'P40_CARACCIDENTID'
+,p_attribute_04=>'CARACCIDENTID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26790449617385742)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26784394001385710)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26790895560385742)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+);
+end;
+/
+prompt --application/pages/page_00041
+begin
+wwv_flow_api.create_page(
+ p_id=>41
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'FinesLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'FinesLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308154317'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26811554848458353)
+,p_plug_name=>'FinesLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "FINEID", ',
+'"VEHICLEID",',
+'"PERSONID",',
+'"FINEDATE",',
+'"FINENOTES"',
+'from "#OWNER#"."TFINESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26811997822458353)
+,p_name=>'FinesLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:42:&SESSION.::&DEBUG.::P42_FINEID:#FINEID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26811997822458353
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26812059006458354)
+,p_db_column_name=>'FINEID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Fineid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26812476034458355)
+,p_db_column_name=>'VEHICLEID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Vehicleid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25576625889549635)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26812819374458356)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25770365198445916)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26813224672458356)
+,p_db_column_name=>'FINEDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Finedate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26813615602458357)
+,p_db_column_name=>'FINENOTES'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Finenotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26817600441459261)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'268177'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'FINEID:VEHICLEID:PERSONID:FINEDATE:FINENOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26816458319458361)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26814919356458359)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26811554848458353)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:42:&SESSION.::&DEBUG.:42'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26814085696458358)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(26811554848458353)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26814511436458358)
+,p_event_id=>wwv_flow_api.id(26814085696458358)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26811554848458353)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26815370657458359)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26814919356458359)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26815897139458360)
+,p_event_id=>wwv_flow_api.id(26815370657458359)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26811554848458353)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
+prompt --application/pages/page_00042
+begin
+wwv_flow_api.create_page(
+ p_id=>42
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'FinesLogEditPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'FinesLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308154512'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26802853467458336)
+,p_plug_name=>'FinesLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26803517367458337)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26803956819458337)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26803517367458337)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26803437895458337)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26803517367458337)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P42_FINEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26803384759458337)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26803517367458337)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P42_FINEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26803297051458337)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26803517367458337)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P42_FINEID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26806344730458341)
+,p_name=>'P42_FINEID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26802853467458336)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Fineid'
+,p_source=>'FINEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26806726179458343)
+,p_name=>'P42_VEHICLEID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26802853467458336)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Vehicleid'
+,p_source=>'VEHICLEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELVEHICLELOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select TMSVehicle_pkg.fullname(v.vehicleid) as d,',
+'       vehicleid as r',
+'  from tvehicles v',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26807122400458343)
+,p_name=>'P42_PERSONID'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26802853467458336)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELPERSONLOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select tmsperson_pkg.fullname(p.name, p.surname) as d,',
+'       personid as r',
+'  from tpersons p',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26807594117458344)
+,p_name=>'P42_FINEDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26802853467458336)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Finedate'
+,p_source=>'FINEDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26807919100458344)
+,p_name=>'P42_FINENOTES'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26802853467458336)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Finenotes'
+,p_source=>'FINENOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>4000
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26804054578458337)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26803956819458337)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26804827386458339)
+,p_event_id=>wwv_flow_api.id(26804054578458337)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26808737902458346)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TFINESLOG'
+,p_attribute_02=>'TFINESLOG'
+,p_attribute_03=>'P42_FINEID'
+,p_attribute_04=>'FINEID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26809156361458346)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TFINESLOG'
+,p_attribute_02=>'TFINESLOG'
+,p_attribute_03=>'P42_FINEID'
+,p_attribute_04=>'FINEID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26809529179458347)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26803437895458337)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26809931693458348)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+);
+end;
+/
 prompt --application/pages/page_00043
 begin
 wwv_flow_api.create_page(
@@ -29447,6 +36659,881 @@ wwv_flow_api.create_page_process(
 ,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(26175461503282496)
+);
+end;
+/
+prompt --application/pages/page_00045
+begin
+wwv_flow_api.create_page(
+ p_id=>45
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'DriverLicensesLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'DriverLicensesLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308160716'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26830656074611807)
+,p_plug_name=>'DriverLicensesLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "DRIVERLICENSEID", ',
+'"PERSONID",',
+'"DRIVERLICENSESTARTDATE",',
+'"DRIVERLICENSEENDDATE",',
+'"DRIVERLICENSENOTES"',
+'from "#OWNER#"."TDRIVERLICENSESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26831073123611808)
+,p_name=>'DriverLicensesLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:46:&SESSION.::&DEBUG.::P46_DRIVERLICENSEID:#DRIVERLICENSEID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26831073123611808
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26831155722611809)
+,p_db_column_name=>'DRIVERLICENSEID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Driverlicenseid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26831565302611809)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25770365198445916)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26831970420611814)
+,p_db_column_name=>'DRIVERLICENSESTARTDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Driverlicensestartdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26832396457611814)
+,p_db_column_name=>'DRIVERLICENSEENDDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Driverlicenseenddate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26832788741611815)
+,p_db_column_name=>'DRIVERLICENSENOTES'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Driverlicensenotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26834968946612911)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'268350'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'DRIVERLICENSEID:PERSONID:DRIVERLICENSESTARTDATE:DRIVERLICENSEENDDATE:DRIVERLICENSENOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26833743633611816)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26833189237611815)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26830656074611807)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:46:&SESSION.::&DEBUG.:46'
+,p_grid_new_grid=>false
+);
+end;
+/
+prompt --application/pages/page_00046
+begin
+wwv_flow_api.create_page(
+ p_id=>46
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'DriverLicensesLogEditPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'DriverLicensesLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308161256'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26823033098611790)
+,p_plug_name=>'DriverLicensesLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26837616297639812)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_plug_query_num_rows=>15
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26823737518611791)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26837616297639812)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'BELOW_BOX'
+,p_button_redirect_url=>'f?p=&APP_ID.:45:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
+,p_grid_new_row=>'Y'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26823611804611791)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26837616297639812)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'BELOW_BOX'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P46_DRIVERLICENSEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_grid_new_row=>'Y'
+,p_grid_new_column=>'Y'
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26823525814611791)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26837616297639812)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'BELOW_BOX'
+,p_button_condition=>'P46_DRIVERLICENSEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_grid_new_row=>'Y'
+,p_grid_new_column=>'Y'
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26823484415611791)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26837616297639812)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'BELOW_BOX'
+,p_button_condition=>'P46_DRIVERLICENSEID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_grid_new_row=>'Y'
+,p_grid_new_column=>'Y'
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(26825377720611793)
+,p_branch_action=>'f?p=&APP_ID.:45:&SESSION.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26825792105611795)
+,p_name=>'P46_DRIVERLICENSEID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26823033098611790)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Driverlicenseid'
+,p_source=>'DRIVERLICENSEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26826110856611796)
+,p_name=>'P46_PERSONID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26823033098611790)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELPERSONLOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select tmsperson_pkg.fullname(p.name, p.surname) as d,',
+'       personid as r',
+'  from tpersons p',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26826570181611797)
+,p_name=>'P46_DRIVERLICENSESTARTDATE'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26823033098611790)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Driverlicensestartdate'
+,p_source=>'DRIVERLICENSESTARTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26826973040611798)
+,p_name=>'P46_DRIVERLICENSEENDDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26823033098611790)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Driverlicenseenddate'
+,p_source=>'DRIVERLICENSEENDDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26827371250611798)
+,p_name=>'P46_DRIVERLICENSENOTES'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26823033098611790)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Driverlicensenotes'
+,p_source=>'DRIVERLICENSENOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1024
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26828120000611802)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TDRIVERLICENSESLOG'
+,p_attribute_02=>'TDRIVERLICENSESLOG'
+,p_attribute_03=>'P46_DRIVERLICENSEID'
+,p_attribute_04=>'DRIVERLICENSEID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26828533243611802)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TDRIVERLICENSESLOG'
+,p_attribute_02=>'TDRIVERLICENSESLOG'
+,p_attribute_03=>'P46_DRIVERLICENSEID'
+,p_attribute_04=>'DRIVERLICENSEID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26828951981611803)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26823611804611791)
+);
+end;
+/
+prompt --application/pages/page_00047
+begin
+wwv_flow_api.create_page(
+ p_id=>47
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'MedicalCertificatesLogPage'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'MedicalCertificatesLogPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308162331'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26848260262704014)
+,p_plug_name=>'MedicalCertificatesLogPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23787082064469083)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select "MEDICALCERTIFICATEID", ',
+'"PERSONID",',
+'"MEDICALCERTIFICATESTARTDATE",',
+'"MEDICALCERTIFICATEENDDATE",',
+'"MEDICALCERTIFICATENOTES"',
+'from "#OWNER#"."TMEDICALCERTIFICATESLOG" ',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(26848603725704015)
+,p_name=>'MedicalCertificatesLogPageReg'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_allow_report_categories=>'N'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'C'
+,p_show_calendar=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_detail_link=>'f?p=&APP_ID.:48:&SESSION.::&DEBUG.::P48_MEDICALCERTIFICATEID:#MEDICALCERTIFICATEID#'
+,p_detail_link_text=>'<img src="#IMAGE_PREFIX#e2.gif"  border="0">'
+,p_icon_view_columns_per_row=>1
+,p_owner=>'SCASSETS_ADMIN'
+,p_internal_uid=>26848603725704015
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26848752170704015)
+,p_db_column_name=>'MEDICALCERTIFICATEID'
+,p_display_order=>1
+,p_column_identifier=>'A'
+,p_column_label=>'Medicalcertificateid'
+,p_column_type=>'NUMBER'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26849134968704016)
+,p_db_column_name=>'PERSONID'
+,p_display_order=>2
+,p_column_identifier=>'B'
+,p_column_label=>'Personid'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'LOV_ESCAPE_SC'
+,p_tz_dependent=>'N'
+,p_rpt_named_lov=>wwv_flow_api.id(25770365198445916)
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26849559693704017)
+,p_db_column_name=>'MEDICALCERTIFICATESTARTDATE'
+,p_display_order=>3
+,p_column_identifier=>'C'
+,p_column_label=>'Medicalcertificatestartdate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26849948649704022)
+,p_db_column_name=>'MEDICALCERTIFICATEENDDATE'
+,p_display_order=>4
+,p_column_identifier=>'D'
+,p_column_label=>'Medicalcertificateenddate'
+,p_column_type=>'DATE'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(26850358750704022)
+,p_db_column_name=>'MEDICALCERTIFICATENOTES'
+,p_display_order=>5
+,p_column_identifier=>'E'
+,p_column_label=>'Medicalcertificatenotes'
+,p_column_type=>'STRING'
+,p_tz_dependent=>'N'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(26854342746705050)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'268544'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'MEDICALCERTIFICATEID:PERSONID:MEDICALCERTIFICATESTARTDATE:MEDICALCERTIFICATEENDDATE:MEDICALCERTIFICATENOTES'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26853138072704026)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23790833953469089)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(23814842776469277)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(23808831762469149)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26851665582704024)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26848260262704014)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:48:&SESSION.::&DEBUG.:48'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26850790312704023)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(26848260262704014)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26851254369704024)
+,p_event_id=>wwv_flow_api.id(26850790312704023)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26848260262704014)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26852073202704024)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26851665582704024)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26852583774704025)
+,p_event_id=>wwv_flow_api.id(26852073202704024)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(26848260262704014)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
+prompt --application/pages/page_00048
+begin
+wwv_flow_api.create_page(
+ p_id=>48
+,p_user_interface_id=>wwv_flow_api.id(23813595700469208)
+,p_name=>'MedicalCertificatesLogEditPage'
+,p_page_mode=>'MODAL'
+,p_step_title=>'MedicalCertificatesLogEditPage'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_step_template=>wwv_flow_api.id(23777528360469049)
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_cache_timeout_seconds=>21600
+,p_help_text=>'No help is available for this page.'
+,p_last_updated_by=>'SCASSETS_ADMIN'
+,p_last_upd_yyyymmddhh24miss=>'20160308162429'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26839597424703998)
+,p_plug_name=>'MedicalCertificatesLogEditPageReg'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779493018469069)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(26840217836703998)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(23779529478469070)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26840628641703999)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26840217836703998)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26840117733703998)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(26840217836703998)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P48_MEDICALCERTIFICATEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26840054556703998)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(26840217836703998)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P48_MEDICALCERTIFICATEID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(26839919662703998)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(26840217836703998)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(23808383794469147)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P48_MEDICALCERTIFICATEID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26843010460704002)
+,p_name=>'P48_MEDICALCERTIFICATEID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(26839597424703998)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Medicalcertificateid'
+,p_source=>'MEDICALCERTIFICATEID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26843462807704003)
+,p_name=>'P48_PERSONID'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(26839597424703998)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Personid'
+,p_source=>'PERSONID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'SELPERSONLOV'
+,p_lov=>wwv_flow_utilities.join(wwv_flow_t_varchar2(
+'select tmsperson_pkg.fullname(p.name, p.surname) as d,',
+'       personid as r',
+'  from tpersons p',
+' order by 1'))
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'YES'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26843857624704004)
+,p_name=>'P48_MEDICALCERTIFICATESTARTDAT'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(26839597424703998)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Medicalcertificatestartdate'
+,p_source=>'MEDICALCERTIFICATESTARTDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26844273135704005)
+,p_name=>'P48_MEDICALCERTIFICATEENDDATE'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26839597424703998)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Medicalcertificateenddate'
+,p_source=>'MEDICALCERTIFICATEENDDATE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_DATE_PICKER'
+,p_cSize=>32
+,p_cMaxlength=>255
+,p_cHeight=>1
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_04=>'button'
+,p_attribute_05=>'N'
+,p_attribute_07=>'NONE'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(26844628943704005)
+,p_name=>'P48_MEDICALCERTIFICATENOTES'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26839597424703998)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Medicalcertificatenotes'
+,p_source=>'MEDICALCERTIFICATENOTES'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>1024
+,p_cHeight=>4
+,p_label_alignment=>'RIGHT'
+,p_field_template=>wwv_flow_api.id(23807818149469141)
+,p_item_template_options=>'#DEFAULT#'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(26840798606703999)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(26840628641703999)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(26841584145704000)
+,p_event_id=>wwv_flow_api.id(26840798606703999)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26845446413704007)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from TMEDICALCERTIFICATESLOG'
+,p_attribute_02=>'TMEDICALCERTIFICATESLOG'
+,p_attribute_03=>'P48_MEDICALCERTIFICATEID'
+,p_attribute_04=>'MEDICALCERTIFICATEID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26845874175704007)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of TMEDICALCERTIFICATESLOG'
+,p_attribute_02=>'TMEDICALCERTIFICATESLOG'
+,p_attribute_03=>'P48_MEDICALCERTIFICATEID'
+,p_attribute_04=>'MEDICALCERTIFICATEID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26846266849704008)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(26840117733703998)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(26846604661704008)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
 );
 end;
 /
