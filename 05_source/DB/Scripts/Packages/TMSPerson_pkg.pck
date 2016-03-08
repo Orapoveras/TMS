@@ -16,8 +16,8 @@
   -- <VariableName> <Datatype>;
 
   -- Public function and procedure declarations
-  function fullname(aPersonName tPersons.Personname%type,
-                    aPersonNotes tPersons.Personnotes%type) return fullname_t;
+  function fullname(aName tPersons.name%type,
+                    aSurname tPersons.Surname%type) return fullname_t;
 
   function fullname(aPersonID tPersons.Personid%type) return fullname_t;
 
@@ -37,16 +37,16 @@ create or replace package body TMSPerson_pkg is
   -- Function and procedure implementations
   -- Public function and procedure declarations
 
-  function fullname(aPersonName tPersons.Personname%type,
-                    aPersonNotes tPersons.Personnotes%type) return fullname_t is
+  function fullname(aName tPersons.name%type,
+                    aSurname tPersons.surname%type) return fullname_t is
   begin
-    return aPersonName || '(' || substr(aPersonNotes, 1, 20) || ')';
+    return aName || ' ' || aSurname;
   end;
 
   function fullname(aPersonID tPersons.Personid%type) return fullname_t is
   begin
     vFullname :=  aPersonID;
-    select fullname(v.Personname, v.Personnotes) into vFullname
+    select fullname(v.name, v.surname) into vFullname
       from tPersons v
      where v.Personid = aPersonID;
     return vFullname;
