@@ -21,6 +21,12 @@
 
   function fullname(aVehicleID tvehicles.vehicleid%type) return fullname_t;
 
+  -- Форматирование наименования для бланка путевого листа
+  function VehicleName4WayBill(aVehicleName tvehicles.vehiclename%type,
+                    aVehicleRegNum tvehicles.vehicleregnum%type) return fullname_t;
+
+  function VehicleName4WayBill(aVehicleID tvehicles.vehicleid%type) return fullname_t;
+
 end TMSVehicle_pkg;
 /
 create or replace package body TMSVehicle_pkg is
@@ -51,6 +57,23 @@ create or replace package body TMSVehicle_pkg is
      where v.vehicleid = aVehicleID;
     return vFullname;
   end;
+
+  -- Форматирование наименования для бланка путевого листа
+  function VehicleName4WayBill(aVehicleName tvehicles.vehiclename%type,
+                               aVehicleRegNum tvehicles.vehicleregnum%type) return fullname_t is
+  begin
+    return aVehicleName || ', ' || aVehicleRegNum;
+  end VehicleName4WayBill;
+
+  -- Форматирование наименования для бланка путевого листа
+  function VehicleName4WayBill(aVehicleID tvehicles.vehicleid%type) return fullname_t is
+  begin
+    vFullname :=  aVehicleID;
+    select VehicleName4WayBill(v.vehiclename, v.vehicleregnum) into vFullname
+      from tVehicles v
+     where v.vehicleid = aVehicleID;
+    return vFullname;
+  end VehicleName4WayBill;
 
 begin
   null;

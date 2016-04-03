@@ -21,6 +21,13 @@
 
   function fullname(aPersonID tPersons.Personid%type) return fullname_t;
 
+  -- Форматирование фамилии водителя для печати на бланке путевого листа
+  function PersonName4WayBillRep(aName tPersons.name%type,
+                    aSurname tPersons.Surname%type) return fullname_t;
+
+  -- Форматирование фамилии водителя для печати на бланке путевого листа
+  function PersonName4WayBillRep(aPersonID tPersons.Personid%type) return fullname_t;
+
 end TMSPerson_pkg;
 /
 create or replace package body TMSPerson_pkg is
@@ -47,6 +54,26 @@ create or replace package body TMSPerson_pkg is
   begin
     vFullname :=  aPersonID;
     select fullname(v.name, v.surname) into vFullname
+      from tPersons v
+     where v.Personid = aPersonID;
+    return vFullname;
+  end;
+
+  -- Форматирование фамилии водителя для печати на бланке путевого листа
+  function PersonName4WayBillRep(aName tPersons.name%type,
+                    aSurname tPersons.surname%type) return fullname_t is
+  begin
+    return TMSAPPCOMMON_PKG.ExtractWord(1, aName, '')
+           || ' ' || substr(TMSAPPCOMMON_PKG.ExtractWord(2, aName, ''), 1, 1) 
+           || '. ' || substr(aSurname, 1, 1)
+           || '.';
+  end;
+
+  -- Форматирование фамилии водителя для печати на бланке путевого листа
+  function PersonName4WayBillRep(aPersonID tPersons.Personid%type) return fullname_t is
+  begin
+    vFullname :=  aPersonID;
+    select PersonName4WayBillRep(v.name, v.surname) into vFullname
       from tPersons v
      where v.Personid = aPersonID;
     return vFullname;
