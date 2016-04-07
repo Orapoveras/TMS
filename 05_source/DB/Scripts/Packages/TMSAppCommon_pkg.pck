@@ -23,8 +23,10 @@
   function WordCount (aStr in varchar2, aWordDelims in varchar2) return number;
 
   -- Given a set of word delimiters, return the N'th word in S
-  Function ExtractWord(aN in number, aStr in varchar2, aWordDelims in varchar2) return varchar2;
+  function ExtractWord(aN in number, aStr in varchar2, aWordDelims in varchar2) return varchar2;
 
+  -- Получить показания спидометра при выезде
+  function GetInitialMiliage (aTripID in number) return tTripsLog.Tripdistance%type;
 
 end TMSAppCommon_pkg;
 /
@@ -71,6 +73,40 @@ create or replace package body TMSAppCommon_pkg is
     end if;
     return return_value;
   end ExtractWord;
+
+  -- Получить показания спидометра при выезде 
+  function GetInitialMiliage (aTripID in number) return tTripsLog.Tripdistance%type is
+    return_value tTripsLog.Tripdistance%type;
+  begin
+    select sum(tl.tripdistance)
+      into return_value
+      from ttripslog tl
+      join twaybilllog wb
+        on (wb.waybillid = tl.waybillid)
+     where (wb.vehicleid = (select w.vehicleid
+                              from twaybilllog w
+                              join ttripslog t on (w.waybillid = t.waybillid)
+                             where tripid = aTripID))
+       and (wb.waybilldate <= (select waybilldate
+                                 from twaybilllog w
+                                 join ttripslog t on (w.waybillid = t.waybillid)
+                                where t.tripid = aTripID))
+       and tl.tripid not in
+          
+           (select v1.tripid
+              from (select tripid, tripqueue
+                      from ttripslog tl
+                      join twaybilllog wb on (tl.waybillid = wb.waybillid)
+                     where wb.waybillid =
+                           (select w.waybillid
+                              from twaybilllog w
+                              join ttripslog t on (w.waybillid = t.waybillid)
+                             where t.tripid = aTripID)) v1
+             where v1.tripqueue >=
+                   (select tripqueue from ttripslog where tripid = aTripID));
+
+     return nvl(return_value, 0);
+  end GetInitialMiliage;
 
 end TMSAppCommon_pkg;
 /
